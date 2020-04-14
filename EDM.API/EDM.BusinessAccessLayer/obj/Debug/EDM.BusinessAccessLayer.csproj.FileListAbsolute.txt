@@ -1,0 +1,11 @@
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.dll
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.pdb
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csprojResolveAssemblyReference.cache
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.dll
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.pdb
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.dll
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.Models.dll
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.dll
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.pdb
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.Models.pdb
+D:\Working Project\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
