@@ -9,14 +9,14 @@ using EDM.BusinessAccessLayer.User;
 
 namespace EDM.API.Controllers.User
 {
-    [RoutePrefix("api/EDM/User")]
+    [RoutePrefix("api/UserManagement")]
     public class UserController : ApiController
     {
         [Route("User/SignUp")]
         [HttpPost]
         public string SignUp(ClsUserSignUp ObjUser)
         {
-            using (UserBusinessAccessLayer obj = new UserBusinessAccessLayer())
+            using (clsUser_BAL obj = new clsUser_BAL())
             {
                 return obj.SignUp(ObjUser);
             }
@@ -26,7 +26,7 @@ namespace EDM.API.Controllers.User
         [HttpPost]
         public List<ClsUserSignUp> SignIn(ClsUserSignIn ObjUser)
         {
-            using (UserBusinessAccessLayer obj = new UserBusinessAccessLayer())
+            using (clsUser_BAL obj = new clsUser_BAL())
             {
                 return obj.SignIn(ObjUser);
             }

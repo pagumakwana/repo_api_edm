@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EDM.DataAccessLayer.User
 {
-    public class UserDataAccessLayer : IDisposable
+    public class clsUser_DAL : IDisposable
     {
         public string SignUp(ClsUserSignUp ObjUser)
         {

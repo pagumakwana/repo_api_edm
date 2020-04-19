@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EDM.BusinessAccessLayer.User
 {
-    public class UserBusinessAccessLayer : IDisposable
+    public class clsUser_BAL : IDisposable
     {
         public string SignUp(ClsUserSignUp ObjUser)
         {
-            using (UserDataAccessLayer obj = new UserDataAccessLayer())
+            using (clsUser_DAL obj = new clsUser_DAL())
             {
                 return obj.SignUp(ObjUser);
             }
@@ -20,7 +20,7 @@ namespace EDM.BusinessAccessLayer.User
 
         public List<ClsUserSignUp> SignIn(ClsUserSignIn ObjUser)
         {
-            using (UserDataAccessLayer obj = new UserDataAccessLayer())
+            using (clsUser_DAL obj = new clsUser_DAL())
             {
                 return obj.SignIn(ObjUser);
             }

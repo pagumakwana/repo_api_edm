@@ -43,8 +43,9 @@
     <Compile Include="Admin\AuthorityManagement\ClsAuthorityManagement_BO.cs" />
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_BO.cs" />
     <Compile Include="Admin\UserManagement\ClsUserManagement_BO.cs" />
+    <Compile Include="Common\clsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="User\clsUser_BO.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
