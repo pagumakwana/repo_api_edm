@@ -1,0 +1,10 @@
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.DataAccessLayer.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.DataAccessLayer.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.Models.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.MSDBHelper.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.Models.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.MSDBHelper.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csprojAssemblyReference.cache
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csproj.CopyComplete
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.pdb

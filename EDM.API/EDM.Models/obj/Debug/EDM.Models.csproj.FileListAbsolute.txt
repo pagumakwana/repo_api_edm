@@ -3,3 +3,8 @@ D:\Working Project\EDM.API\EDM.Models\bin\Debug\EDM.Models.pdb
 D:\Working Project\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
 D:\Working Project\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb
 D:\Working Project\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojResolveAssemblyReference.cache
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb

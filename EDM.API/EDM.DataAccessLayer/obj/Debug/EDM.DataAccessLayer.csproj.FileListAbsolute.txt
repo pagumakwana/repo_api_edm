@@ -7,3 +7,13 @@ D:\Working Project\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.dll
 D:\Working Project\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.dll
 D:\Working Project\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.pdb
 D:\Working Project\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.DataAccessLayer.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.DataAccessLayer.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.csprojAssemblyReference.cache
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.csproj.CopyComplete
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.pdb
