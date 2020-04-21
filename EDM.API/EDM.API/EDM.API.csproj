@@ -187,6 +187,7 @@
     <Compile Include="Controllers\Admin\AuthorityManagement\AuthorityManagementController.cs" />
     <Compile Include="Controllers\Admin\MasterManagement\MasterManagementController.cs" />
     <Compile Include="Controllers\Admin\UserManagement\UserManagementController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
