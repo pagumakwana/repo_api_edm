@@ -44,7 +44,6 @@
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_DAL.cs" />
     <Compile Include="Admin\UserManagement\ClsUserManagement_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\clsUser_DAL.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

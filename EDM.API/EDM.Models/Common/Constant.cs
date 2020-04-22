@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EDM.Models.Common
+{
+    public class Constant
+    {
+        public const string RegisterGuest = "[dbo].[RegisterGuest]"; 
+        public const string RegisterCustomer = "[dbo].[RegisterCustomer]"; 
+        public const string SignInCustomer = "[dbo].[SignInCustomer]"; 
+        public const string ForgotPassword = "[dbo].[ForgotPassword]";
+        public const string ValidateUser = "[dbo].[ValidateUser]";
+        public const string RequestOTP = "[dbo].[RequestOTP]";
+        public const string SearchKeyword = "[dbo].[SearchKeyword]";
+
+        public const string UpdateCustomerProfile = "[dbo].[UpdateCustomerProfile]";
+    }
+}
