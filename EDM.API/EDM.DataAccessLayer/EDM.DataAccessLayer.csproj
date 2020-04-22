@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AuthorityManagement\ClsAuthorityManagement_DAL.cs" />
+    <Compile Include="Admin\Gener\ClsGenerManagement_DAL.cs" />
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_DAL.cs" />
     <Compile Include="Admin\UserManagement\ClsUserManagement_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -15,7 +15,11 @@ namespace EDM.Models.Common
         public const string ValidateUser = "[dbo].[ValidateUser]";
         public const string RequestOTP = "[dbo].[RequestOTP]";
         public const string SearchKeyword = "[dbo].[SearchKeyword]";
-
         public const string UpdateCustomerProfile = "[dbo].[UpdateCustomerProfile]";
+
+        //Gener AddModify
+        public const string GenerAddModify = "[dbo].[GenerAddModify]";
+        //Gener List
+        public const string GenerList = "[dbo].[GenerList]";
     }
 }

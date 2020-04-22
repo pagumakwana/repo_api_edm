@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AuthorityManagement\ClsAuthorityManagement_BO.cs" />
+    <Compile Include="Admin\Gener\ClsGenerManagement_BO.cs" />
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_BO.cs" />
     <Compile Include="Admin\UserManagement\ClsUserManagement_BO.cs" />
     <Compile Include="Common\clsBase.cs" />
+    <Compile Include="Common\ClsFileMaster.cs" />
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\clsUser_BO.cs" />

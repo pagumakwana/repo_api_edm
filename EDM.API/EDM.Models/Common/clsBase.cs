@@ -14,15 +14,15 @@ namespace EDM.Models.Common
         public Int64 Ref_GuestUser_ID { get; set; }
         public Guid Ref_GuestUser_GUID { get; set; }
         public Nullable<DateTime> CreatedDateTime { get; set; }
-        public Int64 CreatedBy { get; set; }
+        public Int64? CreatedBy { get; set; }
         public string CreatedName { get; set; }
         public Nullable<DateTime> UpdatedDateTime { get; set; }
-        public Int64 UpdatedBy { get; set; }
+        public Int64? UpdatedBy { get; set; }
         public string UpdatedName { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
         public string Extras { get; set; }
         public string Response { get; set; }
-        //public List<ClsFile> ImageUrls { get; set; }
+        public List<ClsFileMaster> ImageUrls { get; set; }
     }
 }
