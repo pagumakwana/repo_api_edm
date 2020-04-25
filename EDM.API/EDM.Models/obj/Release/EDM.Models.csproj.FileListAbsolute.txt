@@ -2,3 +2,4 @@ C:\Projects\repo_api_edm\EDM.API\EDM.Models\bin\Release\EDM.Models.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.Models\bin\Release\EDM.Models.pdb
 C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.csprojAssemblyReference.cache

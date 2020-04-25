@@ -82,3 +82,6 @@ C:\Projects\repo_api_edm\EDM.API\EDM.API\obj\Release\EDM.API.csprojAssemblyRefer
 C:\Projects\repo_api_edm\EDM.API\EDM.API\obj\Release\EDM.API.csproj.CopyComplete
 C:\Projects\repo_api_edm\EDM.API\EDM.API\obj\Release\EDM.API.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.API\obj\Release\EDM.API.pdb
+C:\Projects\repo_api_edm\EDM.API\EDM.API\bin\System.Web.Cors.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.API\bin\System.Web.Http.Cors.dll
+C:\Projects\repo_api_edm\EDM.API\EDM.API\bin\System.Web.Http.Cors.xml
