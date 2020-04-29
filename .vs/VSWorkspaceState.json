@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EDM.API",
+    "\\EDM.API\\EDM.API",
+    "\\EDM.API\\EDM.API\\Controllers",
+    "\\EDM.API\\EDM.API\\Controllers\\Admin",
+    "\\EDM.API\\EDM.API\\Controllers\\Admin\\ServiceManagement",
+    "\\EDM.API\\EDM.API\\Controllers\\Admin\\TrackManagement",
+    "\\EDM.API\\EDM.BusinessAccessLayer",
+    "\\EDM.API\\EDM.BusinessAccessLayer\\Admin",
+    "\\EDM.API\\EDM.DataAccessLayer"
+  ],
+  "SelectedNode": "\\EDM.API\\EDM.API\\Controllers",
+  "PreviewInSolutionExplorer": false
+}
