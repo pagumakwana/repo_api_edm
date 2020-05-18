@@ -10,3 +10,15 @@ C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.Busines
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.csproj.CopyComplete
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.BusinessAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.BusinessAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.DataAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.Models.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.MSDBHelper.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.DataAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.Models.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Release\EDM.MSDBHelper.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.csproj.CopyComplete
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Release\EDM.BusinessAccessLayer.pdb

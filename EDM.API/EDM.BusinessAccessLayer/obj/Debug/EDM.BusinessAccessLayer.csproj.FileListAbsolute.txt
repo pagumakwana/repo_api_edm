@@ -21,3 +21,15 @@ C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessA
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CopyComplete
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.Models.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.Models.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CopyComplete
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.pdb
