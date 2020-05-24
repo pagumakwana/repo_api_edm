@@ -7,3 +7,15 @@ C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.pdb
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.pdb
+D:\EDM\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.dll
+D:\EDM\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.pdb
+D:\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csprojAssemblyReference.cache
+D:\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csproj.CoreCompileInputs.cache
+D:\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.dll
+D:\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.pdb
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.dll
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.pdb
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csprojAssemblyReference.cache
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csproj.CoreCompileInputs.cache
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.dll
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.pdb

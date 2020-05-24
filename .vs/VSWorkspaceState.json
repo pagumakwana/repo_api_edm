@@ -7,10 +7,9 @@
     "\\EDM.API\\EDM.API\\Controllers\\Admin",
     "\\EDM.API\\EDM.API\\Controllers\\Admin\\ServiceManagement",
     "\\EDM.API\\EDM.API\\Controllers\\Admin\\TrackManagement",
-    "\\EDM.API\\EDM.BusinessAccessLayer",
-    "\\EDM.API\\EDM.BusinessAccessLayer\\Admin",
-    "\\EDM.API\\EDM.DataAccessLayer"
+    "\\EDM.API\\EDM.API\\Controllers\\Admin\\UserManagement",
+    "\\EDM.API\\EDM.BusinessAccessLayer\\Admin"
   ],
-  "SelectedNode": "\\EDM.API\\EDM.API\\Controllers",
+  "SelectedNode": "\\EDM.API\\EDM.API\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }

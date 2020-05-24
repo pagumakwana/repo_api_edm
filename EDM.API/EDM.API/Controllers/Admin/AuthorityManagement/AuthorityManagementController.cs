@@ -12,7 +12,7 @@ namespace EDM.API.Controllers.Admin.AuthorityManagement
     {
         [Route("AuthorityManagement/Authority")]
         [HttpPost]
-        public string AddUserMaster(ClsAuthority ObjAuthority)
+        public string AddModifyAuthority(ClsAuthority ObjAuthority)
         {
             using (ClsAuthorityManagement_BAL obj = new ClsAuthorityManagement_BAL())
             {

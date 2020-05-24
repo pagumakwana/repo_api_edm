@@ -10,27 +10,19 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
 {
     public class ClsMasterManagement_BAL : IDisposable
     {
-        public List<ClsUserMasterControl> GetUserMasterControlList()
+        public String AddModifyUserMaster(ClsUserMaster ObjUserMaster)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetUserMasterControlList();
+                return obj.AddModifyUserMaster(ObjUserMaster);
             }
         }
 
-        public String AddUserMaster(ClsUserMaster ObjUserMaster)
+        public List<ClsUserMaster> GetUserMasterList(Int64 UserMasterID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.AddUserMaster(ObjUserMaster);
-            }
-        }
-
-        public List<ClsUserMaster> GetUserMasterList()
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.GetUserMasterList();
+                return obj.GetUserMasterList(UserMasterID);
             }
         }
 
@@ -42,11 +34,11 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             }
         }
 
-        public String AddUserMasterData(ClsUserMasterData ObjUserMasterData)
+        public String AddModifyUserMasterData(ClsUserMasterData ObjUserMasterData)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.AddUserMasterData(ObjUserMasterData);
+                return obj.AddModifyUserMasterData(ObjUserMasterData);
             }
 
         }
@@ -59,48 +51,23 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsMeasureTypeNameList> GetMeasureTypeList()
+        public String AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetMeasureTypeList();
+                return obj.AddModifyCategory(ObjCategory);
             }
+
         }
-        public List<ClsMeasureNameList> GetMeasureNameList()
+
+        public List<ClsCategoryDetails> GetCategoryList()
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetMeasureNameList();
+                return obj.GetCategoryList();
             }
         }
-        public List<ClsCategoryNameList> GetCategoryNameList()
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.GetCategoryNameList();
-            }
-        }
-        public List<ClsBrandNameList> GetBrandNameList()
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.GetBrandNameList();
-            }
-        }
-        public List<ClsManufacturerNameList> GetManufacturerNameList()
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.GetManufacturerNameList();
-            }
-        }
-        public List<ClsSKUCodeList> GetSKUNameList(ClsSKUCodeList ObjSKU)
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.GetSKUNameList(ObjSKU);
-            }
-        }
+      
 
         public void Dispose()
         {

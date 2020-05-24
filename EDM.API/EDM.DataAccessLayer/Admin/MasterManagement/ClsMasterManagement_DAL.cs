@@ -11,38 +11,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
     public class ClsMasterManagement_DAL : IDisposable
     {
 
-        public List<ClsUserMasterControl> GetUserMasterControlList()
-        {
-            try
-            {
-
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetUserMasterControlList]", CommandType.StoredProcedure);
-                List<ClsUserMasterControl> objUserMaster = new List<ClsUserMasterControl>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsUserMasterControl> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsUserMasterControl
-                            {
-                                Ref_UserMasterControl_ID = Row.Field<Int64>("Ref_UserMasterControl_ID"),
-                                UserMasterControl = Row.Field<string>("UserMasterControl"),
-                                ControlUseBy = Row.Field<string>("ControlUseBy"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public string AddUserMaster(ClsUserMaster ObjUserMaster)
+        public string AddModifyUserMaster(ClsUserMaster ObjUserMaster)
         {
             try
             {
@@ -84,13 +53,17 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-        public List<ClsUserMaster> GetUserMasterList()
+
+        public List<ClsUserMaster> GetUserMasterList(Int64 UserMasterID)
         {
             try
             {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", UserMasterID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetUserMasterList]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterList]", CommandType.StoredProcedure);
                 List<ClsUserMaster> objUserMaster = new List<ClsUserMaster>();
 
                 if (ds != null)
@@ -118,6 +91,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
+
         public List<ClsParentUserMaster> GetParentUserMasterList(Int64 UserMasterID)
         {
             try
@@ -127,7 +101,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetParentUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetParentUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsParentUserMaster> objUserMasterData = new List<ClsParentUserMaster>();
 
                 if (ds != null)
@@ -158,7 +132,8 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-        public string AddUserMasterData(ClsUserMasterData ObjUserMasterData)
+
+        public string AddModifyUserMasterData(ClsUserMasterData ObjUserMasterData)
         {
             try
             {
@@ -183,6 +158,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
+
         public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
         {
             try
@@ -192,7 +168,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetUserMasterDataList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterDataList]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMasterData> objUserMasterData = new List<ClsUserMasterData>();
 
                 if (ds != null)
@@ -217,186 +193,58 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-        public List<ClsMeasureTypeNameList> GetMeasureTypeList()
-        {
-            try
-            {
 
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetMeasureTypeList]", CommandType.StoredProcedure);
-                List<ClsMeasureTypeNameList> objUserMaster = new List<ClsMeasureTypeNameList>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsMeasureTypeNameList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsMeasureTypeNameList
-                            {
-                                Ref_MeasureType_ID = Row.Field<Int64>("Ref_MeasureType_ID"),
-                                MeasureType = Row.Field<string>("MeasureType"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<ClsMeasureNameList> GetMeasureNameList()
-        {
-            try
-            {
-
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetMeasureNameList]", CommandType.StoredProcedure);
-                List<ClsMeasureNameList> objUserMaster = new List<ClsMeasureNameList>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsMeasureNameList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsMeasureNameList
-                            {
-                                Ref_Measure_ID = Row.Field<Int64>("Ref_Measure_ID"),
-                                Measure = Row.Field<string>("Measure"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<ClsCategoryNameList> GetCategoryNameList()
-        {
-            try
-            {
-
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetCategoryNameList]", CommandType.StoredProcedure);
-                List<ClsCategoryNameList> objUserMaster = new List<ClsCategoryNameList>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsCategoryNameList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsCategoryNameList
-                            {
-                                Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
-                                CategoryName = Row.Field<string>("CategoryName"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<ClsBrandNameList> GetBrandNameList()
-        {
-            try
-            {
-
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetBrandNameList]", CommandType.StoredProcedure);
-                List<ClsBrandNameList> objUserMaster = new List<ClsBrandNameList>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsBrandNameList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsBrandNameList
-                            {
-                                Ref_Brand_ID = Row.Field<Int64>("Ref_Brand_ID"),
-                                BrandName = Row.Field<string>("BrandName"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<ClsManufacturerNameList> GetManufacturerNameList()
-        {
-            try
-            {
-
-                DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetManufacturerNameList]", CommandType.StoredProcedure);
-                List<ClsManufacturerNameList> objUserMaster = new List<ClsManufacturerNameList>();
-
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        IList<ClsManufacturerNameList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsManufacturerNameList
-                            {
-                                Ref_Manufacturer_ID = Row.Field<Int64>("Ref_Manufacturer_ID"),
-                                Manufacture = Row.Field<string>("Manufacture"),
-
-                            }).ToList();
-                        objUserMaster.AddRange(List);
-                    }
-                }
-                return objUserMaster;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<ClsSKUCodeList> GetSKUNameList(ClsSKUCodeList ObjSKU)
+        public string AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Ref_SKU_ID", ObjSKU.Ref_SKU_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@SKUCode", ObjSKU.SKUCode, DbType.String);
+                objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjCategory.Ref_Preant_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Description", ObjSKU.Description, DbType.String);
+                objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ActiveFlage", ObjSKU.ActiveFlage, DbType.Boolean);
+                objDBParameter = new DBParameter("@Descripation", ObjCategory.Descripation, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsActive", ObjCategory.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetSKUNameList]", ObJParameterCOl, CommandType.StoredProcedure);
-                List<ClsSKUCodeList> objUserMaster = new List<ClsSKUCodeList>();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyCategory]", ObJParameterCOl, CommandType.StoredProcedure));
 
-                if (ds != null)
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public List<ClsCategoryDetails> GetCategoryList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCategoryList]", CommandType.StoredProcedure);
+                List<ClsCategoryDetails> objUserMaster = new List<ClsCategoryDetails>();
+
+                if (dt != null)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+                    if (dt.Rows.Count > 0)
                     {
-                        IList<ClsSKUCodeList> List = ds.Tables[0].AsEnumerable().Select(Row =>
-                            new ClsSKUCodeList
+                        IList<ClsCategoryDetails> List = dt.AsEnumerable().Select(Row =>
+                            new ClsCategoryDetails
                             {
-                                Ref_SKU_ID = Row.Field<Int64>("Ref_SKU_ID"),
-                                SKUCode = Row.Field<string>("SKUCode"),
-                                Description = Row.Field<string>("Description"),
-                                ActiveFlage = Row.Field<Boolean>("ActiveFlage"),
+                                Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
+                                Ref_Preant_ID = Row.Field<Int64>("Ref_Preant_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
+                                Descripation = Row.Field<string>("Descripation"),
+                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }
@@ -408,6 +256,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
+
 
         public void Dispose()
         {

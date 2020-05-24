@@ -8,36 +8,27 @@ using EDM.Models.Admin.MasterManagement;
 namespace EDM.API.Controllers.Admin.MasterManagement
 {
 
-    [RoutePrefix("api/EDM/Admin")]
+    [RoutePrefix("api/Admin")]
     public class MasterManagementController : ApiController
     {
-        [Route("MasterManagement/UserMasterControl")]
-        [HttpPost]
-        public List<ClsUserMasterControl> GetUserMasterControlList()
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.GetUserMasterControlList();
-            }
-        }
 
         [Route("MasterManagement/UserMaster")]
         [HttpPost]
-        public string AddUserMaster(ClsUserMaster ObjUserMaster)
+        public string AddModifyUserMaster(ClsUserMaster ObjUserMaster)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.AddUserMaster(ObjUserMaster);
+                return obj.AddModifyUserMaster(ObjUserMaster);
             }
         }
 
         [Route("MasterManagement/UserMaster")]
         [HttpGet]
-        public List<ClsUserMaster> GetUserMasterList()
+        public List<ClsUserMaster> GetUserMasterList(Int64 UserMasterID)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.GetUserMasterList();
+                return obj.GetUserMasterList(UserMasterID);
             }
         }
 
@@ -54,11 +45,11 @@ namespace EDM.API.Controllers.Admin.MasterManagement
 
         [Route("MasterManagement/UserMasterData")]
         [HttpPost]
-        public string AddUserMasterData(ClsUserMasterData ObjUserMasterData)
+        public string AddModifyUserMasterData(ClsUserMasterData ObjUserMasterData)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.AddUserMasterData(ObjUserMasterData);
+                return obj.AddModifyUserMasterData(ObjUserMasterData);
             }
         }
 
@@ -72,60 +63,23 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/MeasureType")]
+        [Route("MasterManagement/Category")]
         [HttpPost]
-        public List<ClsMeasureTypeNameList> GetMeasureTypeList()
+        public string AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.GetMeasureTypeList();
+                return obj.AddModifyCategory(ObjCategory);
             }
         }
 
-
-        [Route("MasterManagement/MeasureName")]
-        [HttpPost]
-        public List<ClsMeasureNameList> GetMeasureNameList()
+        [Route("MasterManagement/Category")]
+        [HttpGet]
+        public List<ClsCategoryDetails> GetCategoryList()
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.GetMeasureNameList();
-            }
-        }
-        [Route("MasterManagement/CategoryName")]
-        [HttpPost]
-        public List<ClsCategoryNameList> GetCategoryNameList()
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.GetCategoryNameList();
-            }
-        }
-        [Route("MasterManagement/BrandName")]
-        [HttpPost]
-        public List<ClsBrandNameList> GetBrandNameList()
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.GetBrandNameList();
-            }
-        }
-        [Route("MasterManagement/ManufacturerName")]
-        [HttpPost]
-        public List<ClsManufacturerNameList> GetManufacturerNameList()
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.GetManufacturerNameList();
-            }
-        }
-        [Route("MasterManagement/SKUName")]
-        [HttpPost]
-        public List<ClsSKUCodeList> GetSKUNameList(ClsSKUCodeList ObjSKU)
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.GetSKUNameList(ObjSKU);
+                return obj.GetCategoryList();
             }
         }
 

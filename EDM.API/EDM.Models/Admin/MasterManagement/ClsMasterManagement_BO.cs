@@ -7,15 +7,6 @@ using System.Threading.Tasks;
 namespace EDM.Models.Admin.MasterManagement
 {
 
-    public class ClsUserMasterControl
-    {
-        public Int64 Ref_UserMasterControl_ID { get; set; }
-        public string UserMasterControl { get; set; }
-        public string ControlUseBy { get; set; }
-
-
-    }
-
     public class ClsParentUserMaster
     {
 
@@ -27,8 +18,6 @@ namespace EDM.Models.Admin.MasterManagement
         public List<ClsUserMasterData> userMasterData { get; set; }
 
     }
-
-
 
     public class ClsUserMaster
     {
@@ -45,6 +34,7 @@ namespace EDM.Models.Admin.MasterManagement
         public string SpecialCharacters { get; set; }
         public Boolean AllowNegativeNumbers { get; set; }
     }
+
     public class ClsUserMasterData
     {
         public Int64 Ref_UserMasterData_ID { get; set; }
@@ -53,44 +43,15 @@ namespace EDM.Models.Admin.MasterManagement
         public string Description { get; set; }
     }
 
-
-    public class ClsMeasureNameList
-    {
-        public Int64 Ref_Measure_ID { get; set; }
-        public string Measure { get; set; }
-
-    }
-
-    public class ClsMeasureTypeNameList
-    {
-        public Int64 Ref_MeasureType_ID { get; set; }
-        public string MeasureType { get; set; }
-
-    }
-    public class ClsCategoryNameList
+    public class ClsCategoryDetails
     {
         public Int64 Ref_Category_ID { get; set; }
+        public Int64 Ref_Preant_ID { get; set; }
         public string CategoryName { get; set; }
-
-    }
-    public class ClsBrandNameList
-    {
-        public Int64 Ref_Brand_ID { get; set; }
-        public string BrandName { get; set; }
-
-    }
-    public class ClsManufacturerNameList
-    {
-        public Int64 Ref_Manufacturer_ID { get; set; }
-        public string Manufacture { get; set; }
+        public string Descripation { get; set; }
+        public string ThumbnailImageUrl { get; set; }
+        public Boolean IsActive { get; set; }
 
     }
 
-    public class ClsSKUCodeList
-    {
-        public Int64 Ref_SKU_ID { get; set; }
-        public string SKUCode { get; set; }
-        public string Description { get; set; }
-        public Boolean ActiveFlage { get; set; }
-    }
 }
