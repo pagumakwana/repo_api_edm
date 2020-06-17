@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using EDM.BusinessLayer.Admin.MasterManagement;
 using EDM.Models.Admin.MasterManagement;
 
 
 namespace EDM.API.Controllers.Admin.MasterManagement
 {
-
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Admin")]
     public class MasterManagementController : ApiController
     {

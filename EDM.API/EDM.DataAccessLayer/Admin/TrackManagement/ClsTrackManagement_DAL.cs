@@ -25,6 +25,12 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Bio", ObjTrackDetails.Bio, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Mood", ObjTrackDetails.Mood, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Key", ObjTrackDetails.Key, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Tag", ObjTrackDetails.Tag, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BigImageUrl", ObjTrackDetails.BigImageUrl, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjTrackDetails.ThumbnailImageUrl, DbType.Boolean);
@@ -34,6 +40,10 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Duration", ObjTrackDetails.Duration, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Price", ObjTrackDetails.Price, DbType.Decimal);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjTrackDetails.PriceWithProjectFiles, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ProjectFilesUrl", ObjTrackDetails.ProjectFilesUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -46,6 +56,8 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@MixdowFileUrl", ObjTrackDetails.MixdowFileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjTrackDetails.IsActive, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsVocals", ObjTrackDetails.IsVocals, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjTrackDetails.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -83,10 +95,14 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 TrackName = Row.Field<string>("TrackName"),
                                 TrackType = Row.Field<string>("TrackType"),
                                 Bio = Row.Field<string>("Bio"),
+                                Mood = Row.Field<string>("Mood"),
+                                Key = Row.Field<string>("Key"),
+                                Tag = Row.Field<string>("Tag"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 Duration = Row.Field<int>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
+                                PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                 BMP = Row.Field<int>("BMP"),
                                 DAW = Row.Field<int>("DAW"),
                                 ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
@@ -95,6 +111,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
                                 MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
+                                IsVocals = Row.Field<Boolean>("IsVocals"),
 
                             }).ToList();
                         objUserMasterData.AddRange(List);

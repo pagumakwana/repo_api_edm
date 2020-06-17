@@ -13,10 +13,15 @@ namespace EDM.Models.Admin.TrackManagement
         public string TrackType { get; set; }
         public string TrackName { get; set; }
         public string Bio { get; set; }
+        public string Mood { get; set; }
+        public string Key { get; set; }
+        public string Tag { get; set; }
         public int Duration { get; set; }
         public int BMP { get; set; }
         public int DAW { get; set; }
+        public Boolean IsVocals { get; set; }
         public Decimal Price { get; set; }
+        public Decimal PriceWithProjectFiles { get; set; }
         public string BigImageUrl { get; set; }
         public string ThumbnailImageUrl { get; set; }
         public string MasterFileUrl { get; set; }
