@@ -222,7 +222,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-
         public List<ClsCategoryDetails> GetCategoryList()
         {
             try
@@ -256,6 +255,69 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
+
+        public string AddModifyCouponCode(ClsCategoryDetails ObjCategory)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjCategory.Ref_Preant_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Descripation", ObjCategory.Descripation, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsActive", ObjCategory.IsActive, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClsCategoryDetails> GetCouponCodeList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCategoryList]", CommandType.StoredProcedure);
+                List<ClsCategoryDetails> objUserMaster = new List<ClsCategoryDetails>();
+
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        IList<ClsCategoryDetails> List = dt.AsEnumerable().Select(Row =>
+                            new ClsCategoryDetails
+                            {
+                                Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
+                                Ref_Preant_ID = Row.Field<Int64>("Ref_Preant_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
+                                Descripation = Row.Field<string>("Descripation"),
+                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+
+                            }).ToList();
+                        objUserMaster.AddRange(List);
+                    }
+                }
+                return objUserMaster;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         public void Dispose()

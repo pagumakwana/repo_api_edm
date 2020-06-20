@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using EDM.BusinessLayer.Admin.AuthorityManagement;
 using EDM.Models.Admin.AuthorityManagement;
 
 
 namespace EDM.API.Controllers.Admin.AuthorityManagement
 {
-    [RoutePrefix("api/EDM/Admin")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Admin")]
     public class AuthorityManagementController : ApiController
     {
         [Route("AuthorityManagement/Authority")]

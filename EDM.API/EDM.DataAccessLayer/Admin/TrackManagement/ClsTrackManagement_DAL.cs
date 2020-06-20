@@ -59,6 +59,8 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsVocals", ObjTrackDetails.IsVocals, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsTrack", ObjTrackDetails.IsTrack, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjTrackDetails.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
@@ -110,9 +112,9 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 MasterFileUrl = Row.Field<string>("MasterFileUrl"),
                                 UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
                                 MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
-                                IsActive = Row.Field<Boolean>("IsActive"),
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
-
+                                IsTrack = Row.Field<Boolean>("IsTrack"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }
