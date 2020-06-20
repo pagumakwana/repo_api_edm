@@ -20,3 +20,8 @@ D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csproj.CoreCompileInputs.
 D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
 D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb
 D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.dll
+D:\repository\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
+D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb

@@ -39,3 +39,13 @@ D:\Project\EDM\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.csproj.CopyComplete
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.dll
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.DataAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.DataAccessLayer.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.dll
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.dll
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.Models.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.csproj.CopyComplete
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.dll
+D:\repository\repo_api_edm\EDM.API\EDM.DataAccessLayer\obj\Debug\EDM.DataAccessLayer.pdb
