@@ -3,10 +3,11 @@ using EDM.Models.Admin.TrackManagement;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 
 namespace EDM.API.Controllers.Admin.TrackManagement
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Admin")]
     public class TrackManagementController : ApiController
     {

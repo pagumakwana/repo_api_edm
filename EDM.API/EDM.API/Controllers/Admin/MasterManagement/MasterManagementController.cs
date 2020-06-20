@@ -84,5 +84,25 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
+        [Route("MasterManagement/CouponCode")]
+        [HttpPost]
+        public string AddModifyCouponCode(ClsCategoryDetails ObjCategory)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.AddModifyCouponCode(ObjCategory);
+            }
+        }
+
+        [Route("MasterManagement/CouponCode")]
+        [HttpGet]
+        public List<ClsCategoryDetails> GetCouponCodeList()
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.GetCouponCodeList();
+            }
+        }
+
     }
 }

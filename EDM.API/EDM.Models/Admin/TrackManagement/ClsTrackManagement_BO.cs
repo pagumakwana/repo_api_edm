@@ -20,6 +20,7 @@ namespace EDM.Models.Admin.TrackManagement
         public int BMP { get; set; }
         public int DAW { get; set; }
         public Boolean IsVocals { get; set; }
+        public Boolean IsTrack { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
         public string BigImageUrl { get; set; }

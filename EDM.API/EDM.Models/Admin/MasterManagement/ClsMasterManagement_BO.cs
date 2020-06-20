@@ -54,4 +54,15 @@ namespace EDM.Models.Admin.MasterManagement
 
     }
 
+    public class ClsCouponCodeDetails
+    {
+        public Int64 Ref_CouponCode_ID { get; set; }
+        public string CouponCode { get; set; }
+        public string Descripation { get; set; }
+        public string Sta { get; set; }
+        public string ThumbnailImageUrl { get; set; }
+        public string ObjectIDs { get; set; }
+        public Boolean IsActive { get; set; }
+
+    }
 }

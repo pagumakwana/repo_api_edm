@@ -3,10 +3,11 @@ using EDM.Models.Admin.ServiceManagement;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
-
+using System.Web.Http.Cors;
 
 namespace EDM.API.Controllers.Admin.ServiceManagement
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Admin")]
     public class ServiceManagementController : ApiController
     {
