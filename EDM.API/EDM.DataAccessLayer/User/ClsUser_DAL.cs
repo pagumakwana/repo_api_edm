@@ -21,13 +21,13 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@FullName", ObjUser.FullName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_EmailID", ObjUser.EmailID, DbType.String);
+                objDBParameter = new DBParameter("@EmailID", ObjUser.EmailID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_Password", ObjUser.User_Password, DbType.String);
+                objDBParameter = new DBParameter("@Password", ObjUser.User_Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Profile_Photo", ObjUser.Profile_Photo, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Profile_Photo", ObjUser.MobileNumber, DbType.String);
+                objDBParameter = new DBParameter("@MobileNumber", ObjUser.MobileNumber, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Bio", ObjUser.Bio, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -87,12 +87,12 @@ namespace EDM.DataAccessLayer.User
                                 Profile_Photo = Row.Field<string>("Profile_Photo"),
                                 Bio = Row.Field<string>("Bio"),
                                 Gender = Row.Field<string>("Gender"),
-                                User_Password = Row.Field<string>("User_Password"),
-                                Pincode = Row.Field<Int64>("Pincode"),
+                                //Pincode = Row.Field<Int64>("Pincode"),
                                 Address = Row.Field<string>("Address"),
                                 Address1 = Row.Field<string>("Address1"),
                                 AuthorityIDs = Row.Field<string>("Ref_Authority_ID"),
-                                UserMasterDataIDs = Row.Field<string>("UserMasterDataIDs")
+                                UserMasterDataIDs = Row.Field<string>("UserMasterDataIDs"),
+                                Response = Row.Field<string>("Response")
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }

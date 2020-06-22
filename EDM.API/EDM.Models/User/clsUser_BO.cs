@@ -24,11 +24,12 @@ namespace EDM.Models.User
         public string UserMasterDataIDs { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
+        public string Response { get; set; }
     }
     public class ClsUserSignIn
     {
         public string User_Code { get; set; }
         public string Password { get; set; }
-        public string IsSocialLogin { get; set; }
+        public Boolean IsSocialLogin { get; set; }
     }
 }
