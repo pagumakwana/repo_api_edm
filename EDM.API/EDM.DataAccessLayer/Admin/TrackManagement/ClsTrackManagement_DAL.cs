@@ -37,7 +37,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BMP", ObjTrackDetails.BMP, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.Int16);
+                objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Duration", ObjTrackDetails.Duration, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
@@ -98,7 +98,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 TrackType = Row.Field<string>("TrackType"),
                                 Bio = Row.Field<string>("Bio"),
                                 Mood = Row.Field<string>("Mood"),
-                                Key = Row.Field<string>("Key"),
+                                Key = Row.Field<string>("TrackKey"),
                                 Tag = Row.Field<string>("Tag"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 BigImageUrl = Row.Field<string>("BigImageUrl"),
@@ -106,7 +106,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 Price = Row.Field<decimal>("Price"),
                                 PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                 BMP = Row.Field<int>("BMP"),
-                                DAW = Row.Field<int>("DAW"),
+                                DAW = Row.Field<string>("DAW"),
                                 ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
                                 StemsUrl = Row.Field<string>("StemsUrl"),
                                 MasterFileUrl = Row.Field<string>("MasterFileUrl"),

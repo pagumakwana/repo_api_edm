@@ -6,10 +6,12 @@ using System.Net.Http;
 using System.Web.Http;
 using EDM.Models.User;
 using EDM.BusinessAccessLayer.User;
+using System.Web.Http.Cors;
 
 namespace EDM.API.Controllers.User
 {
-    [RoutePrefix("api/EDM/User")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Admin")]
     public class UserController : ApiController
     {
         [Route("User/SignUp")]

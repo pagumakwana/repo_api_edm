@@ -18,7 +18,7 @@ namespace EDM.Models.Admin.TrackManagement
         public string Tag { get; set; }
         public int Duration { get; set; }
         public int BMP { get; set; }
-        public int DAW { get; set; }
+        public string DAW { get; set; }
         public Boolean IsVocals { get; set; }
         public Boolean IsTrack { get; set; }
         public Decimal Price { get; set; }

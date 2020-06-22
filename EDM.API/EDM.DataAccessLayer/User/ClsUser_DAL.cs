@@ -19,15 +19,15 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@User_Code", ObjUser.User_Code, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_FirstName", ObjUser.User_FirstName, DbType.String);
+                objDBParameter = new DBParameter("@FullName", ObjUser.FullName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_LastName", ObjUser.User_LastName, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_EmailID", ObjUser.User_EmailID, DbType.String);
+                objDBParameter = new DBParameter("@User_EmailID", ObjUser.EmailID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@User_Password", ObjUser.User_Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Profile_Photo", ObjUser.Profile_Photo, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Profile_Photo", ObjUser.MobileNumber, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Bio", ObjUser.Bio, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -66,6 +66,8 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@password", ObjUser.Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsSocialLogin", ObjUser.IsSocialLogin, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
                 DataTable User = objDbHelper.ExecuteDataTable("[DBO].[SignIn]", ObJParameterCOl, CommandType.StoredProcedure);
@@ -80,9 +82,8 @@ namespace EDM.DataAccessLayer.User
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
                                 User_Code = Row.Field<string>("User_Code"),
-                                User_FirstName = Row.Field<string>("User_FirstName"),
-                                User_LastName = Row.Field<string>("User_LastName"),
-                                User_EmailID = Row.Field<string>("User_EmailID"),
+                                FullName = Row.Field<string>("FullName"),
+                                EmailID = Row.Field<string>("EmailID"),
                                 Profile_Photo = Row.Field<string>("Profile_Photo"),
                                 Bio = Row.Field<string>("Bio"),
                                 Gender = Row.Field<string>("Gender"),
@@ -90,7 +91,7 @@ namespace EDM.DataAccessLayer.User
                                 Pincode = Row.Field<Int64>("Pincode"),
                                 Address = Row.Field<string>("Address"),
                                 Address1 = Row.Field<string>("Address1"),
-                                AuthorityIDs = Row.Field<string>("AuthorityIDs"),
+                                AuthorityIDs = Row.Field<string>("Ref_Authority_ID"),
                                 UserMasterDataIDs = Row.Field<string>("UserMasterDataIDs")
                             }).ToList();
                         objUserMaster.AddRange(List);
