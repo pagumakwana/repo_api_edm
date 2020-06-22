@@ -3,3 +3,8 @@ C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\bin\Release\EDM.MSDBHelper.pdb
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.csprojAssemblyReference.cache
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.dll
 C:\Projects\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.MSDBHelper\bin\Release\EDM.MSDBHelper.dll
+D:\repository\repo_api_edm\EDM.API\EDM.MSDBHelper\bin\Release\EDM.MSDBHelper.pdb
+D:\repository\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.csprojAssemblyReference.cache
+D:\repository\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.dll
+D:\repository\repo_api_edm\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.pdb
