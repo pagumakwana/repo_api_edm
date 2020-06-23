@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.IO;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace EDM.API.Controllers.Common
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Common")]
     public class CommonController : ApiController
     {
-        [Route("Common/Image")]
+        [Route("Image")]
         [HttpPost]
         public string UploadImage(string ModuleName)
         {
@@ -35,7 +38,7 @@ namespace EDM.API.Controllers.Common
             }
         }
 
-        [Route("Common/File")]
+        [Route("File")]
         [HttpPost]
         public string FileUpload(string ModuleName)
         {

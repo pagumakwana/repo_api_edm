@@ -8,3 +8,9 @@ D:\repository\repo_api_edm\EDM.API\EDM.Models\bin\Release\EDM.Models.pdb
 D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.csprojAssemblyReference.cache
 D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.dll
 D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Release\EDM.Models.pdb
+D:\Project\EDM\EDM.API\EDM.Models\bin\Release\EDM.Models.dll
+D:\Project\EDM\EDM.API\EDM.Models\bin\Release\EDM.Models.pdb
+D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.csprojAssemblyReference.cache
+D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.csproj.CoreCompileInputs.cache
+D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.dll
+D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.pdb

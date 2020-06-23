@@ -31,9 +31,9 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Tag", ObjTrackDetails.Tag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@BigImageUrl", ObjTrackDetails.BigImageUrl, DbType.Boolean);
+                objDBParameter = new DBParameter("@BigImageUrl", ObjTrackDetails.BigImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjTrackDetails.ThumbnailImageUrl, DbType.Boolean);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjTrackDetails.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BMP", ObjTrackDetails.BMP, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
