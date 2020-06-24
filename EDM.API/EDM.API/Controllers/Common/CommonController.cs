@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 namespace EDM.API.Controllers.Common
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/Common")]
+    [RoutePrefix("api/Admin/Common")]
     public class CommonController : ApiController
     {
         [Route("Image")]

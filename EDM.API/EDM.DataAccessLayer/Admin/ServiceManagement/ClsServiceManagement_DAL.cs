@@ -21,7 +21,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ServiceTitle", ObjServiceDetails.ServiceTitle, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Description", ObjServiceDetails.Descripation, DbType.String);
+                objDBParameter = new DBParameter("@Description", ObjServiceDetails.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@DeliveryDate", ObjServiceDetails.DeliveryDate, DbType.DateTime);
                 ObJParameterCOl.Add(objDBParameter);
@@ -67,7 +67,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
                                 Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
-                                Descripation = Row.Field<string>("Descripation"),
+                                Description = Row.Field<string>("Description"),
                                 BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 ServiceVideoUrl = Row.Field<string>("ServiceVideoUrl"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
