@@ -203,7 +203,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_Preant_ID", ObjCategory.Ref_Preant_ID, DbType.Int64);
+                objDBParameter = new DBParameter("@Ref_Parent_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -211,7 +211,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Descripation", ObjCategory.Descripation, DbType.String);
+                objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -244,11 +244,11 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             new ClsCategoryDetails
                             {
                                 Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
-                                Ref_Preant_ID = Row.Field<Int64>("Ref_Preant_ID"),
+                                Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
                                 CategoryName = Row.Field<string>("CategoryName"),
                                 AliasName = Row.Field<string>("AliasName"),
                                 CategoryUseBy = Row.Field<string>("CategoryUseBy"),
-                                Descripation = Row.Field<string>("Descripation"),
+                                Description = Row.Field<string>("Description"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                             }).ToList();
@@ -299,11 +299,11 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjCategory.Ref_Preant_ID, DbType.Int64);
+                objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Descripation", ObjCategory.Descripation, DbType.String);
+                objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -348,9 +348,9 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             new ClsCategoryDetails
                             {
                                 Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
-                                Ref_Preant_ID = Row.Field<Int64>("Ref_Preant_ID"),
+                                Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
                                 CategoryName = Row.Field<string>("CategoryName"),
-                                Descripation = Row.Field<string>("Descripation"),
+                                Description = Row.Field<string>("Description"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
 

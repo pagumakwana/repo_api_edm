@@ -18,7 +18,7 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
-        public List<ClsUserSignUp> SignIn(ClsUserSignIn ObjUser)
+        public List<ClsUserDetails> SignIn(ClsUserSignIn ObjUser)
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {

@@ -47,11 +47,11 @@ namespace EDM.Models.Admin.MasterManagement
     {
         public Int64 Ref_User_ID { get; set; }
         public Int64 Ref_Category_ID { get; set; }
-        public Int64 Ref_Preant_ID { get; set; }
+        public Int64 Ref_Parent_ID { get; set; }
         public string CategoryName { get; set; }
         public string AliasName { get; set; }
         public string CategoryUseBy { get; set; }
-        public string Descripation { get; set; }
+        public string Description { get; set; }
         public string ThumbnailImageUrl { get; set; }
         public Boolean IsActive { get; set; }
     }
@@ -66,7 +66,7 @@ namespace EDM.Models.Admin.MasterManagement
     {
         public Int64 Ref_CouponCode_ID { get; set; }
         public string CouponCode { get; set; }
-        public string Descripation { get; set; }
+        public string Description { get; set; }
         public string Sta { get; set; }
         public string ThumbnailImageUrl { get; set; }
         public string ObjectIDs { get; set; }

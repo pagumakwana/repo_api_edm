@@ -11,10 +11,10 @@ using System.Web.Http.Cors;
 namespace EDM.API.Controllers.User
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/Admin")]
+    [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
-        [Route("User/SignUp")]
+        [Route("SignUp")]
         [HttpPost]
         public string SignUp(ClsUserSignUp ObjUser)
         {
@@ -24,9 +24,9 @@ namespace EDM.API.Controllers.User
             }
         }
 
-        [Route("User/SignIn")]
+        [Route("SignIn")]
         [HttpPost]
-        public List<ClsUserSignUp> SignIn(ClsUserSignIn ObjUser)
+        public List<ClsUserDetails> SignIn(ClsUserSignIn ObjUser)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {

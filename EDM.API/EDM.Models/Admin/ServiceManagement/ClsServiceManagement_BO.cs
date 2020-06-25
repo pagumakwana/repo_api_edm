@@ -11,7 +11,7 @@ namespace EDM.Models.Admin.ServiceManagement
         public Int64 Ref_Service_ID { get; set; }
         public Int64 Ref_Category_ID { get; set; }
         public string ServiceTitle { get; set; }
-        public string Descripation { get; set; }
+        public string Description { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
         public string BigImageUrl { get; set; }
