@@ -115,7 +115,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 userMasterName = Row.Field<string>("UserMaster"),
                                 typeOfView = Row.Field<string>("TypeOfView"),
                                 isCompulsory = Row.Field<Boolean>("isCompulsory"),
-                                userMasterData = ds.Tables[0].AsEnumerable().Where(x => x.Field<Int64>("Ref_UserMaster_ID") == Row.Field<Int64>("Ref_UserMaster_ID")).Select(Row1 =>
+                                userMasterData = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_UserMaster_ID") == Row.Field<Int64>("Ref_UserMaster_ID")).Select(Row1 =>
                                     new ClsUserMasterData
                                     {
                                         Ref_UserMasterData_ID = Row1.Field<Int64>("Ref_UserMasterData_ID"),
@@ -251,7 +251,35 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 Descripation = Row.Field<string>("Descripation"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
+                            }).ToList();
+                        objUserMaster.AddRange(List);
+                    }
+                }
+                return objUserMaster;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public List<ClsDAW> GetDAWList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetDAWList]", CommandType.StoredProcedure);
+                List<ClsDAW> objUserMaster = new List<ClsDAW>();
+
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        IList<ClsDAW> List = dt.AsEnumerable().Select(Row =>
+                            new ClsDAW
+                            {
+                                Ref_DAW_ID = Row.Field<Int64>("Ref_DAW_ID"),
+                                DAW = Row.Field<string>("DAW"),
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }
@@ -276,6 +304,18 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Descripation", ObjCategory.Descripation, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);

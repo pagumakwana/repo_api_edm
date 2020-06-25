@@ -67,6 +67,13 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.GetCategoryList();
             }
         }
+        public List<ClsDAW> GetDAWList()
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.GetDAWList();
+            }
+        }
 
         public String AddModifyCouponCode(ClsCategoryDetails ObjCategory)
         {

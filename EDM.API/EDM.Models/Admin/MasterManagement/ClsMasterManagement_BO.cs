@@ -54,7 +54,12 @@ namespace EDM.Models.Admin.MasterManagement
         public string Descripation { get; set; }
         public string ThumbnailImageUrl { get; set; }
         public Boolean IsActive { get; set; }
+    }
 
+    public class ClsDAW
+    {
+        public Int64 Ref_DAW_ID { get; set; }
+        public string DAW { get; set; }
     }
 
     public class ClsCouponCodeDetails

@@ -23,21 +23,61 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjServiceDetails.Descripation, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@DeliveryDate", ObjServiceDetails.DeliveryDate, DbType.DateTime);
+                objDBParameter = new DBParameter("@DeliveryDate", ObjServiceDetails.DeliveryDate, DbType.Decimal);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Price", ObjServiceDetails.Price, DbType.Decimal);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjServiceDetails.PriceWithProjectFiles, DbType.DateTime);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ServiceVideoUrl", ObjServiceDetails.ServiceVideoUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ProjectFilesUrl", ObjServiceDetails.ProjectFilesUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjServiceDetails.ThumbnailImageUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BigImageUrl", ObjServiceDetails.BigImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjServiceDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjServiceDetails.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
+                Int64 Ref_Service_ID = 0;
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                Ref_Service_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Service_ID > 0)
+                {
+                    ObjServiceDetails.FAQDetails.ForEach(FAQ =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", @Ref_Service_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Questions", FAQ.Questions, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@CreatedBy", ObjServiceDetails.CreatedBy, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceFAQ]", ObJParameterCOl1, CommandType.StoredProcedure);
+                    });
+                }
+
+                if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID == 0)
+                {
+                    return "SERVICEADDED";
+                }
+                else if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID == 0)
+                {
+                    return "SERVICEUPDATED";
+                }
+                else
+                {
+                    return "SERVICEEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -70,11 +110,19 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 Descripation = Row.Field<string>("Descripation"),
                                 BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 ServiceVideoUrl = Row.Field<string>("ServiceVideoUrl"),
+                                ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 Price = Row.Field<decimal>("Price"),
+                                PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
+                                Revision = Row.Field<int>("Price"),
                                 DeliveryDate = Row.Field<string>("DeliveryDate"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
-
+                                FAQDetails = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_Service_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row1 =>
+                                    new ClsFAQDetails
+                                    {
+                                        Questions = Row1.Field<string>("Questions"),
+                                        Answer = Row1.Field<string>("Answer")
+                                    }).ToList()
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }

@@ -84,6 +84,16 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
+        [Route("MasterManagement/DAW")]
+        [HttpGet]
+        public List<ClsDAW> GetDAWList()
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.GetDAWList();
+            }
+        }
+
         [Route("MasterManagement/CouponCode")]
         [HttpPost]
         public string AddModifyCouponCode(ClsCategoryDetails ObjCategory)
