@@ -75,16 +75,16 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             }
         }
 
-        public String AddModifyCouponCode(ClsCategoryDetails ObjCategory)
+        public String AddModifyCouponCode(ClsCouponDetails ObjCouponDetails)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.AddModifyCouponCode(ObjCategory);
+                return obj.AddModifyCouponCode(ObjCouponDetails);
             }
 
         }
 
-        public List<ClsCategoryDetails> GetCouponCodeList()
+        public List<ClsCouponDetails> GetCouponCodeList()
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {

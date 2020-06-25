@@ -292,34 +292,36 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public string AddModifyCouponCode(ClsCategoryDetails ObjCategory)
+        public string AddModifyCouponCode(ClsCouponDetails ObjCouponDetails)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_Coupon_ID", ObjCouponDetails.Ref_Coupon_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
+                objDBParameter = new DBParameter("@CouponCode", ObjCouponDetails.CouponCode, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CategoryName", ObjCategory.CategoryName, DbType.String);
+                objDBParameter = new DBParameter("@CouponUseBy", ObjCouponDetails.CouponUseBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
+                objDBParameter = new DBParameter("@Description", ObjCouponDetails.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@DiscountInPercentage", ObjCouponDetails.DiscountInPercentage, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@DiscountInMax", ObjCouponDetails.DiscountInMax, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@StartDate", ObjCouponDetails.StartDate, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@EndDate", ObjCouponDetails.EndDate, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@OneTimeUse", ObjCouponDetails.OneTimeUse, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@AudienceCount", ObjCouponDetails.AudienceCount, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
+                objDBParameter = new DBParameter("@OnlyForNewUsers", ObjCouponDetails.OnlyForNewUsers, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@IsActive", ObjCategory.IsActive, DbType.Boolean);
+                objDBParameter = new DBParameter("@CreatedBy", ObjCouponDetails.CreatedBy, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsActive", ObjCouponDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -332,33 +334,39 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsCategoryDetails> GetCouponCodeList()
+        public List<ClsCouponDetails> GetCouponCodeList()
         {
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCategoryList]", CommandType.StoredProcedure);
-                List<ClsCategoryDetails> objUserMaster = new List<ClsCategoryDetails>();
+                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCouponCodeList]", CommandType.StoredProcedure);
+                List<ClsCouponDetails> ObjCouponDetails = new List<ClsCouponDetails>();
 
                 if (dt != null)
                 {
                     if (dt.Rows.Count > 0)
                     {
-                        IList<ClsCategoryDetails> List = dt.AsEnumerable().Select(Row =>
-                            new ClsCategoryDetails
+                        IList<ClsCouponDetails> List = dt.AsEnumerable().Select(Row =>
+                            new ClsCouponDetails
                             {
-                                Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
-                                Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
-                                CategoryName = Row.Field<string>("CategoryName"),
+                                Ref_Coupon_ID = Row.Field<Int64>("Ref_Coupon_ID"),
+                                CouponCode = Row.Field<string>("CouponCode"),
                                 Description = Row.Field<string>("Description"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                CouponUseBy = Row.Field<string>("CouponUseBy"),
+                                DiscountInMax = Row.Field<Decimal>("DiscountInMax"),
+                                DiscountInPercentage = Row.Field<Decimal>("DiscountInPercentage"),
+                                StartDate = Row.Field<DateTime>("StartDate"),
+                                EndDate = Row.Field<DateTime>("EndDate"),
+                                OneTimeUse = Row.Field<Boolean>("OneTimeUse"),
+                                OnlyForNewUsers = Row.Field<Boolean>("OnlyForNewUsers"),
+                                AudienceCount = Row.Field<int>("AudienceCount"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
 
                             }).ToList();
-                        objUserMaster.AddRange(List);
+                        ObjCouponDetails.AddRange(List);
                     }
                 }
-                return objUserMaster;
+                return ObjCouponDetails;
             }
             catch (Exception ex)
             {

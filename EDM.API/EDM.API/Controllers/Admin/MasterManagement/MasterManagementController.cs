@@ -96,17 +96,17 @@ namespace EDM.API.Controllers.Admin.MasterManagement
 
         [Route("MasterManagement/CouponCode")]
         [HttpPost]
-        public string AddModifyCouponCode(ClsCategoryDetails ObjCategory)
+        public string AddModifyCouponCode(ClsCouponDetails ObjCouponDetails)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.AddModifyCouponCode(ObjCategory);
+                return obj.AddModifyCouponCode(ObjCouponDetails);
             }
         }
 
         [Route("MasterManagement/CouponCode")]
         [HttpGet]
-        public List<ClsCategoryDetails> GetCouponCodeList()
+        public List<ClsCouponDetails> GetCouponCodeList()
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {

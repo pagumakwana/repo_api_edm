@@ -62,15 +62,21 @@ namespace EDM.Models.Admin.MasterManagement
         public string DAW { get; set; }
     }
 
-    public class ClsCouponCodeDetails
+    public class ClsCouponDetails
     {
-        public Int64 Ref_CouponCode_ID { get; set; }
+        public Int64 Ref_Coupon_ID { get; set; }
         public string CouponCode { get; set; }
+        public string CouponUseBy { get; set; }
         public string Description { get; set; }
-        public string Sta { get; set; }
-        public string ThumbnailImageUrl { get; set; }
-        public string ObjectIDs { get; set; }
+        public Decimal DiscountInPercentage { get; set; }
+        public Decimal DiscountInMax { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public Boolean OneTimeUse { get; set; }
+        public int AudienceCount { get; set; }
+        public Boolean OnlyForNewUsers { get; set; }
         public Boolean IsActive { get; set; }
+        public string CreatedBy { get; set; }
 
     }
 }
