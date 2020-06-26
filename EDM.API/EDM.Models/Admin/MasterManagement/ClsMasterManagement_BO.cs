@@ -77,6 +77,11 @@ namespace EDM.Models.Admin.MasterManagement
         public Boolean OnlyForNewUsers { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
-
+        public List<ClsCouponObject> CouponObject { get; set; }
+    }
+    public class ClsCouponObject
+    {
+        public Int64 Ref_Object_ID { get; set; }
+        public string ObjectType { get; set; }
     }
 }

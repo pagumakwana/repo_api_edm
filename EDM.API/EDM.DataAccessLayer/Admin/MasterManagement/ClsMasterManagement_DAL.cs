@@ -324,9 +324,41 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 objDBParameter = new DBParameter("@IsActive", ObjCouponDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
 
-                DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_CouponCode_ID = 0;
 
+                DBHelper objDbHelper = new DBHelper();
+                Ref_CouponCode_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_CouponCode_ID > 0)
+                {
+                    ObjCouponDetails.CouponObject.ForEach(Object =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_CouponCode_ID", Ref_CouponCode_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ObjectType", Object.ObjectType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Ref_Object_ID", Object.Ref_Object_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@CreatedBy", ObjCouponDetails.CreatedBy, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponObjectMapping]", ObJParameterCOl1, CommandType.StoredProcedure);
+                    });
+                }
+
+                if (Ref_CouponCode_ID > 0 && ObjCouponDetails.Ref_Coupon_ID == 0)
+                {
+                    return "COUPONCODEADDED";
+                }
+                else if (Ref_CouponCode_ID > 0 && ObjCouponDetails.Ref_Coupon_ID == 0)
+                {
+                    return "COUPONCODEUPDATED";
+                }
+                else
+                {
+                    return "COUPONCODEEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -339,14 +371,16 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCouponCodeList]", CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetCouponCodeList]", CommandType.StoredProcedure);
                 List<ClsCouponDetails> ObjCouponDetails = new List<ClsCouponDetails>();
 
-                if (dt != null)
+                if (Ds != null)
                 {
-                    if (dt.Rows.Count > 0)
+                    if (Ds.Tables.Count > 0)
                     {
-                        IList<ClsCouponDetails> List = dt.AsEnumerable().Select(Row =>
+                        if (Ds.Tables[0].Rows.Count > 0)
+                        {
+                            IList<ClsCouponDetails> List = Ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsCouponDetails
                             {
                                 Ref_Coupon_ID = Row.Field<Int64>("Ref_Coupon_ID"),
@@ -361,9 +395,16 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 OnlyForNewUsers = Row.Field<Boolean>("OnlyForNewUsers"),
                                 AudienceCount = Row.Field<int>("AudienceCount"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
+                                CouponObject = Ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_Coupon_ID") == Row.Field<Int64>("Ref_Coupon_ID")).Select(Row1 =>
+                                    new ClsCouponObject
+                                    {
+                                        ObjectType = Row1.Field<string>("ObjectType"),
+                                        Ref_Object_ID = Row1.Field<Int64>("Ref_Object_ID")
+                                    }).ToList()
 
                             }).ToList();
-                        ObjCouponDetails.AddRange(List);
+                            ObjCouponDetails.AddRange(List);
+                        }
                     }
                 }
                 return ObjCouponDetails;
@@ -373,8 +414,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
-
 
         public void Dispose()
         {
