@@ -23,11 +23,11 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjServiceDetails.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@DeliveryDate", ObjServiceDetails.DeliveryDate, DbType.Decimal);
+                objDBParameter = new DBParameter("@DeliveryDate", ObjServiceDetails.DeliveryDate, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Price", ObjServiceDetails.Price, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjServiceDetails.PriceWithProjectFiles, DbType.DateTime);
+                objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjServiceDetails.PriceWithProjectFiles, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ServiceVideoUrl", ObjServiceDetails.ServiceVideoUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -55,7 +55,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                         DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
                         DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", @Ref_Service_ID, DbType.Int64);
                         ObJParameterCOl1.Add(objDBParameter1);
-                        objDBParameter1 = new DBParameter("@Questions", FAQ.Questions, DbType.String);
+                        objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
@@ -120,7 +120,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 FAQDetails = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_Service_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row1 =>
                                     new ClsFAQDetails
                                     {
-                                        Questions = Row1.Field<string>("Questions"),
+                                        Questions = Row1.Field<string>("Question"),
                                         Answer = Row1.Field<string>("Answer")
                                     }).ToList()
                             }).ToList();

@@ -29,6 +29,7 @@ namespace EDM.Models.Admin.TrackManagement
         public string UnmasteredFileUrl { get; set; }
         public string MixdowFileUrl { get; set; }
         public string StemsUrl { get; set; }
+        public string MIDIFileUrl { get; set; }
         public string ProjectFilesUrl { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }

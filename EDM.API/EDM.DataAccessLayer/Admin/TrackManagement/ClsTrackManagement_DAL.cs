@@ -49,6 +49,8 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@StemsUrl", ObjTrackDetails.StemsUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MIDIFileUrl", ObjTrackDetails.MIDIFileUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MasterFileUrl", ObjTrackDetails.MasterFileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@UnmasteredFileUrl", ObjTrackDetails.UnmasteredFileUrl, DbType.String);
@@ -109,6 +111,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 DAW = Row.Field<string>("DAW"),
                                 ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
                                 StemsUrl = Row.Field<string>("StemsUrl"),
+                                MIDIFileUrl = Row.Field<string>("MIDIFileUrl"),
                                 MasterFileUrl = Row.Field<string>("MasterFileUrl"),
                                 UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
                                 MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
