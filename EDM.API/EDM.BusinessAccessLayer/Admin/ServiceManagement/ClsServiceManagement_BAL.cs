@@ -25,6 +25,13 @@ namespace EDM.BusinessAccessLayer.Admin.ServiceManagement
                 return obj.GetServiceDetails(ServiceID);
             }
         }
+        public String ManageService(string ServiceIDs, string Action)
+        {
+            using (ClsServiceManagement_DAL obj = new ClsServiceManagement_DAL())
+            {
+                return obj.ManageService(ServiceIDs, Action);
+            }
+        }
 
         public void Dispose()
         {

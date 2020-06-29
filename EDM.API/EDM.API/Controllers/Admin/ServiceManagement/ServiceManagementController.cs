@@ -31,5 +31,14 @@ namespace EDM.API.Controllers.Admin.ServiceManagement
             }
         }
 
+        [Route("ServiceManagement/ManageService")]
+        [HttpGet]
+        public string ManageService(string ServiceIDs, string Action)
+        {
+            using (ClsServiceManagement_BAL obj = new ClsServiceManagement_BAL())
+            {
+                return obj.ManageService(ServiceIDs, Action);
+            }
+        }
     }
 }

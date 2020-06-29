@@ -130,6 +130,49 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
             }
         }
 
+        public string ManageTrack(string TrackIDs, string Action)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@TrackIDs", TrackIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Action", Action, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageTrack]", ObJParameterCOl, CommandType.StoredProcedure));
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string TrackApproveAndRejact(string TrackIDs, string Action, string ActionBy)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@TrackIDs", TrackIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Action", Action, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ActionBy", ActionBy, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[TrackApproveAndRejact]", ObJParameterCOl, CommandType.StoredProcedure));
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Dispose()
         {
 

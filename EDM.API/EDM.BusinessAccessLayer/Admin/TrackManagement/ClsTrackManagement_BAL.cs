@@ -25,6 +25,20 @@ namespace EDM.BusinessAccessLayer.Admin.TrackManagement
                 return obj.GetTrackDetails(TrackID);
             }
         }
+        public string ManageTrack(string TrackIDs, string Action)
+        {
+            using (ClsTrackManagement_DAL obj = new ClsTrackManagement_DAL())
+            {
+                return obj.ManageTrack(TrackIDs, Action);
+            }
+        }
+        public string TrackApproveAndRejact(string TrackIDs, string Action, string ActionBy)
+        {
+            using (ClsTrackManagement_DAL obj = new ClsTrackManagement_DAL())
+            {
+                return obj.TrackApproveAndRejact(TrackIDs, Action, ActionBy);
+            }
+        }
 
         public void Dispose()
         {

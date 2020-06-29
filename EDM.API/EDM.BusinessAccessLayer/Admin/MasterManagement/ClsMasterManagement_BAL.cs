@@ -91,6 +91,13 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.GetCouponCodeList();
             }
         }
+        public String ManageCouponCode(string CouponIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageCouponCode(CouponIDs, Action);
+            }
+        }
 
         public void Dispose()
         {

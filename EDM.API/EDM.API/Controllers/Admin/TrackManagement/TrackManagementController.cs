@@ -32,5 +32,25 @@ namespace EDM.API.Controllers.Admin.TrackManagement
             }
         }
 
+        [Route("TrackManagement/ManageTrack")]
+        [HttpGet]
+        public string ManageTrack(string TrackIDs, string Action)
+        {
+            using (ClsTrackManagement_BAL obj = new ClsTrackManagement_BAL())
+            {
+                return obj.ManageTrack(TrackIDs, Action);
+            }
+        }
+
+        [Route("TrackManagement/ApproveAndRejact")]
+        [HttpGet]
+        public string TrackApproveAndRejact(string TrackIDs, string Action, string ActionBy)
+        {
+            using (ClsTrackManagement_BAL obj = new ClsTrackManagement_BAL())
+            {
+                return obj.TrackApproveAndRejact(TrackIDs, Action, ActionBy);
+            }
+        }
+
     }
 }

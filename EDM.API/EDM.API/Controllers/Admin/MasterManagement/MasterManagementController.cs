@@ -114,5 +114,15 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
+        [Route("MasterManagement/ManageCouponCode")]
+        [HttpGet]
+        public string ManageCouponCode(string CouponIDs, string Action)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.ManageCouponCode(CouponIDs, Action);
+            }
+        }
+
     }
 }
