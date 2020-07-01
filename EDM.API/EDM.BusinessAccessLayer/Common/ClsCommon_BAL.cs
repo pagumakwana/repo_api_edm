@@ -1,4 +1,5 @@
-﻿using EDM.Models.Common;
+﻿using EDM.DataAccessLayer.Common;
+using EDM.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace EDM.BusinessAccessLayer.Common
     {
         public List<ClsFileInfo> FileUploader(string ModuleName)
         {
-            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
+            using (ClsCommon_DAL objClsCommon_DAL = new ClsCommon_DAL())
             {
-                return objClsCommon_BAL.FileUploader(ModuleName);
+                return objClsCommon_DAL.FileUploader(ModuleName);
             }
         }
         public void Dispose()

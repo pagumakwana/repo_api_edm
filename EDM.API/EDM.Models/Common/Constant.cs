@@ -23,5 +23,7 @@ namespace EDM.Models.Common
         public const string GenerList = "[dbo].[GenerList]";
         public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
         public const string AddMasterFile = "[dbo].[AddMasterFile]";
+        public const string GetCategoryList = "[dbo].[GetCategoryList]";
     }
+
 }
