@@ -10,9 +10,6 @@ namespace EDM.Models.Common
     {
         public string Flag { get; set; }
         public Int64 Ref_User_ID { get; set; }
-        public Guid Ref_User_GUID { get; set; }
-        public Int64 Ref_GuestUser_ID { get; set; }
-        public Guid Ref_GuestUser_GUID { get; set; }
         public Nullable<DateTime> CreatedDateTime { get; set; }
         public Int64? CreatedBy { get; set; }
         public string CreatedName { get; set; }
@@ -21,8 +18,6 @@ namespace EDM.Models.Common
         public string UpdatedName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
-        public string Extras { get; set; }
-        public string Response { get; set; }
-        public List<ClsFileMaster> ImageUrls { get; set; }
+        public List<ClsFileInfo> ImageUrls { get; set; }
     }
 }

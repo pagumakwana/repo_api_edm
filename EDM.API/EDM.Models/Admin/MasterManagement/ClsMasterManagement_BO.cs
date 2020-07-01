@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EDM.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace EDM.Models.Admin.MasterManagement
         public string ControlName { get; set; }
         public string UserMaster { get; set; }
         public string Description { get; set; }
-        public string MandatoryMasterIDs    { get; set; }
+        public string MandatoryMasterIDs { get; set; }
         public string NonMandatoryMasterIDs { get; set; }
         public Boolean IsMandatory { get; set; }
         public Boolean IsActive { get; set; }
@@ -45,17 +46,15 @@ namespace EDM.Models.Admin.MasterManagement
         public string AddedBy { get; set; }
     }
 
-    public class ClsCategoryDetails
+    public class ClsCategoryDetails : clsBase
     {
-        public Int64 Ref_User_ID { get; set; }
+        public string Flag { get; set; }
         public Int64 Ref_Category_ID { get; set; }
         public Int64 Ref_Parent_ID { get; set; }
         public string CategoryName { get; set; }
         public string AliasName { get; set; }
         public string CategoryUseBy { get; set; }
         public string Description { get; set; }
-        public string ThumbnailImageUrl { get; set; }
-        public Boolean IsActive { get; set; }
     }
 
     public class ClsDAW

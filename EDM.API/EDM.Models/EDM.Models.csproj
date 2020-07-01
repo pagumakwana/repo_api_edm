@@ -44,7 +44,6 @@
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_BO.cs" />
     <Compile Include="Admin\ServiceManagement\ClsServiceManagement_BO.cs" />
     <Compile Include="Admin\TrackManagement\ClsTrackManagement_BO.cs" />
-    <Compile Include="Admin\UserManagement\ClsUserManagement_BO.cs" />
     <Compile Include="Common\clsBase.cs" />
     <Compile Include="Common\ClsFileMaster.cs" />
     <Compile Include="Common\Constant.cs" />

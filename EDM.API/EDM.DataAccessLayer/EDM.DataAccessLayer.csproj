@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +45,7 @@
     <Compile Include="Admin\MasterManagement\ClsMasterManagement_DAL.cs" />
     <Compile Include="Admin\ServiceManagement\ClsServiceManagement_DAL.cs" />
     <Compile Include="Admin\TrackManagement\ClsTrackManagement_DAL.cs" />
-    <Compile Include="Admin\UserManagement\ClsUserManagement_DAL.cs" />
+    <Compile Include="Common\ClsCommon_DAL.cs" />
     <Compile Include="Order\ClsOrder_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\ClsUser_DAL.cs" />

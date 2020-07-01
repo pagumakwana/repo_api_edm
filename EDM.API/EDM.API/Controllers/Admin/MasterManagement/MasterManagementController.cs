@@ -9,11 +9,11 @@ using EDM.Models.Admin.MasterManagement;
 namespace EDM.API.Controllers.Admin.MasterManagement
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/Admin")]
+    [RoutePrefix("api/Admin/MasterManagement")]
     public class MasterManagementController : ApiController
     {
 
-        [Route("MasterManagement/UserMaster")]
+        [Route("UserMaster")]
         [HttpPost]
         public string AddModifyUserMaster(ClsUserMaster ObjUserMaster)
         {
@@ -23,7 +23,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/UserMaster")]
+        [Route("UserMaster")]
         [HttpGet]
         public List<ClsUserMaster> GetUserMasterList(Int64 UserMasterID)
         {
@@ -33,7 +33,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/ParentUserMaster")]
+        [Route("ParentUserMaster")]
         [HttpGet]
         public List<ClsParentUserMaster> GetParentUserMasterList(Int64 UserMasterID)
         {
@@ -44,7 +44,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
         }
 
 
-        [Route("MasterManagement/UserMasterData")]
+        [Route("UserMasterData")]
         [HttpPost]
         public string AddModifyUserMasterData(ClsUserMasterData ObjUserMasterData)
         {
@@ -54,7 +54,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/UserMasterData")]
+        [Route("UserMasterData")]
         [HttpGet]
         public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
         {
@@ -64,7 +64,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/Category")]
+        [Route("Category")]
         [HttpPost]
         public string AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
@@ -74,7 +74,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/Category")]
+        [Route("Category")]
         [HttpGet]
         public List<ClsCategoryDetails> GetCategoryList()
         {
@@ -84,7 +84,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/DAW")]
+        [Route("DAW")]
         [HttpGet]
         public List<ClsDAW> GetDAWList()
         {
@@ -94,7 +94,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/CouponCode")]
+        [Route("CouponCode")]
         [HttpPost]
         public string AddModifyCouponCode(ClsCouponDetails ObjCouponDetails)
         {
@@ -104,7 +104,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/CouponCode")]
+        [Route("CouponCode")]
         [HttpGet]
         public List<ClsCouponDetails> GetCouponCodeList()
         {
@@ -114,7 +114,7 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("MasterManagement/ManageCouponCode")]
+        [Route("ManageCouponCode")]
         [HttpGet]
         public string ManageCouponCode(string CouponIDs, string Action)
         {
