@@ -194,7 +194,6 @@
     <Compile Include="Controllers\Admin\MasterManagement\MasterManagementController.cs" />
     <Compile Include="Controllers\Admin\ServiceManagement\ServiceManagementController.cs" />
     <Compile Include="Controllers\Admin\TrackManagement\TrackManagementController.cs" />
-    <Compile Include="Controllers\Admin\UserManagement\UserManagementController.cs" />
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Order\OrderController.cs" />

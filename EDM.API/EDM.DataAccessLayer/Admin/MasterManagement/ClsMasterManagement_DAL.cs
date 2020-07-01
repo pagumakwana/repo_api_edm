@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDM.Models.Admin.MasterManagement;
+using EDM.Models.Common;
 
 namespace EDM.DataAccessLayer.Admin.MasterManagement
 {
@@ -198,10 +199,13 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
 
         public string AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
+            string Response = "";
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Flag", ObjCategory.Flag, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
@@ -215,13 +219,56 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjCategory.ThumbnailImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@IsActive", ObjCategory.IsActive, DbType.Boolean);
+                objDBParameter = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyCategory]", ObJParameterCOl, CommandType.StoredProcedure));
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure);
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        if (ObjCategory.Flag.Equals("ADDCATEGORY") || ObjCategory.Flag.Equals("MODIFYCATEGORY"))
+                        {
+                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
+                            var Res = Response.Split('~');
+                            ObjCategory.Ref_Category_ID = Convert.ToInt64(Res[1].ToString());
+                            if (ObjCategory.Ref_Category_ID > 0 && (ObjCategory.ImageUrls != null && ObjCategory.ImageUrls.Count > 0))
+                            {
+                                ObjCategory.ImageUrls.ForEach(image =>
+                                {
+                                    DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                                    DBParameter objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@Ref_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    DBHelper objDbHelper1 = new DBHelper();
+                                    objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+
+                                });
+                            }
+                            Response = Res[0].ToString();
+                        }
+                        else
+                        {
+                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
+                        }
+                    }
+                }
+                return Response;
 
             }
             catch (Exception ex)
@@ -230,19 +277,38 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsCategoryDetails> GetCategoryList()
+        public List<ClsCategoryDetails> GetCategoryList(string Flag,Int64 Ref_Category_ID)
         {
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetCategoryList]", CommandType.StoredProcedure);
-                List<ClsCategoryDetails> objUserMaster = new List<ClsCategoryDetails>();
-
-                if (dt != null)
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Flag", Flag, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_Category_ID", Ref_Category_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetCategoryList, ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsCategoryDetails> objCategoryList = new List<ClsCategoryDetails>();
+                List<ClsFileInfo> lstImg = new List<ClsFileInfo>();
+                if (ds != null)
                 {
-                    if (dt.Rows.Count > 0)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        IList<ClsCategoryDetails> List = dt.AsEnumerable().Select(Row =>
+                        lstImg = ds.Tables[0].AsEnumerable().Select(Row =>
+                          new ClsFileInfo
+                          {
+                              Ref_ID = Row.Field<Int64>("Ref_ID"),
+                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
+                              FileName = Row.Field<string>("FileName"),
+                              FilePath = Row.Field<string>("FilePath"),
+                              FileExtension = Row.Field<string>("FileExtension"),
+                              FileSize = Row.Field<long>("FileSize"),
+                              ModuleName = Row.Field<string>("ModuleName")
+                          }).ToList();
+                    }
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        objCategoryList = ds.Tables[1].AsEnumerable().Select(Row =>
                             new ClsCategoryDetails
                             {
                                 Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
@@ -251,13 +317,19 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 AliasName = Row.Field<string>("AliasName"),
                                 CategoryUseBy = Row.Field<string>("CategoryUseBy"),
                                 Description = Row.Field<string>("Description"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                CreatedBy = Row.Field<Int64>("CreatedBy"),
+                                CreatedName = Row.Field<string>("CreatedName"),
+                                CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
+                                UpdatedBy = Row.Field<Int64>("UpdatedBy"),
+                                UpdatedName = Row.Field<string>("UpdatedName"),
+                                UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
+                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
+                                ImageUrls = lstImg
                             }).ToList();
-                        objUserMaster.AddRange(List);
                     }
                 }
-                return objUserMaster;
+                return objCategoryList;
             }
             catch (Exception ex)
             {

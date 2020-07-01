@@ -60,11 +60,11 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
 
         }
 
-        public List<ClsCategoryDetails> GetCategoryList()
+        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetCategoryList();
+                return obj.GetCategoryList(Flag, Ref_Category_ID);
             }
         }
         public List<ClsDAW> GetDAWList()

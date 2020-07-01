@@ -5,6 +5,8 @@ using System.Web;
 using System.IO;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using EDM.Models.Common;
+using EDM.BusinessAccessLayer.Common;
 
 namespace EDM.API.Controllers.Common
 {
@@ -61,6 +63,16 @@ namespace EDM.API.Controllers.Common
             else
             {
                 return "";
+            }
+        }
+
+        [Route("FileUpload")]
+        [HttpPost]
+        public List<ClsFileInfo> FileUploader(string ModuleName)
+        {
+            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
+            {
+                return objClsCommon_BAL.FileUploader(ModuleName);
             }
         }
     }
