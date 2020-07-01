@@ -11,9 +11,9 @@ namespace EDM.Models.Admin.MasterManagement
     {
 
         public Int64 Ref_UserMaster_ID { get; set; }
-        public string userMasterName { get; set; }
-        public Boolean isCompulsory { get; set; }
-        public string typeOfView { get; set; }
+        public string UserMaster { get; set; }
+        public Boolean IsMandatory { get; set; }
+        public string ControlName { get; set; }
 
         public List<ClsUserMasterData> userMasterData { get; set; }
 

@@ -54,7 +54,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterList]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMaster> objUserMaster = new List<ClsUserMaster>();
 
                 if (ds != null)
@@ -89,7 +89,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@UserMasterID", UserMasterID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", UserMasterID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -104,14 +104,14 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             new ClsParentUserMaster
                             {
                                 Ref_UserMaster_ID = Row.Field<Int64>("Ref_UserMaster_ID"),
-                                userMasterName = Row.Field<string>("UserMaster"),
-                                typeOfView = Row.Field<string>("TypeOfView"),
-                                isCompulsory = Row.Field<Boolean>("isCompulsory"),
+                                UserMaster = Row.Field<string>("MasterName"),
+                                ControlName = Row.Field<string>("ControlName"),
+                                IsMandatory = Row.Field<Boolean>("IsMandatory"),
                                 userMasterData = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_UserMaster_ID") == Row.Field<Int64>("Ref_UserMaster_ID")).Select(Row1 =>
                                     new ClsUserMasterData
                                     {
                                         Ref_UserMasterData_ID = Row1.Field<Int64>("Ref_UserMasterData_ID"),
-                                        UserMasterData = Row1.Field<string>("UserMasterData")
+                                        UserMasterData = Row1.Field<string>("MasterDataName")
                                     }).ToList()
                             }).ToList();
                         objUserMasterData.AddRange(List);
