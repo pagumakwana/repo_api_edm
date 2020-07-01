@@ -22,17 +22,14 @@ namespace EDM.Models.Admin.MasterManagement
     public class ClsUserMaster
     {
         public Int64 Ref_UserMaster_ID { get; set; }
-        public Int64 Ref_UserMasterControl_ID { get; set; }
+        public string ControlName { get; set; }
         public string UserMaster { get; set; }
         public string Description { get; set; }
-        public string ParentIDs { get; set; }
+        public string MandatoryMasterIDs    { get; set; }
+        public string NonMandatoryMasterIDs { get; set; }
         public Boolean IsMandatory { get; set; }
-        public Boolean HasParent { get; set; }
-        public Boolean AllowNumeric { get; set; }
-        public Boolean AllowAlphaNumeric { get; set; }
-        public Boolean AllowSpecialCharacters { get; set; }
-        public string SpecialCharacters { get; set; }
-        public Boolean AllowNegativeNumbers { get; set; }
+        public Boolean IsActive { get; set; }
+        public string AddedBy { get; set; }
     }
 
     public class ClsUserMasterData
@@ -40,7 +37,12 @@ namespace EDM.Models.Admin.MasterManagement
         public Int64 Ref_UserMasterData_ID { get; set; }
         public Int64 Ref_UserMaster_ID { get; set; }
         public string UserMasterData { get; set; }
+        public string UserMaster { get; set; }
         public string Description { get; set; }
+        public string MandatoryMasterIDs { get; set; }
+        public string NonMandatoryMasterIDs { get; set; }
+        public Boolean IsActive { get; set; }
+        public string AddedBy { get; set; }
     }
 
     public class ClsCategoryDetails

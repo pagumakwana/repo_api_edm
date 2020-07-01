@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Admin\UserManagement\UserManagementController.cs" />
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Order\OrderController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,6 +262,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\ServiceManagement\" />
     <Folder Include="Views\TrackManagement\" />
     <Folder Include="Views\User\" />

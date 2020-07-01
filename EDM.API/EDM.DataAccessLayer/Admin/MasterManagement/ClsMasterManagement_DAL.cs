@@ -18,35 +18,26 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Ref_UserMaster_ID", ObjUserMaster.Ref_UserMaster_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_UserMasterControl_ID", ObjUserMaster.Ref_UserMasterControl_ID, DbType.Int64);
+                objDBParameter = new DBParameter("@ControlName", ObjUserMaster.ControlName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@UserMaster", ObjUserMaster.UserMaster, DbType.String);
+                objDBParameter = new DBParameter("@MasterName", ObjUserMaster.UserMaster, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjUserMaster.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ParentIDs", ObjUserMaster.ParentIDs, DbType.String);
+                objDBParameter = new DBParameter("@MandatoryMasterIDs", ObjUserMaster.MandatoryMasterIDs, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsMandatory", ObjUserMaster.IsMandatory, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@HasParent", ObjUserMaster.HasParent, DbType.Boolean);
+                objDBParameter = new DBParameter("@NonMandatoryMasterIDs", ObjUserMaster.NonMandatoryMasterIDs, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@AllowAlphaNumeric", ObjUserMaster.AllowAlphaNumeric, DbType.Boolean);
+                objDBParameter = new DBParameter("@IsActive", ObjUserMaster.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@AllowNumeric", ObjUserMaster.AllowNumeric, DbType.Boolean);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@AllowNegativeNumbers", ObjUserMaster.AllowNegativeNumbers, DbType.Boolean);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@AllowSpecialCharacters", ObjUserMaster.AllowSpecialCharacters, DbType.Boolean);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@SpecialCharacters", ObjUserMaster.SpecialCharacters, DbType.String);
+                objDBParameter = new DBParameter("@AddedBy", ObjUserMaster.AddedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
-
-                string Massage = "";
                 DBHelper objDbHelper = new DBHelper();
-                Massage = Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMaster]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMaster]", ObJParameterCOl, CommandType.StoredProcedure));
 
-                return Massage;
             }
             catch (Exception ex)
             {
@@ -74,12 +65,13 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             new ClsUserMaster
                             {
                                 Ref_UserMaster_ID = Row.Field<Int64>("Ref_UserMaster_ID"),
-                                Ref_UserMasterControl_ID = Row.Field<Int64>("Ref_UserMasterControl_ID"),
-                                UserMaster = Row.Field<string>("UserMaster"),
+                                ControlName = Row.Field<string>("ControlName"),
+                                UserMaster = Row.Field<string>("MasterName"),
                                 Description = Row.Field<string>("Description"),
-                                ParentIDs = Row.Field<string>("ParentIDs"),
-                                IsMandatory = Row.Field<Boolean>("IsMandatory")
-
+                                MandatoryMasterIDs = Row.Field<string>("MandatoryMasterIDs"),
+                                NonMandatoryMasterIDs = Row.Field<string>("NonMandatoryMasterIDs"),
+                                IsMandatory = Row.Field<Boolean>("IsMandatory"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }
@@ -142,9 +134,15 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_UserMasterData_ID", ObjUserMasterData.Ref_UserMasterData_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@UserMasterData", ObjUserMasterData.UserMasterData, DbType.String);
+                objDBParameter = new DBParameter("@MasterDataName", ObjUserMasterData.UserMasterData, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjUserMasterData.Description, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MandatoryMasterIDs", ObjUserMasterData.MandatoryMasterIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@NonMandatoryMasterIDs", ObjUserMasterData.NonMandatoryMasterIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@AddedBy", ObjUserMasterData.AddedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 string Massage = "";
@@ -164,7 +162,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@UserMasterID", UserMasterID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMasterData_ID", UserMasterID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -180,8 +178,12 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             {
                                 Ref_UserMaster_ID = Row.Field<Int64>("Ref_UserMaster_ID"),
                                 Ref_UserMasterData_ID = Row.Field<Int64>("Ref_UserMasterData_ID"),
-                                UserMasterData = Row.Field<string>("UserMasterData"),
+                                UserMasterData = Row.Field<string>("MasterDataName"),
+                                UserMaster = Row.Field<string>("MasterName"),
                                 Description = Row.Field<string>("Description"),
+                                MandatoryMasterIDs = Row.Field<string>("MandatoryMasterIDs"),
+                                NonMandatoryMasterIDs = Row.Field<string>("NonMandatoryMasterIDs"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }
