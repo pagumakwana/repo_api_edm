@@ -124,5 +124,25 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
+        [Route("Blog")]
+        [HttpPost]
+        public string AddModifyBlog(ClsBlogDetails ObjBlog)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.AddModifyBlog(ObjBlog);
+            }
+        }
+
+        [Route("Blog")]
+        [HttpGet]
+        public List<ClsBlogDetails> GetBlogList(Int64 Ref_Blog_ID)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.GetBlogList(Ref_Blog_ID);
+            }
+        }
+
     }
 }

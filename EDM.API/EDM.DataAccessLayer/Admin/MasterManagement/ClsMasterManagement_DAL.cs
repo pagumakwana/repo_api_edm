@@ -277,7 +277,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsCategoryDetails> GetCategoryList(string Flag,Int64 Ref_Category_ID)
+        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID)
         {
             try
             {
@@ -502,6 +502,139 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBHelper objDbHelper = new DBHelper();
                 return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string AddModifyBlog(ClsBlogDetails ObjBlog)
+        {
+            string Response = "";
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_Category_ID", ObjBlog.Ref_Blog_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CategoryName", ObjBlog.BlogTitle, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@AliasName", ObjBlog.AliasName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CategoryUseBy", ObjBlog.CategoryUseBy, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Description", ObjBlog.Description, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CreatedName", ObjBlog.CreatedName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure);
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        //if (ObjCategory.Flag.Equals("ADDCATEGORY") || ObjCategory.Flag.Equals("MODIFYCATEGORY"))
+                        //{
+                        //    Response = ds.Tables[0].Rows[0]["Response"].ToString();
+                        //    var Res = Response.Split('~');
+                        //    ObjCategory.Ref_Category_ID = Convert.ToInt64(Res[1].ToString());
+                        //    if (ObjCategory.Ref_Category_ID > 0 && (ObjCategory.ImageUrls != null && ObjCategory.ImageUrls.Count > 0))
+                        //    {
+                        //        ObjCategory.ImageUrls.ForEach(image =>
+                        //        {
+                        //            DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        //            DBParameter objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@Ref_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                        //            ObJParameterCOl1.Add(objDBParameter1);
+                        //            DBHelper objDbHelper1 = new DBHelper();
+                        //            objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+
+                        //        });
+                        //    }
+                        //    Response = Res[0].ToString();
+                        //}
+                        //else
+                        //{
+                        //    Response = ds.Tables[0].Rows[0]["Response"].ToString();
+                        //}
+                    }
+                }
+                return Response;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClsBlogDetails> GetBlogList(Int64 Ref_Blog_ID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter     objDBParameter = new DBParameter("@Ref_Blog_ID", Ref_Blog_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetBlogList, ObJParameterCOl, CommandType.StoredProcedure);
+
+                List<ClsBlogDetails> objBlogList = new List<ClsBlogDetails>();
+                List<ClsFileInfo> lstImg = new List<ClsFileInfo>();
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        lstImg = ds.Tables[0].AsEnumerable().Select(Row =>
+                          new ClsFileInfo
+                          {
+                              Ref_ID = Row.Field<Int64>("Ref_ID"),
+                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
+                              FileName = Row.Field<string>("FileName"),
+                              FilePath = Row.Field<string>("FilePath"),
+                              FileExtension = Row.Field<string>("FileExtension"),
+                              FileSize = Row.Field<long>("FileSize"),
+                              ModuleName = Row.Field<string>("ModuleName")
+                          }).ToList();
+                    }
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        objBlogList = ds.Tables[1].AsEnumerable().Select(Row =>
+                            new ClsBlogDetails
+                            {
+                                Ref_Blog_ID = Row.Field<Int64>("Ref_Blog_ID"),
+                                AliasName = Row.Field<string>("AliasName"),
+                                CategoryUseBy = Row.Field<string>("CategoryUseBy"),
+                                Description = Row.Field<string>("Description"),
+                                CreatedBy = Row.Field<Int64>("CreatedBy"),
+                                CreatedName = Row.Field<string>("CreatedName"),
+                                CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
+                                UpdatedBy = Row.Field<Int64>("UpdatedBy"),
+                                UpdatedName = Row.Field<string>("UpdatedName"),
+                                UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
+                                ImageUrls = lstImg
+                            }).ToList();
+                    }
+                }
+                return objBlogList;
             }
             catch (Exception ex)
             {

@@ -24,6 +24,9 @@ namespace EDM.Models.Common
         public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
         public const string AddMasterFile = "[dbo].[AddMasterFile]";
         public const string GetCategoryList = "[dbo].[GetCategoryList]";
+
+        public const string AddModifyBlog = "[dbo].[AddModifyBlog]";
+        public const string GetBlogList = "[dbo].[GetBlogList]";
     }
 
 }

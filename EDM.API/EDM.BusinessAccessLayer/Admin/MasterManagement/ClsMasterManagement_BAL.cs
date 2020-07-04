@@ -57,7 +57,6 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             {
                 return obj.AddModifyCategory(ObjCategory);
             }
-
         }
 
         public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID)
@@ -67,6 +66,7 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.GetCategoryList(Flag, Ref_Category_ID);
             }
         }
+
         public List<ClsDAW> GetDAWList()
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
@@ -81,7 +81,6 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             {
                 return obj.AddModifyCouponCode(ObjCouponDetails);
             }
-
         }
 
         public List<ClsCouponDetails> GetCouponCodeList()
@@ -96,6 +95,23 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
                 return obj.ManageCouponCode(CouponIDs, Action);
+            }
+        }
+
+        public String AddModifyBlog(ClsBlogDetails ObjBlog)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.AddModifyBlog(ObjBlog);
+            }
+
+        }
+
+        public List<ClsBlogDetails> GetBlogList(Int64 Ref_Blog_ID)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.GetBlogList(Ref_Blog_ID);
             }
         }
 

@@ -85,4 +85,13 @@ namespace EDM.Models.Admin.MasterManagement
         public Int64 Ref_Object_ID { get; set; }
         public string ObjectType { get; set; }
     }
+
+    public class ClsBlogDetails : clsBase
+    {
+        public Int64 Ref_Blog_ID { get; set; }
+        public string BlogTitle { get; set; }
+        public string AliasName { get; set; }
+        public string CategoryUseBy { get; set; }
+        public string Description { get; set; }
+    }
 }

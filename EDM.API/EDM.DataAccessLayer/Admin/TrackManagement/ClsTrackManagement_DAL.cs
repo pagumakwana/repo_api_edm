@@ -115,6 +115,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 MasterFileUrl = Row.Field<string>("MasterFileUrl"),
                                 UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
                                 MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
+                                TrackStatus = Row.Field<string>("TrackStatus"),
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
                                 IsTrack = Row.Field<Boolean>("IsTrack"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
@@ -161,7 +162,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ActionBy", ActionBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-
 
                 DBHelper objDbHelper = new DBHelper();
                 return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[TrackApproveAndRejact]", ObJParameterCOl, CommandType.StoredProcedure));
