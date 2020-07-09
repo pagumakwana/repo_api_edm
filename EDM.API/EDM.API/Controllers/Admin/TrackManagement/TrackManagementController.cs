@@ -43,7 +43,7 @@ namespace EDM.API.Controllers.Admin.TrackManagement
         }
 
         [Route("TrackManagement/ApproveAndRejact")]
-        [HttpGet]
+        [HttpPost]
         public string TrackApproveAndRejact(ClsApproveAndRejact ObjApproveAndRejact)
         {
             using (ClsTrackManagement_BAL obj = new ClsTrackManagement_BAL())
