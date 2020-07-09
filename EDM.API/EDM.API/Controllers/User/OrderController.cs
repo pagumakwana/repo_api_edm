@@ -1,13 +1,10 @@
-﻿using EDM.BusinessAccessLayer.Order;
+﻿using EDM.BusinessAccessLayer.User;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 
-namespace EDM.API.Controllers.Order
+namespace EDM.API.Controllers.User
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Order")]

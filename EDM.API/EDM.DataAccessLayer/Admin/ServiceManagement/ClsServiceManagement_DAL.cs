@@ -53,7 +53,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                     ObjServiceDetails.FAQDetails.ForEach(FAQ =>
                     {
                         DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", @Ref_Service_ID, DbType.Int64);
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);

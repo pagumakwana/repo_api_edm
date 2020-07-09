@@ -1,11 +1,7 @@
-﻿using EDM.DataAccessLayer.Order;
+﻿using EDM.DataAccessLayer.User;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EDM.BusinessAccessLayer.Order
+namespace EDM.BusinessAccessLayer.User
 {
     public class ClsOrder_BAL : IDisposable
     {

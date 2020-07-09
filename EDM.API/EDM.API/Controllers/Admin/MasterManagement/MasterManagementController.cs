@@ -143,6 +143,25 @@ namespace EDM.API.Controllers.Admin.MasterManagement
                 return obj.GetBlogList(Ref_Blog_ID);
             }
         }
+        [Route("Carousel")]
+        [HttpPost]
+        public string AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.AddModifyBannerDetails(ObjBannerDetails);
+            }
+        }
+
+        [Route("CarouselList")]
+        [HttpGet]
+        public List<ClsBannerDetails> GetBannersList(Int64 CarouselID)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.GetBannersList(CarouselID);
+            }
+        }
 
     }
 }

@@ -32,11 +32,11 @@ namespace EDM.BusinessAccessLayer.Admin.TrackManagement
                 return obj.ManageTrack(TrackIDs, Action);
             }
         }
-        public string TrackApproveAndRejact(string TrackIDs, string Action, string ActionBy)
+        public string TrackApproveAndRejact(ClsApproveAndRejact ObjApproveAndRejact)
         {
             using (ClsTrackManagement_DAL obj = new ClsTrackManagement_DAL())
             {
-                return obj.TrackApproveAndRejact(TrackIDs, Action, ActionBy);
+                return obj.TrackApproveAndRejact(ObjApproveAndRejact);
             }
         }
 

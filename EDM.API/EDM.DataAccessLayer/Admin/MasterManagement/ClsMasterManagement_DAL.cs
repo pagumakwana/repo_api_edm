@@ -642,6 +642,72 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
+        public string AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_Banner_ID", ObjBannerDetails.Ref_Banner_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@BannerTitle", ObjBannerDetails.BannerTitle, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@BannerPageName", ObjBannerDetails.BannerPageName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Descripation", ObjBannerDetails.Descripation, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ImageUrl", ObjBannerDetails.ImageUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsActive", ObjBannerDetails.IsActive, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CreatedBy", ObjBannerDetails.CreatedBy, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyBannerDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClsBannerDetails> GetBannersList(Int64 BannerID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_Banner_ID", BannerID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                DBHelper objDbHelper = new DBHelper();
+                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetBannersList]", ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsBannerDetails> objUserMaster = new List<ClsBannerDetails>();
+
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        IList<ClsBannerDetails> List = dt.AsEnumerable().Select(Row =>
+                            new ClsBannerDetails
+                            {
+                                Ref_Banner_ID = Row.Field<Int64>("Ref_Banner_ID"),
+                                BannerTitle = Row.Field<string>("BannerTitle"),
+                                BannerPageName = Row.Field<string>("BannerPageName"),
+                                Descripation = Row.Field<string>("Descripation"),
+                                ImageUrl = Row.Field<string>("ImageUrl"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+                                CreatedBy = Row.Field<string>("CreatedBy")
+                            }).ToList();
+                        objUserMaster.AddRange(List);
+                    }
+                }
+                return objUserMaster;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Dispose()
         {
 

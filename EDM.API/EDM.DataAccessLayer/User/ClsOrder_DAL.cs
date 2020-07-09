@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDM.DataAccessLayer.Order
+namespace EDM.DataAccessLayer.User
 {
     public class ClsOrder_DAL : IDisposable
     {

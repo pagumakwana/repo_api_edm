@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDM.Models.Order
+namespace EDM.Models.User
 {
 
 }
