@@ -94,4 +94,14 @@ namespace EDM.Models.Admin.MasterManagement
         public string CategoryUseBy { get; set; }
         public string Description { get; set; }
     }
+    public class ClsBannerDetails
+    {
+        public Int64 Ref_Banner_ID { get; set; }
+        public string BannerTitle { get; set; }
+        public string BannerPageName { get; set; }
+        public string Descripation { get; set; }
+        public string ImageUrl { get; set; }
+        public Boolean IsActive { get; set; }
+        public string CreatedBy { get; set; }
+    }
 }

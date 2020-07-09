@@ -45,7 +45,7 @@
     <Compile Include="Admin\ServiceManagement\ClsServiceManagement_BAL.cs" />
     <Compile Include="Admin\TrackManagement\ClsTrackManagement_BAL.cs" />
     <Compile Include="Common\ClsCommon_BAL.cs" />
-    <Compile Include="Order\ClsOrder_BAL.cs" />
+    <Compile Include="User\ClsOrder_BAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\ClsUser_BAL.cs" />
   </ItemGroup>

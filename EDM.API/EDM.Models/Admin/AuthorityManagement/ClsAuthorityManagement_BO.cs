@@ -12,6 +12,9 @@ namespace EDM.Models.Admin.AuthorityManagement
         public string AuthorityName { get; set; }
         public string AuthorityType { get; set; }
         public string Description { get; set; }
+        public string MasterDataIDs { get; set; }
+        public string CreatedBy { get; set; }
+        public List<ClsModuleAccess> ModuleAccess { get; set; }
     }
     public class ClsAuthorityList
     {
@@ -20,16 +23,12 @@ namespace EDM.Models.Admin.AuthorityManagement
         public string AuthorityType { get; set; }
     }
 
+    public class ClsModuleAccess
+    {
 
-    //public class ClsParentUserMaster
-    //{
-
-    //    public Int64 Ref_UserMaster_ID { get; set; }
-    //    public string userMasterName { get; set; }
-    //    public Boolean isCompulsory { get; set; }
-    //    public string typeOfView { get; set; }
-
-    //    public List<ClsUserMasterData> userMasterData { get; set; }
-
-    //}
+        public Int64 Ref_Module_ID { get; set; }
+        public Boolean View { get; set; }
+        public Boolean Edit { get; set; }
+        public Boolean Delete { get; set; }
+    }
 }

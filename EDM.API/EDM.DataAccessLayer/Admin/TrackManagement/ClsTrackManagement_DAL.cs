@@ -151,16 +151,18 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
             }
         }
 
-        public string TrackApproveAndRejact(string TrackIDs, string Action, string ActionBy)
+        public string TrackApproveAndRejact(ClsApproveAndRejact ObjApproveAndRejact)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@TrackIDs", TrackIDs, DbType.String);
+                DBParameter objDBParameter = new DBParameter("@TrackIDs", ObjApproveAndRejact.TrackIDs, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Action", Action, DbType.String);
+                objDBParameter = new DBParameter("@Action", ObjApproveAndRejact.Action, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ActionBy", ActionBy, DbType.String);
+                objDBParameter = new DBParameter("@Action", ObjApproveAndRejact.Reason, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ActionBy", ObjApproveAndRejact.ActionBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();

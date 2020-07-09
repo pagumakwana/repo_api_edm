@@ -114,6 +114,21 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.GetBlogList(Ref_Blog_ID);
             }
         }
+        public String AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.AddModifyBannerDetails(ObjBannerDetails);
+            }
+        }
+
+        public List<ClsBannerDetails> GetBannersList(Int64 BannerID)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.GetBannersList(BannerID);
+            }
+        }
 
         public void Dispose()
         {

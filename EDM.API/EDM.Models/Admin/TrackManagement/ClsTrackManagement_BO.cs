@@ -36,4 +36,13 @@ namespace EDM.Models.Admin.TrackManagement
         public string CreatedBy { get; set; }
 
     }
+
+    public class ClsApproveAndRejact
+    {
+        public string TrackIDs { get; set; }
+        public string Action { get; set; }
+        public string Reason { get; set; }
+        public string ActionBy { get; set; }
+
+    }
 }
