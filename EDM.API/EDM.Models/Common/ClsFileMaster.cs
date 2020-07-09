@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EDM.Models.Common
 {
-    public class ClsFileInfo
+    public class ClsFileInfo : clsBase
     {
         public Int64 Ref_ID { get; set; }
         public Int64 Ref_File_ID { get; set; }

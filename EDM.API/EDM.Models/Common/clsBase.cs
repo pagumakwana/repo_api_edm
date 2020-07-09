@@ -18,6 +18,6 @@ namespace EDM.Models.Common
         public string UpdatedName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
-        public List<ClsFileInfo> ImageUrls { get; set; }
+        public List<ClsFileInfo> FileUrls { get; set; }
     }
 }
