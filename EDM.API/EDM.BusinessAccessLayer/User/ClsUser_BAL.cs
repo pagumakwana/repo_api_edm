@@ -26,6 +26,14 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
+        public List<ClsUserDetails> GetProducersList()
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.GetProducersList();
+            }
+        }
+
         public void Dispose()
         {
 

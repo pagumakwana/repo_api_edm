@@ -197,6 +197,9 @@
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\User\OrderController.cs" />
+    <Compile Include="Controllers\User\ServiceController.cs" />
+    <Compile Include="Controllers\User\SharedController.cs" />
+    <Compile Include="Controllers\User\TrackController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,7 +266,9 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Order\" />
     <Folder Include="Views\ServiceManagement\" />
+    <Folder Include="Views\Service\" />
     <Folder Include="Views\TrackManagement\" />
+    <Folder Include="Views\Track\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

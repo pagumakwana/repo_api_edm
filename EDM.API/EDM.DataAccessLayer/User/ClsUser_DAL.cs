@@ -75,6 +75,38 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
+        public List<ClsUserDetails> GetProducersList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersList]", CommandType.StoredProcedure);
+                List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
+
+                if (User != null)
+                {
+                    if (User.Rows.Count > 0)
+                    {
+                        objUserDetails = User.AsEnumerable().Select(Row =>
+                            new ClsUserDetails
+                            {
+                                Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
+                                User_Code = Row.Field<string>("User_Code"),
+                                FullName = Row.Field<string>("FullName"),
+                                EmailID = Row.Field<string>("EmailID"),
+                                Profile_Photo = Row.Field<string>("Profile_Photo"),
+                                ResponseMessage = Row.Field<string>("Response"),
+                            }).ToList();
+                    }
+                }
+                return objUserDetails;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Dispose()
         {
 

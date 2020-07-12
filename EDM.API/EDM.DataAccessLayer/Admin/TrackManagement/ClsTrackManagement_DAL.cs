@@ -143,7 +143,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
 
                 DBHelper objDbHelper = new DBHelper();
                 return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageTrack]", ObJParameterCOl, CommandType.StoredProcedure));
-
             }
             catch (Exception ex)
             {
@@ -167,7 +166,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
 
                 DBHelper objDbHelper = new DBHelper();
                 return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[TrackApproveAndRejact]", ObJParameterCOl, CommandType.StoredProcedure));
-
             }
             catch (Exception ex)
             {

@@ -49,6 +49,9 @@
     <Compile Include="Common\Constant.cs" />
     <Compile Include="User\ClsOrder_BO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ClsService_BO.cs" />
+    <Compile Include="User\ClsShared_BO.cs" />
+    <Compile Include="User\ClsTrack_BO.cs" />
     <Compile Include="User\ClsUser_BO.cs" />
   </ItemGroup>
   <ItemGroup />

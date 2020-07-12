@@ -47,6 +47,9 @@
     <Compile Include="Common\ClsCommon_BAL.cs" />
     <Compile Include="User\ClsOrder_BAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ClsService_BAL.cs" />
+    <Compile Include="User\ClsShared_BAL.cs" />
+    <Compile Include="User\ClsTrack_BAL.cs" />
     <Compile Include="User\ClsUser_BAL.cs" />
   </ItemGroup>
   <ItemGroup />

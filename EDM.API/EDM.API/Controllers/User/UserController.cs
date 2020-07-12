@@ -33,5 +33,15 @@ namespace EDM.API.Controllers.User
                 return obj.SignIn(ObjUser);
             }
         }
+
+        [Route("Producers")]
+        [HttpPost]
+        public List<ClsUserDetails> GetProducersList()
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetProducersList();
+            }
+        }
     }
 }

@@ -48,6 +48,9 @@
     <Compile Include="Common\ClsCommon_DAL.cs" />
     <Compile Include="User\ClsOrder_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ClsService_DAL.cs" />
+    <Compile Include="User\ClsShared_DAL.cs" />
+    <Compile Include="User\ClsTrack_DAL.cs" />
     <Compile Include="User\ClsUser_DAL.cs" />
   </ItemGroup>
   <ItemGroup />
