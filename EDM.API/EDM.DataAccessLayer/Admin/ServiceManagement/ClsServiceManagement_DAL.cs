@@ -30,14 +30,14 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjServiceDetails.PriceWithProjectFiles, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ServiceVideoUrl", ObjServiceDetails.ServiceVideoUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ProjectFilesUrl", ObjServiceDetails.ProjectFilesUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjServiceDetails.ThumbnailImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@BigImageUrl", ObjServiceDetails.BigImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
+                //objDBParameter = new DBParameter("@ServiceVideoUrl", ObjServiceDetails.ServiceVideoUrl, DbType.String);
+                //ObJParameterCOl.Add(objDBParameter);
+                //objDBParameter = new DBParameter("@ProjectFilesUrl", ObjServiceDetails.ProjectFilesUrl, DbType.String);
+                //ObJParameterCOl.Add(objDBParameter);
+                //objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjServiceDetails.ThumbnailImageUrl, DbType.String);
+                //ObJParameterCOl.Add(objDBParameter);
+                //objDBParameter = new DBParameter("@BigImageUrl", ObjServiceDetails.BigImageUrl, DbType.String);
+                //ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjServiceDetails.IsActive, DbType.Boolean);
@@ -47,7 +47,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
 
                 Int64 Ref_Service_ID = 0;
                 DBHelper objDbHelper = new DBHelper();
-                Ref_Service_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                Ref_Service_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyServiceDetails, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_Service_ID > 0)
                 {
@@ -63,7 +63,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                         objDBParameter1 = new DBParameter("@CreatedBy", ObjServiceDetails.CreatedBy, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
 
-                        objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceFAQ]", ObJParameterCOl1, CommandType.StoredProcedure);
+                        objDbHelper.ExecuteScalar(Constant.AddModifyServiceFAQ, ObJParameterCOl1, CommandType.StoredProcedure);
                     });
                 }
                 if (Ref_Service_ID > 0 && (ObjServiceDetails.FileUrls != null && ObjServiceDetails.FileUrls.Count > 0))
@@ -86,6 +86,10 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                         objDBParameter1 = new DBParameter("@Ref_ID", Ref_Service_ID, DbType.Int64);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", image.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
                         DBHelper objDbHelper1 = new DBHelper();
                         objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
@@ -159,7 +163,9 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                         FilePath = Row2.Field<string>("FilePath"),
                                         FileExtension = Row2.Field<string>("FileExtension"),
                                         FileSize = Row2.Field<long>("FileSize"),
-                                        ModuleName = Row2.Field<string>("ModuleName")
+                                        ModuleName = Row2.Field<string>("ModuleName"),
+                                        FileType = Row2.Field<string>("FileType"),
+                                        FileIdentifier = Row2.Field<string>("FileIdentifier")
                                     }).ToList()
                             }).ToList();
                     }

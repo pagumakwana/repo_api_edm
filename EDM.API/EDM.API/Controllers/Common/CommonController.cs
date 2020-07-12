@@ -14,57 +14,57 @@ namespace EDM.API.Controllers.Common
     [RoutePrefix("api/Admin/Common")]
     public class CommonController : ApiController
     {
-        [Route("Image")]
-        [HttpPost]
-        public string UploadImage(string ModuleName)
-        {
-            string FilePath = HttpContext.Current.Server.MapPath("~/Images/" + ModuleName + "/");
+        //[Route("Image")]
+        //[HttpPost]
+        //public string UploadImage(string ModuleName)
+        //{
+        //    string FilePath = HttpContext.Current.Server.MapPath("~/Images/" + ModuleName + "/");
 
-            if (!Directory.Exists(FilePath))
-            {
-                Directory.CreateDirectory(FilePath);
-            }
+        //    if (!Directory.Exists(FilePath))
+        //    {
+        //        Directory.CreateDirectory(FilePath);
+        //    }
 
-            if (HttpContext.Current.Request.ContentLength > 0)
-            {
-                HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
+        //    if (HttpContext.Current.Request.ContentLength > 0)
+        //    {
+        //        HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
 
-                FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
-                PostedFile.SaveAs(FilePath);
+        //        FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
+        //        PostedFile.SaveAs(FilePath);
 
-                return "/Images/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //        return "/Images/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
-        [Route("File")]
-        [HttpPost]
-        public string FileUpload(string ModuleName)
-        {
-            string FilePath = HttpContext.Current.Server.MapPath("~/Files/" + ModuleName + "/");
+        //[Route("File")]
+        //[HttpPost]
+        //public string FileUpload(string ModuleName)
+        //{
+        //    string FilePath = HttpContext.Current.Server.MapPath("~/Files/" + ModuleName + "/");
 
-            if (!Directory.Exists(FilePath))
-            {
-                Directory.CreateDirectory(FilePath);
-            }
+        //    if (!Directory.Exists(FilePath))
+        //    {
+        //        Directory.CreateDirectory(FilePath);
+        //    }
 
-            if (HttpContext.Current.Request.ContentLength > 0)
-            {
-                HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
+        //    if (HttpContext.Current.Request.ContentLength > 0)
+        //    {
+        //        HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
 
-                FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
-                PostedFile.SaveAs(FilePath);
+        //        FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
+        //        PostedFile.SaveAs(FilePath);
 
-                return "/Files/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //        return "/Files/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
         [Route("FileUpload")]
         [HttpPost]

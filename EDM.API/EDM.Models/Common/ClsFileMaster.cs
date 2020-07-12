@@ -12,8 +12,10 @@ namespace EDM.Models.Common
         public Int64 Ref_File_ID { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }
+        public string FileType { get; set; }
         public string FileExtension { get; set; }
         public long FileSize { get; set; }
         public string ModuleName { get; set; }
+        public string FileIdentifier { get; set; }
     }
 }
