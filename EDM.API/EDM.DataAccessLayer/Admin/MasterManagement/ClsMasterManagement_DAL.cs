@@ -234,9 +234,9 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                             Response = ds.Tables[0].Rows[0]["Response"].ToString();
                             var Res = Response.Split('~');
                             ObjCategory.Ref_Category_ID = Convert.ToInt64(Res[1].ToString());
-                            if (ObjCategory.Ref_Category_ID > 0 && (ObjCategory.ImageUrls != null && ObjCategory.ImageUrls.Count > 0))
+                            if (ObjCategory.Ref_Category_ID > 0 && (ObjCategory.FileUrls != null && ObjCategory.FileUrls.Count > 0))
                             {
-                                ObjCategory.ImageUrls.ForEach(image =>
+                                ObjCategory.FileUrls.ForEach(image =>
                                 {
                                     DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
                                     DBParameter objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
@@ -325,7 +325,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                ImageUrls = lstImg
+                                FileUrls = lstImg
                             }).ToList();
                     }
                 }
@@ -630,7 +630,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                ImageUrls = lstImg
+                                FileUrls = lstImg
                             }).ToList();
                     }
                 }

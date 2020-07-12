@@ -1,4 +1,5 @@
 ﻿using EDM.Models.Admin.ServiceManagement;
+using EDM.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,6 +66,32 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                         objDbHelper.ExecuteScalar("[dbo].[AddModifyServiceFAQ]", ObJParameterCOl1, CommandType.StoredProcedure);
                     });
                 }
+                if (Ref_Service_ID > 0 && (ObjServiceDetails.FileUrls != null && ObjServiceDetails.FileUrls.Count > 0))
+                {
+                    ObjServiceDetails.FileUrls.ForEach(image =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Ref_ID", Ref_Service_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        DBHelper objDbHelper1 = new DBHelper();
+                        objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+
+                    });
+                }
 
                 if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID == 0)
                 {
@@ -95,13 +122,13 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
 
                 DBHelper objDbHelper = new DBHelper();
                 DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetServiceDetails]", ObJParameterCOl, CommandType.StoredProcedure);
-                List<ClsServiceDetails> objUserMasterData = new List<ClsServiceDetails>();
+                List<ClsServiceDetails> objServiceList = new List<ClsServiceDetails>();
 
                 if (ds != null)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        IList<ClsServiceDetails> List = ds.Tables[0].AsEnumerable().Select(Row =>
+                        objServiceList = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsServiceDetails
                             {
                                 Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
@@ -122,12 +149,22 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                     {
                                         Questions = Row1.Field<string>("Question"),
                                         Answer = Row1.Field<string>("Answer")
+                                    }).ToList(),
+                                FileUrls = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("Ref_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
+                                    new ClsFileInfo
+                                    {
+                                        Ref_ID = Row2.Field<Int64>("Ref_ID"),
+                                        Ref_File_ID = Row2.Field<Int64>("Ref_File_ID"),
+                                        FileName = Row2.Field<string>("FileName"),
+                                        FilePath = Row2.Field<string>("FilePath"),
+                                        FileExtension = Row2.Field<string>("FileExtension"),
+                                        FileSize = Row2.Field<long>("FileSize"),
+                                        ModuleName = Row2.Field<string>("ModuleName")
                                     }).ToList()
                             }).ToList();
-                        objUserMasterData.AddRange(List);
                     }
                 }
-                return objUserMasterData;
+                return objServiceList;
             }
             catch (Exception ex)
             {
