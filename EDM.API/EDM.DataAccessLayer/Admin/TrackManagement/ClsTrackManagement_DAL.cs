@@ -159,7 +159,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Action", ObjApproveAndRejact.Action, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Action", ObjApproveAndRejact.Reason, DbType.String);
+                objDBParameter = new DBParameter("@Reason", ObjApproveAndRejact.Reason, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@ActionBy", ObjApproveAndRejact.ActionBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
