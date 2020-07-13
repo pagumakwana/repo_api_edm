@@ -27,6 +27,10 @@ namespace EDM.Models.Common
 
         public const string AddModifyBlog = "[dbo].[AddModifyBlog]";
         public const string GetBlogList = "[dbo].[GetBlogList]";
+        public const string AddModifyServiceDetails = "[dbo].[AddModifyServiceDetails]";
+        public const string AddModifyServiceFAQ = "[dbo].[AddModifyServiceFAQ]";
+
+
     }
 
 }

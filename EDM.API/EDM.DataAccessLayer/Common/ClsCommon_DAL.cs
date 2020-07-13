@@ -38,6 +38,7 @@ namespace EDM.DataAccessLayer.Common
                         objFileInfo.FileSize = postedFile.ContentLength;
                         objFileInfo.FileExtension = Path.GetExtension(FilePath);
                         objFileInfo.ModuleName = ModuleName;
+                        objFileInfo.FileType = postedFile.ContentType;
                         postedFile.SaveAs(FilePath);
                         lstFiles.Add(objFileInfo);
                     }
