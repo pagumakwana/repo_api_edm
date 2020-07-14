@@ -16,7 +16,7 @@ namespace EDM.API.Controllers.User
         public List<ClsArtistBranding> GetArtistBrandingList( )
         {
             using (ClsService_BAL obj = new ClsService_BAL())
-            
+            { 
                 return obj.GetArtistBrandingList();
             }
         }

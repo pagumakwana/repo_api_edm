@@ -1,6 +1,7 @@
 ﻿using EDM.Models.Common;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,26 @@ namespace EDM.DataAccessLayer.Common
                 DateTime.Now.ToString("_yyyy-MM-dd-HH-mm-ss"),
                 Path.GetExtension(fileName)
                 );
+        }
+
+        public string RemoveFile(Int64 Ref_File_ID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_File_ID", Ref_File_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+
+                string Massage = "";
+                DBHelper objDbHelper = new DBHelper();
+                Massage = Convert.ToString(objDbHelper.ExecuteScalar(Constant.RemoveFile, ObJParameterCOl, CommandType.StoredProcedure));
+
+                return Massage;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void Dispose()
         {

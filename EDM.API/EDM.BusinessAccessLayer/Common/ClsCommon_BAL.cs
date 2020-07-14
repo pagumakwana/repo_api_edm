@@ -17,6 +17,13 @@ namespace EDM.BusinessAccessLayer.Common
                 return objClsCommon_DAL.FileUploader(ModuleName);
             }
         }
+        public string RemoveFile(Int64 Ref_File_ID)
+        {
+            using (ClsCommon_DAL objClsCommon_DAL = new ClsCommon_DAL())
+            {
+                return objClsCommon_DAL.RemoveFile(Ref_File_ID);
+            }
+        }
         public void Dispose()
         {
             //throw new NotImplementedException();
