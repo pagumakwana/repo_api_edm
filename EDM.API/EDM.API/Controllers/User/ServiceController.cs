@@ -13,10 +13,10 @@ namespace EDM.API.Controllers.User
     {
         [Route("ArtistBranding")]
         [HttpGet]
-        public List<ClsArtistBranding> GetArtistBrandingList()
+        public List<ClsArtistBranding> GetArtistBrandingList( )
         {
             using (ClsService_BAL obj = new ClsService_BAL())
-            {
+            { 
                 return obj.GetArtistBrandingList();
             }
         }

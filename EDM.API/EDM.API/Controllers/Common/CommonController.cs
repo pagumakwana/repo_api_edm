@@ -65,6 +65,15 @@ namespace EDM.API.Controllers.Common
         //        return "";
         //    }
         //}
+        [Route("RemoveFile")]
+        [HttpPost]
+        public string RemoveFile(Int64 Ref_File_ID)
+        {
+            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
+            {
+                return objClsCommon_BAL.RemoveFile(Ref_File_ID);
+            }
+        }
 
         [Route("FileUpload")]
         [HttpPost]
