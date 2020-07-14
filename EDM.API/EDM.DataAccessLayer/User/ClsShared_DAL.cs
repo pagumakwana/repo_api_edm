@@ -25,8 +25,8 @@ namespace EDM.DataAccessLayer.User
                         IList<ClsGlobalSearch> List = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsGlobalSearch
                             {
-                                Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
-                                ServiceTitle = Row.Field<string>("ServiceTitle"),
+                                Ref_Object_ID = Row.Field<Int64>("Ref_Service_ID"),
+                                Title = Row.Field<string>("ServiceTitle"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),

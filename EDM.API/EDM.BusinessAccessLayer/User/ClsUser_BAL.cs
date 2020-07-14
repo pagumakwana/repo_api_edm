@@ -34,6 +34,22 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
+        public List<ClsProducersTrackList> GetProducersTrackAndBeatList(Int64 ProducersID)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.GetProducersTrackAndBeatList(ProducersID);
+            }
+        }
+
+        public List<ClsProducersServiceList> GetCustomServicesList(Int64 ProducersID)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.GetCustomServicesList(ProducersID);
+            }
+        }
+
         public void Dispose()
         {
 
