@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using EDM.BusinessAccessLayer.User;
@@ -12,11 +13,31 @@ namespace EDM.API.Controllers.User
     {
         [Route("FeaturedTrack")]
         [HttpGet]
-        public List<ClsFeaturedTrack> GetFeaturedTrackList( )
+        public List<ClsFeaturedTrack> GetFeaturedTrackList()
         {
             using (ClsTrack_BAL obj = new ClsTrack_BAL())
             {
                 return obj.GetFeaturedTrackList();
+            }
+        }
+
+        [Route("TrackAndBeatDetails")]
+        [HttpGet]
+        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 TrackID)
+        {
+            using (ClsTrack_BAL obj = new ClsTrack_BAL())
+            {
+                return obj.GetTrackAndBeatDetails(TrackID);
+            }
+        }
+
+        [Route("FilterTrack")]
+        [HttpGet]
+        public List<ClsTrackAndBeatList> GetTrackAndBeatList(int StartCount, int EndCount)
+        {
+            using (ClsTrack_BAL obj = new ClsTrack_BAL())
+            {
+                return obj.GetTrackAndBeatList(StartCount, EndCount);
             }
         }
     }

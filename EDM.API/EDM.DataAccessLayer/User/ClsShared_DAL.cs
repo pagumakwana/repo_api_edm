@@ -30,8 +30,9 @@ namespace EDM.DataAccessLayer.User
                             new ClsGlobalSearch
                             {
                                 Ref_Object_ID = Row.Field<Int64>("Ref_Object_ID"),
+                                ObjectType = Row.Field<string>("ObjectType"),
                                 Title = Row.Field<string>("Title"),
-                                Description = Row.Field<string>("Description"),
+                                Bio = Row.Field<string>("Bio"),
                                 Price = Row.Field<decimal>("Price"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                             }).ToList();
