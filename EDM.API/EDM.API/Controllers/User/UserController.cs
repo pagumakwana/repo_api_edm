@@ -43,5 +43,25 @@ namespace EDM.API.Controllers.User
                 return obj.GetProducersList();
             }
         }
+
+        [Route("TrackAndBeat")]
+        [HttpPost]
+        public List<ClsProducersTrackList> GetProducersTrackAndBeatList(Int64 ProducersID)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetProducersTrackAndBeatList(ProducersID);
+            }
+        }
+
+        [Route("CustomServices")]
+        [HttpPost]
+        public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetProducersCustomServicesList(ProducersID);
+            }
+        }
     }
 }

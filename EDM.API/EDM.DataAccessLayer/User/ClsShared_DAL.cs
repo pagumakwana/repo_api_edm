@@ -10,12 +10,16 @@ namespace EDM.DataAccessLayer.User
 {
     public class ClsShared_DAL : IDisposable
     {
-        public List<ClsGlobalSearch> GlobalSearch()
+        public List<ClsGlobalSearch> GlobalSearch(string SearchKeyWord)
         {
             try
             {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@SearchKeyWord", SearchKeyWord, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GlobalSearch]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GlobalSearch]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsGlobalSearch> objUserMasterData = new List<ClsGlobalSearch>();
 
                 if (ds != null)
@@ -25,8 +29,8 @@ namespace EDM.DataAccessLayer.User
                         IList<ClsGlobalSearch> List = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsGlobalSearch
                             {
-                                Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
-                                ServiceTitle = Row.Field<string>("ServiceTitle"),
+                                Ref_Object_ID = Row.Field<Int64>("Ref_Object_ID"),
+                                Title = Row.Field<string>("Title"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),

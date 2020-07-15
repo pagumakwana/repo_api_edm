@@ -43,6 +43,12 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@UserMasterDataIDs", ObjUser.UserMasterDataIDs, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Govit_ID", ObjUser.Govit_ID, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@PayPalEmailID", ObjUser.PayPalEmailID, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjUser.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjUser.CreatedBy, DbType.String);
@@ -129,6 +135,84 @@ namespace EDM.DataAccessLayer.User
                     }
                 }
                 return objUserDetails;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClsProducersTrackList> GetProducersTrackAndBeatList(Int64 ProducersID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@ProducersID", ProducersID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsProducersTrackList> objTrackList = new List<ClsProducersTrackList>();
+
+                if (User != null)
+                {
+                    if (User.Rows.Count > 0)
+                    {
+                        objTrackList = User.AsEnumerable().Select(Row =>
+                            new ClsProducersTrackList
+                            {
+                                Ref_Track_ID = Row.Field<Int64>("Ref_Track_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
+                                TrackName = Row.Field<string>("TrackName"),
+                                TrackType = Row.Field<string>("TrackType"),
+                                Bio = Row.Field<string>("Bio"),
+                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                Duration = Row.Field<int>("Duration"),
+                                Price = Row.Field<decimal>("Price"),
+                                BMP = Row.Field<int>("BMP"),
+                                TrackStatus = Row.Field<string>("TrackStatus"),
+                                IsTrack = Row.Field<string>("IsTrack"),
+                                SoldOut = Row.Field<string>("SoldOut"),
+                            }).ToList();
+                    }
+                }
+                return objTrackList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@ProducersID", ProducersID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersCustomServicesList]", ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsProducersServiceList> objServiceList = new List<ClsProducersServiceList>();
+
+                if (User != null)
+                {
+                    if (User.Rows.Count > 0)
+                    {
+                        objServiceList = User.AsEnumerable().Select(Row =>
+                            new ClsProducersServiceList
+                            {
+                                Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
+                                ServiceTitle = Row.Field<string>("ServiceTitle"),
+                                Description = Row.Field<string>("Description"),
+                                Price = Row.Field<decimal>("Price"),
+                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                            }).ToList();
+                    }
+                }
+                return objServiceList;
             }
             catch (Exception ex)
             {

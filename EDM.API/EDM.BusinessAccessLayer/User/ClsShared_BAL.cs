@@ -10,11 +10,11 @@ namespace EDM.BusinessAccessLayer.User
 {
     public class ClsShared_BAL : IDisposable
     {
-        public List<ClsGlobalSearch> GlobalSearch()
+        public List<ClsGlobalSearch> GlobalSearch(string SearchKeyWord)
         {
             using (ClsShared_DAL obj = new ClsShared_DAL())
             {
-                return obj.GlobalSearch();
+                return obj.GlobalSearch(SearchKeyWord);
             }
         }
 

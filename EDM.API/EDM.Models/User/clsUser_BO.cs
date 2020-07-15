@@ -26,6 +26,9 @@ namespace EDM.Models.User
         public string CreatedBy { get; set; }
         public string Response { get; set; }
         public string Password { get; set; }
+        public string SocialProfileUrl { get; set; }
+        public string Govit_ID { get; set; }
+        public string PayPalEmailID { get; set; }
         public string CreatedName { get; set; }
     }
     public class ClsUserSignIn
@@ -61,5 +64,32 @@ namespace EDM.Models.User
         public Nullable<DateTime> CreatedDateTime { get; set; }
         public Nullable<DateTime> UpdatedDateTime { get; set; }
         public string ResponseMessage { get; set; }
+    }
+
+    public class ClsProducersTrackList
+    {
+        public Int64 Ref_Track_ID { get; set; }
+        public string CategoryName { get; set; }
+        public string TrackType { get; set; }
+        public string TrackName { get; set; }
+        public string Bio { get; set; }
+        public int Duration { get; set; }
+        public string IsTrack { get; set; }
+        public int BMP { get; set; }
+        public Decimal Price { get; set; }
+        public string ThumbnailImageUrl { get; set; }
+        public string TrackStatus { get; set; }
+        public string SoldOut { get; set; }
+
+    }
+
+    public class ClsProducersServiceList
+    {
+        public Int64 Ref_Service_ID { get; set; }
+        public string CategoryName { get; set; }
+        public string ServiceTitle { get; set; }
+        public string Description { get; set; }
+        public Decimal Price { get; set; }
+        public string ThumbnailImageUrl { get; set; }
     }
 }
