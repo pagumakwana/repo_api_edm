@@ -56,11 +56,11 @@ namespace EDM.API.Controllers.User
 
         [Route("CustomServices")]
         [HttpPost]
-        public List<ClsProducersServiceList> GetCustomServicesList(Int64 ProducersID)
+        public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
-                return obj.GetCustomServicesList(ProducersID);
+                return obj.GetProducersCustomServicesList(ProducersID);
             }
         }
     }

@@ -184,7 +184,7 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsProducersServiceList> GetCustomServicesList(Int64 ProducersID)
+        public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetCustomServicesList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersCustomServicesList]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsProducersServiceList> objServiceList = new List<ClsProducersServiceList>();
 
                 if (User != null)
