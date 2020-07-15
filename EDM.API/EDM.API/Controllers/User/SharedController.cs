@@ -12,11 +12,11 @@ namespace EDM.API.Controllers.User
     {
         [Route("GlobalSearch")]
         [HttpGet]
-        public List<ClsGlobalSearch> GlobalSearch()
+        public List<ClsGlobalSearch> GlobalSearch(string SearchKeyWord)
         {
             using (ClsShared_BAL obj = new ClsShared_BAL())
             {
-                return obj.GlobalSearch();
+                return obj.GlobalSearch(SearchKeyWord);
             }
         }
     }

@@ -147,7 +147,7 @@ namespace EDM.DataAccessLayer.User
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@User_Code", ProducersID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@ProducersID", ProducersID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -172,6 +172,7 @@ namespace EDM.DataAccessLayer.User
                                 BMP = Row.Field<int>("BMP"),
                                 TrackStatus = Row.Field<string>("TrackStatus"),
                                 IsTrack = Row.Field<string>("IsTrack"),
+                                SoldOut = Row.Field<string>("SoldOut"),
                             }).ToList();
                     }
                 }
@@ -203,7 +204,7 @@ namespace EDM.DataAccessLayer.User
                             new ClsProducersServiceList
                             {
                                 Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
-                                CategoryName = Row.Field<string>("Ref_Category_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),
