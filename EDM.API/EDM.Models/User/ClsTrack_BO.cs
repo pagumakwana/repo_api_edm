@@ -32,7 +32,7 @@ namespace EDM.Models.User
         public int Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
-        public Boolean IsVocals { get; set; }
+        public string IsVocals { get; set; }
         public string IsTrack { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
@@ -72,7 +72,7 @@ namespace EDM.Models.User
         public int Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
-        public Boolean IsVocals { get; set; }
+        public string IsVocals { get; set; }
         public string IsTrack { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
