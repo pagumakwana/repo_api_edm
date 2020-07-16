@@ -24,6 +24,7 @@ namespace EDM.DataAccessLayer.User
                             new ClsArtistBranding
                             {
                                 Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
+                                CategoryName = Row.Field<string>("CategoryName"),
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),

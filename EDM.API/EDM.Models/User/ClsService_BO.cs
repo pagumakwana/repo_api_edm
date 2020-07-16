@@ -9,6 +9,7 @@ namespace EDM.Models.User
     public class ClsArtistBranding
     {
         public Int64 Ref_Service_ID { get; set; }
+        public string CategoryName { get; set; }
         public string ServiceTitle { get; set; }
         public string Description { get; set; }
         public Decimal Price { get; set; }
