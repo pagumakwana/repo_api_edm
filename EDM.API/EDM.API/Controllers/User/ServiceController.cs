@@ -11,14 +11,25 @@ namespace EDM.API.Controllers.User
     [RoutePrefix("api/User/Service")]
     public class ServiceController : ApiController
     {
-        [Route("ArtistBranding")]
+        [Route("ServiceByCategory")]
         [HttpGet]
-        public List<ClsArtistBranding> GetArtistBrandingList( )
+        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string CategoryName)
         {
             using (ClsService_BAL obj = new ClsService_BAL())
-            { 
-                return obj.GetArtistBrandingList();
+            {
+                return obj.GetServiceListByCategory(StartCount, EndCount, CategoryName);
             }
         }
+
+        [Route("CustomServiceDetails")]
+        [HttpGet]
+        public List<ClsCustomServiceDetails> GetCustomServiceDetails(Int64 ServiceID)
+        {
+            using (ClsService_BAL obj = new ClsService_BAL())
+            {
+                return obj.GetCustomServiceDetails(ServiceID);
+            }
+        }
+
     }
 }

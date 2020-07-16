@@ -7,11 +7,19 @@ namespace EDM.BusinessAccessLayer.User
 {
     public class ClsService_BAL : IDisposable
     {
-        public List<ClsArtistBranding> GetArtistBrandingList( )
+        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string CategoryName)
         {
             using (ClsService_DAL obj = new ClsService_DAL())
             {
-                return obj.GetArtistBrandingList();
+                return obj.GetServiceListByCategory(StartCount, EndCount, CategoryName);
+            }
+        }
+
+        public List<ClsCustomServiceDetails> GetCustomServiceDetails(Int64 ServiceID)
+        {
+            using (ClsService_DAL obj = new ClsService_DAL())
+            {
+                return obj.GetCustomServiceDetails(ServiceID);
             }
         }
 
