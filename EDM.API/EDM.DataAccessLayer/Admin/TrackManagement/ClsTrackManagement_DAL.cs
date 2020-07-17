@@ -119,6 +119,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
                                 IsTrack = Row.Field<Boolean>("IsTrack"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
+                                CreatedBy = Row.Field<String>("CreatedBy"),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }
