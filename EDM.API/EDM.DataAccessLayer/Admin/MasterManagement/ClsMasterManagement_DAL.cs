@@ -277,7 +277,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID)
+        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID,string AliasName)
         {
             try
             {
@@ -286,6 +286,8 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameter objDBParameter = new DBParameter("@Flag", Flag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", Ref_Category_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@AliasName", AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetCategoryList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsCategoryDetails> objCategoryList = new List<ClsCategoryDetails>();
