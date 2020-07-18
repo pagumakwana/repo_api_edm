@@ -76,11 +76,11 @@ namespace EDM.API.Controllers.Admin.MasterManagement
 
         [Route("Category")]
         [HttpGet]
-        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID)
+        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID, string AliasName)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.GetCategoryList(Flag, Ref_Category_ID);
+                return obj.GetCategoryList(Flag, Ref_Category_ID, AliasName);
             }
         }
 
