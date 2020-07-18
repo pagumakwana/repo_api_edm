@@ -16,7 +16,7 @@ namespace EDM.API.Controllers.User
     {
         [Route("SignUp")]
         [HttpPost]
-        public string SignUp(ClsUserSignUp ObjUser)
+        public string SignUp(ClsUserDetails ObjUser)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
@@ -36,11 +36,11 @@ namespace EDM.API.Controllers.User
 
         [Route("Producers")]
         [HttpPost]
-        public List<ClsUserDetails> GetProducersList()
+        public List<ClsUserDetails> GetProducersList(int StartCount, int EndCount)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
-                return obj.GetProducersList();
+                return obj.GetProducersList( StartCount,  EndCount);
             }
         }
 

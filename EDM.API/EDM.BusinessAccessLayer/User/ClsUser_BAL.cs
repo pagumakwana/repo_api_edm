@@ -10,7 +10,7 @@ namespace EDM.BusinessAccessLayer.User
 {
     public class ClsUser_BAL : IDisposable
     {
-        public string SignUp(ClsUserSignUp ObjUser)
+        public string SignUp(ClsUserDetails ObjUser)
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {
@@ -26,11 +26,11 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
-        public List<ClsUserDetails> GetProducersList()
+        public List<ClsUserDetails> GetProducersList(int StartCount, int EndCount)
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {
-                return obj.GetProducersList();
+                return obj.GetProducersList(StartCount, EndCount);
             }
         }
 

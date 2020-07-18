@@ -10,14 +10,14 @@ namespace EDM.DataAccessLayer.User
 {
     public class ClsUser_DAL : IDisposable
     {
-        public string SignUp(ClsUserSignUp ObjUser)
+        public string SignUp(ClsUserDetails ObjUser)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Ref_User_ID", ObjUser.Ref_User_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@User_Code", ObjUser.User_Code, DbType.String);
+                objDBParameter = new DBParameter("@UserCode", ObjUser.UserCode, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@FullName", ObjUser.FullName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -25,7 +25,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Password", ObjUser.Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Profile_Photo", ObjUser.Profile_Photo, DbType.String);
+                objDBParameter = new DBParameter("@ProfilePhoto", ObjUser.ProfilePhoto, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MobileNumber", ObjUser.MobileNumber, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -33,23 +33,15 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Gender", ObjUser.Gender, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Pincode", ObjUser.Pincode, DbType.String);
+                objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Address", ObjUser.Address, DbType.String);
+                objDBParameter = new DBParameter("@GovitID", ObjUser.GovitID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Address1", ObjUser.Address1, DbType.String);
+                objDBParameter = new DBParameter("@PayPalEmailID", ObjUser.PayPalEmailID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@AuthorityIDs", ObjUser.AuthorityIDs, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@UserMasterDataIDs", ObjUser.UserMasterDataIDs, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Govit_ID", ObjUser.Govit_ID, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@PayPalEmailID", ObjUser.PayPalEmailID, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@IsActive", ObjUser.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjUser.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -68,7 +60,7 @@ namespace EDM.DataAccessLayer.User
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@User_Code", ObjUser.User_Code, DbType.String);
+                DBParameter objDBParameter = new DBParameter("@UserCode", ObjUser.User_Code, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@password", ObjUser.Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -87,18 +79,17 @@ namespace EDM.DataAccessLayer.User
                             new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
-                                User_Code = Row.Field<string>("User_Code"),
+                                UserCode = Row.Field<string>("UserCode"),
                                 FullName = Row.Field<string>("FullName"),
                                 EmailID = Row.Field<string>("EmailID"),
-                                Profile_Photo = Row.Field<string>("Profile_Photo"),
+                                ProfilePhoto = Row.Field<string>("ProfilePhoto"),
+                                MobileNumber = Row.Field<string>("MobileNumber"),
                                 Bio = Row.Field<string>("Bio"),
                                 Gender = Row.Field<string>("Gender"),
-                                //Pincode = Row.Field<Int64>("Pincode"),
-                                Address = Row.Field<string>("Address"),
-                                Address1 = Row.Field<string>("Address1"),
-                                AuthorityIDs = Row.Field<string>("Ref_Authority_ID"),
-                                UserMasterDataIDs = Row.Field<string>("UserMasterDataIDs"),
-                                ResponseMessage = Row.Field<string>("Response"),
+                                GovitID = Row.Field<string>("GovitID"),
+                                PayPalEmailID = Row.Field<string>("PayPalEmailID"),
+                                SocialProfileUrl = Row.Field<string>("SocialProfileUrl"),
+                                Response = Row.Field<string>("Response"),
                             }).ToList();
                     }
                 }
@@ -110,10 +101,16 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsUserDetails> GetProducersList()
+        public List<ClsUserDetails> GetProducersList(int StartCount, int EndCount)
         {
             try
             {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+
                 DBHelper objDbHelper = new DBHelper();
                 DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersList]", CommandType.StoredProcedure);
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
@@ -126,11 +123,12 @@ namespace EDM.DataAccessLayer.User
                             new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
-                                User_Code = Row.Field<string>("User_Code"),
+                                UserCode = Row.Field<string>("UserCode"),
                                 FullName = Row.Field<string>("FullName"),
                                 EmailID = Row.Field<string>("EmailID"),
-                                Profile_Photo = Row.Field<string>("Profile_Photo"),
-                                ResponseMessage = Row.Field<string>("Response"),
+                                MobileNumber = Row.Field<string>("MobileNumber"),
+                                Bio = Row.Field<string>("Bio"),
+                                ProfilePhoto = Row.Field<string>("ProfilePhoto"),
                             }).ToList();
                     }
                 }
