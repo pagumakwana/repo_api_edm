@@ -327,7 +327,9 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                FileUrls = lstImg
+                                FileUrls = (from obj in lstImg
+                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
+                                            select obj).ToList(),
                             }).ToList();
                     }
                 }
