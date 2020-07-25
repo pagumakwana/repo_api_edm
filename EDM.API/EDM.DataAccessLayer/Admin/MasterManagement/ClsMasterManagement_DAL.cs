@@ -205,8 +205,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Flag", ObjCategory.Flag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Parent_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
@@ -218,6 +216,8 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CreatedBy", ObjCategory.CreatedBy, DbType.Int32);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
