@@ -19,5 +19,8 @@ namespace EDM.Models.Common
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
         public List<ClsFileInfo> FileUrls { get; set; }
+        public string MetaTitle { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescription { get; set; }
     }
 }

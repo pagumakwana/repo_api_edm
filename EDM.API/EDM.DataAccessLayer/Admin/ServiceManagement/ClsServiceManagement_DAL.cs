@@ -41,6 +41,12 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaTitle", ObjServiceDetails.MetaTitle, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaKeywords", ObjServiceDetails.MetaKeywords, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaDescription", ObjServiceDetails.MetaDescription, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
                 DBHelper objDbHelper = new DBHelper();
                 DataSet ds = objDbHelper.ExecuteDataSet(Constant.AddModifyServiceDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 if (ds != null)
@@ -150,7 +156,9 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                               FilePath = Row.Field<string>("FilePath"),
                               FileExtension = Row.Field<string>("FileExtension"),
                               FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName")
+                              ModuleName = Row.Field<string>("ModuleName"),
+                              FileIdentifier= Row.Field<string>("FileIdentifier"),
+                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
                           }).ToList();
                     }
                     if (ds.Tables[1].Rows.Count > 0)
@@ -187,14 +195,18 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 FileUrls = (from obj in fileList
                                             where obj.Ref_ID == Row.Field<Int64>("Ref_Service_ID")
                                             select obj).ToList(),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
                                 CreatedBy = Row.Field<Int64>("CreatedBy"),
                                 CreatedName = Row.Field<string>("CreatedName"),
                                 CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
                                 UpdatedBy = Row.Field<Int64>("UpdatedBy"),
                                 UpdatedName = Row.Field<string>("UpdatedName"),
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
-                                IsActive = Row.Field<Boolean>("IsActive"),
-                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
+                                MetaTitle = Row.Field<string>("MetaTitle"),
+                                MetaKeywords = Row.Field<string>("MetaKeywords"),
+                                MetaDescription = Row.Field<string>("MetaDescription"),
+
                             }).ToList();
                     }
                 }

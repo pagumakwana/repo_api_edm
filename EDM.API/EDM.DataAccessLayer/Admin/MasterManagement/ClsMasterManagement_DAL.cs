@@ -217,9 +217,15 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CreatedBy", ObjCategory.CreatedBy, DbType.Int32);
+                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int32);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaTitle", ObjCategory.MetaTitle, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaKeywords", ObjCategory.MetaKeywords, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaDescription", ObjCategory.MetaDescription, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -305,7 +311,9 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                               FilePath = Row.Field<string>("FilePath"),
                               FileExtension = Row.Field<string>("FileExtension"),
                               FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName")
+                              ModuleName = Row.Field<string>("ModuleName"),
+                              FileIdentifier = Row.Field<string>("FileIdentifier"),
+                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
                           }).ToList();
                     }
                     if (ds.Tables[1].Rows.Count > 0)
@@ -319,17 +327,20 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 AliasName = Row.Field<string>("AliasName"),
                                 CategoryUseBy = Row.Field<string>("CategoryUseBy"),
                                 Description = Row.Field<string>("Description"),
+                                FileUrls = (from obj in lstImg
+                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
+                                            select obj).ToList(),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
                                 CreatedBy = Row.Field<Int64>("CreatedBy"),
                                 CreatedName = Row.Field<string>("CreatedName"),
                                 CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
                                 UpdatedBy = Row.Field<Int64>("UpdatedBy"),
                                 UpdatedName = Row.Field<string>("UpdatedName"),
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
-                                IsActive = Row.Field<Boolean>("IsActive"),
-                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                FileUrls = (from obj in lstImg
-                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
-                                            select obj).ToList(),
+                                MetaTitle = Row.Field<string>("MetaTitle"),
+                                MetaKeywords = Row.Field<string>("MetaKeywords"),
+                                MetaDescription = Row.Field<string>("MetaDescription"),
                             }).ToList();
                     }
                 }
