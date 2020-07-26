@@ -213,7 +213,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@AliasName", ObjCategory.AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.String);
+                objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -260,6 +260,10 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                     objDBParameter1 = new DBParameter("@Ref_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     DBHelper objDbHelper1 = new DBHelper();
                                     objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
@@ -325,7 +329,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
                                 CategoryName = Row.Field<string>("CategoryName"),
                                 AliasName = Row.Field<string>("AliasName"),
-                                CategoryUseBy = Row.Field<string>("CategoryUseBy"),
+                                CategoryUseBy = Row.Field<Int64>("CategoryUseBy"),
                                 Description = Row.Field<string>("Description"),
                                 FileUrls = (from obj in lstImg
                                             where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
