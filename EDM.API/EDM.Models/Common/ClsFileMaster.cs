@@ -17,5 +17,6 @@ namespace EDM.Models.Common
         public long FileSize { get; set; }
         public string ModuleName { get; set; }
         public string FileIdentifier { get; set; }
+        public Int64 DisplayOrder { get; set; }
     }
 }

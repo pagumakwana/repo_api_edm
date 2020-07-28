@@ -53,7 +53,7 @@ namespace EDM.Models.Admin.MasterManagement
         public Int64 Ref_Parent_ID { get; set; }
         public string CategoryName { get; set; }
         public string AliasName { get; set; }
-        public string CategoryUseBy { get; set; }
+        public Int64 CategoryUseBy { get; set; }
         public string Description { get; set; }
     }
 

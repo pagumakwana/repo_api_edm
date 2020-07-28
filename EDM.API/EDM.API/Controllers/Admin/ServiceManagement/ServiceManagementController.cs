@@ -8,10 +8,10 @@ using System.Web.Http.Cors;
 namespace EDM.API.Controllers.Admin.ServiceManagement
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/Admin")]
+    [RoutePrefix("api/Admin/ServiceManagement")]
     public class ServiceManagementController : ApiController
     {
-        [Route("ServiceManagement/Service")]
+        [Route("Service")]
         [HttpPost]
         public string AddModifyServiceDetails(ClsServiceDetails ObjServiceDetails)
         {
@@ -21,17 +21,17 @@ namespace EDM.API.Controllers.Admin.ServiceManagement
             }
         }
 
-        [Route("ServiceManagement/Service")]
+        [Route("Service")]
         [HttpGet]
-        public List<ClsServiceDetails> GetServiceDetails(Int64 ServiceID)
+        public List<ClsServiceDetails> GetServiceDetails(string Flag, Int64 Ref_Service_ID, string AliasName)
         {
             using (ClsServiceManagement_BAL obj = new ClsServiceManagement_BAL())
             {
-                return obj.GetServiceDetails(ServiceID);
+                return obj.GetServiceDetails(Flag, Ref_Service_ID, AliasName);
             }
         }
 
-        [Route("ServiceManagement/ManageService")]
+        [Route("ManageService")]
         [HttpGet]
         public string ManageService(string ServiceIDs, string Action)
         {

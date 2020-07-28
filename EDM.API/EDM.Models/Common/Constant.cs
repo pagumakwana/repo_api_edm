@@ -31,6 +31,8 @@ namespace EDM.Models.Common
         public const string AddModifyServiceFAQ = "[dbo].[AddModifyServiceFAQ]";
         public const string RemoveFile = "[dbo].[RemoveFile]";
 
+        public const string GetServiceDetails = "[dbo].[GetServiceDetails]";
+
 
     }
 
