@@ -82,7 +82,9 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 ObjServiceDetails.FileUrls.ForEach(image =>
                                 {
                                     DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                                    DBParameter objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
+                                    DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
+                                    ObJParameterCOl1.Add(objDBParameter1); 
+                                    objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
                                     ObJParameterCOl1.Add(objDBParameter1);
