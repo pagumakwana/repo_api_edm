@@ -205,8 +205,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Flag", ObjCategory.Flag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Parent_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
@@ -215,11 +213,19 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@AliasName", ObjCategory.AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.String);
+                objDBParameter = new DBParameter("@CategoryUseBy", ObjCategory.CategoryUseBy, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int32);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaTitle", ObjCategory.MetaTitle, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaKeywords", ObjCategory.MetaKeywords, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MetaDescription", ObjCategory.MetaDescription, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -254,6 +260,10 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                     objDBParameter1 = new DBParameter("@Ref_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
+                                    ObJParameterCOl1.Add(objDBParameter1);
+                                    objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     DBHelper objDbHelper1 = new DBHelper();
                                     objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
@@ -305,7 +315,9 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                               FilePath = Row.Field<string>("FilePath"),
                               FileExtension = Row.Field<string>("FileExtension"),
                               FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName")
+                              ModuleName = Row.Field<string>("ModuleName"),
+                              FileIdentifier = Row.Field<string>("FileIdentifier"),
+                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
                           }).ToList();
                     }
                     if (ds.Tables[1].Rows.Count > 0)
@@ -317,17 +329,22 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
                                 CategoryName = Row.Field<string>("CategoryName"),
                                 AliasName = Row.Field<string>("AliasName"),
-                                CategoryUseBy = Row.Field<string>("CategoryUseBy"),
+                                CategoryUseBy = Row.Field<Int64>("CategoryUseBy"),
                                 Description = Row.Field<string>("Description"),
+                                FileUrls = (from obj in lstImg
+                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
+                                            select obj).ToList(),
+                                IsActive = Row.Field<Boolean>("IsActive"),
+                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
                                 CreatedBy = Row.Field<Int64>("CreatedBy"),
                                 CreatedName = Row.Field<string>("CreatedName"),
                                 CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
                                 UpdatedBy = Row.Field<Int64>("UpdatedBy"),
                                 UpdatedName = Row.Field<string>("UpdatedName"),
                                 UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
-                                IsActive = Row.Field<Boolean>("IsActive"),
-                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                FileUrls = lstImg
+                                MetaTitle = Row.Field<string>("MetaTitle"),
+                                MetaKeywords = Row.Field<string>("MetaKeywords"),
+                                MetaDescription = Row.Field<string>("MetaDescription"),
                             }).ToList();
                     }
                 }

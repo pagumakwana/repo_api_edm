@@ -18,11 +18,11 @@ namespace EDM.BusinessAccessLayer.Admin.ServiceManagement
             }
         }
 
-        public List<ClsServiceDetails> GetServiceDetails(Int64 ServiceID)
+        public List<ClsServiceDetails> GetServiceDetails(string Flag, Int64 Ref_Service_ID, string AliasName)
         {
             using (ClsServiceManagement_DAL obj = new ClsServiceManagement_DAL())
             {
-                return obj.GetServiceDetails(ServiceID);
+                return obj.GetServiceDetails(Flag, Ref_Service_ID, AliasName);
             }
         }
 
