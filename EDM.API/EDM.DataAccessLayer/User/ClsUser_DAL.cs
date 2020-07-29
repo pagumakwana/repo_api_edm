@@ -35,6 +35,8 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@StudioGears", ObjUser.StudioGears, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@GovitID", ObjUser.GovitID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PayPalEmailID", ObjUser.PayPalEmailID, DbType.String);
