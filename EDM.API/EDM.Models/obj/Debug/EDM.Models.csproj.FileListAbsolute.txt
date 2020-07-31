@@ -24,4 +24,3 @@ D:\repository\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.dll
 D:\repository\repo_api_edm\EDM.API\EDM.Models\bin\Debug\EDM.Models.pdb
 D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
 D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb
-D:\repository\repo_api_edm\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
