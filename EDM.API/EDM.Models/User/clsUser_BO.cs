@@ -18,6 +18,7 @@ namespace EDM.Models.User
         public string Bio { get; set; }
         public string Gender { get; set; }
         public string SocialProfileUrl { get; set; }
+        public string StudioGears { get; set; }
         public string GovitID { get; set; }
         public string PayPalEmailID { get; set; }
         public string AuthorityIDs { get; set; }
