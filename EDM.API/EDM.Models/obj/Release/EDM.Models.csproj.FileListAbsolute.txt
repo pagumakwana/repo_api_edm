@@ -14,3 +14,9 @@ D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.csprojAssemblyReference
 D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.dll
 D:\Project\EDM\EDM.API\EDM.Models\obj\Release\EDM.Models.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\bin\Release\EDM.Models.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\bin\Release\EDM.Models.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\obj\Release\EDM.Models.csprojAssemblyReference.cache
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\obj\Release\EDM.Models.csproj.CoreCompileInputs.cache
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\obj\Release\EDM.Models.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.Models\obj\Release\EDM.Models.pdb
