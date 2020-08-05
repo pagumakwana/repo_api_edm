@@ -29,3 +29,14 @@ D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.cspro
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csproj.CopyComplete
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.dll
 D:\Project\EDM\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.DataAccessLayer.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.DataAccessLayer.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.Models.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.MSDBHelper.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.Models.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\bin\Release\EDM.MSDBHelper.pdb
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csprojAssemblyReference.cache
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.csproj.CopyComplete
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.dll
+D:\Webdroids\EDM_Project\API\EDM.API\EDM.DataAccessLayer\obj\Release\EDM.DataAccessLayer.pdb
