@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EDM.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace EDM.Models.User
         public string UserMasterDataIDs { get; set; }
         public string CreatedBy { get; set; }
         public string Response { get; set; }
+        public List<ClsFileInfo> FileUrls { get; set; }
     }
 
     public class ClsUserSignIn

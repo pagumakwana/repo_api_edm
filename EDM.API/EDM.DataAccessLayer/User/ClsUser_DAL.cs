@@ -1,4 +1,5 @@
-﻿using EDM.Models.User;
+﻿using EDM.Models.Common;
+using EDM.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +13,7 @@ namespace EDM.DataAccessLayer.User
     {
         public string SignUp(ClsUserDetails ObjUser)
         {
+            string Response = "";
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
@@ -49,7 +51,50 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[DBO].[SignUp]", ObJParameterCOl, CommandType.StoredProcedure));
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.SignUp, ObJParameterCOl, CommandType.StoredProcedure);
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response = ds.Tables[0].Rows[0]["Response"].ToString();
+                        var Res = Response.Split('~');
+                        ObjUser.Ref_User_ID = Convert.ToInt64(Res[1].ToString());
+                        if (ObjUser.Ref_User_ID > 0 && (ObjUser.FileUrls != null && ObjUser.FileUrls.Count > 0))
+                        {
+                            ObjUser.FileUrls.ForEach(image =>
+                            {
+                                DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                                DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@Ref_User_ID", ObjUser.Ref_User_ID, DbType.Int64);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@CreatedName", ObjUser.FullName, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@Ref_ID", ObjUser.Ref_User_ID, DbType.Int64);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
+                                ObJParameterCOl1.Add(objDBParameter1);
+                                DBHelper objDbHelper1 = new DBHelper();
+                                objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+
+                            });
+                        }
+                        Response = Res[0].ToString();
+                    }
+                }
+                return Response;
             }
             catch (Exception ex)
             {
@@ -70,14 +115,30 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[SignIn]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet DsUser = objDbHelper.ExecuteDataSet(Constant.SignIn, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
-
-                if (User != null)
+                List<ClsFileInfo> lstImg = new List<ClsFileInfo>();
+                if (DsUser != null)
                 {
-                    if (User.Rows.Count > 0)
+                    if (DsUser.Tables[0].Rows.Count > 0)
                     {
-                        objUserDetails = User.AsEnumerable().Select(Row =>
+                        lstImg = DsUser.Tables[0].AsEnumerable().Select(Row =>
+                          new ClsFileInfo
+                          {
+                              Ref_ID = Row.Field<Int64>("Ref_ID"),
+                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
+                              FileName = Row.Field<string>("FileName"),
+                              FilePath = Row.Field<string>("FilePath"),
+                              FileExtension = Row.Field<string>("FileExtension"),
+                              FileSize = Row.Field<long>("FileSize"),
+                              ModuleName = Row.Field<string>("ModuleName"),
+                              FileIdentifier = Row.Field<string>("FileIdentifier"),
+                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
+                          }).ToList();
+                    }
+                    if (DsUser.Tables[1].Rows.Count > 0)
+                    {
+                        objUserDetails = DsUser.Tables[1].AsEnumerable().Select(Row =>
                             new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
@@ -92,6 +153,9 @@ namespace EDM.DataAccessLayer.User
                                 PayPalEmailID = Row.Field<string>("PayPalEmailID"),
                                 SocialProfileUrl = Row.Field<string>("SocialProfileUrl"),
                                 Response = Row.Field<string>("Response"),
+                                FileUrls = (from obj in lstImg
+                                            where obj.Ref_ID == Row.Field<Int64>("Ref_User_ID")
+                                            select obj).ToList(),
                             }).ToList();
                     }
                 }
