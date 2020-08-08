@@ -121,6 +121,13 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.AddModifyBannerDetails(ObjBannerDetails);
             }
         }
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageBanner(BannerIDs, Action);
+            }
+        }
 
         public List<ClsBannerDetails> GetBannersList(Int64 BannerID)
         {

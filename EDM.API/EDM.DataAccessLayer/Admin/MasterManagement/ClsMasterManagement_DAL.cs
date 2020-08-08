@@ -246,7 +246,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                                 {
                                     DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
                                     DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1); 
+                                    ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
@@ -289,7 +289,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID,string AliasName)
+        public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID, string AliasName)
         {
             try
             {
@@ -609,7 +609,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter     objDBParameter = new DBParameter("@Ref_Blog_ID", Ref_Blog_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_Blog_ID", Ref_Blog_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -722,6 +722,25 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                     }
                 }
                 return objUserMaster;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@BannerIDs", BannerIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Action", Action, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageBanner]", ObJParameterCOl, CommandType.StoredProcedure));
+
             }
             catch (Exception ex)
             {
