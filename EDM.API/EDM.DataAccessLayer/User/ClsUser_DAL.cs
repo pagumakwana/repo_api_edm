@@ -115,30 +115,15 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet DsUser = objDbHelper.ExecuteDataSet(Constant.SignIn, ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable dt = objDbHelper.ExecuteDataTable(Constant.SignIn, ObJParameterCOl, CommandType.StoredProcedure);
+
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
-                List<ClsFileInfo> lstImg = new List<ClsFileInfo>();
-                if (DsUser != null)
+
+                if (dt != null)
                 {
-                    if (DsUser.Tables[0].Rows.Count > 0)
+                    if (dt.Rows.Count > 0)
                     {
-                        lstImg = DsUser.Tables[0].AsEnumerable().Select(Row =>
-                          new ClsFileInfo
-                          {
-                              Ref_ID = Row.Field<Int64>("Ref_ID"),
-                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
-                              FileName = Row.Field<string>("FileName"),
-                              FilePath = Row.Field<string>("FilePath"),
-                              FileExtension = Row.Field<string>("FileExtension"),
-                              FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName"),
-                              FileIdentifier = Row.Field<string>("FileIdentifier"),
-                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
-                          }).ToList();
-                    }
-                    if (DsUser.Tables[1].Rows.Count > 0)
-                    {
-                        objUserDetails = DsUser.Tables[1].AsEnumerable().Select(Row =>
+                        objUserDetails = dt.AsEnumerable().Select(Row =>
                             new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
@@ -153,9 +138,6 @@ namespace EDM.DataAccessLayer.User
                                 PayPalEmailID = Row.Field<string>("PayPalEmailID"),
                                 SocialProfileUrl = Row.Field<string>("SocialProfileUrl"),
                                 Response = Row.Field<string>("Response"),
-                                FileUrls = (from obj in lstImg
-                                            where obj.Ref_ID == Row.Field<Int64>("Ref_User_ID")
-                                            select obj).ToList(),
                             }).ToList();
                     }
                 }
