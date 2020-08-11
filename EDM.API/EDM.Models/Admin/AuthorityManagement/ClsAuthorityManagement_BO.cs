@@ -21,6 +21,7 @@ namespace EDM.Models.Admin.AuthorityManagement
         public Int64 Ref_Authority_ID { get; set; }
         public string AuthorityName { get; set; }
         public string AuthorityType { get; set; }
+        public Boolean IsActive { get; set; }
     }
 
     public class ClsModuleAccess
@@ -30,5 +31,13 @@ namespace EDM.Models.Admin.AuthorityManagement
         public Boolean View { get; set; }
         public Boolean Edit { get; set; }
         public Boolean Delete { get; set; }
+        public Boolean Approval { get; set; }
+    }
+
+    public class ClsModuleList
+    {
+        public Int64 Ref_Module_ID { get; set; }
+        public string ModuleName { get; set; }
+        public string ModuleIdentifier { get; set; }
     }
 }

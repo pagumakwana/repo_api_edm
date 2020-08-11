@@ -12,6 +12,17 @@ namespace EDM.API.Controllers.Admin.AuthorityManagement
     [RoutePrefix("api/Admin")]
     public class AuthorityManagementController : ApiController
     {
+
+        [Route("AuthorityManagement/Module")]
+        [HttpGet]
+        public List<ClsModuleList> GetModuleList()
+        {
+            using (ClsAuthorityManagement_BAL obj = new ClsAuthorityManagement_BAL())
+            {
+                return obj.GetModuleList();
+            }
+        }
+
         [Route("AuthorityManagement/Authority")]
         [HttpPost]
         public string AddModifyAuthority(ClsAuthority ObjAuthority)
@@ -23,7 +34,7 @@ namespace EDM.API.Controllers.Admin.AuthorityManagement
         }
 
         [Route("AuthorityManagement/Authority")]
-        [HttpPost]
+        [HttpGet]
         public List<ClsAuthorityList> GetAuthorityList()
         {
             using (ClsAuthorityManagement_BAL obj = new ClsAuthorityManagement_BAL())
@@ -33,7 +44,7 @@ namespace EDM.API.Controllers.Admin.AuthorityManagement
         }
 
         [Route("AuthorityManagement/AuthorityDetails")]
-        [HttpPost]
+        [HttpGet]
         public List<ClsAuthority> GetAuthorityDetails(Int64 AuthorityID)
         {
             using (ClsAuthorityManagement_BAL obj = new ClsAuthorityManagement_BAL())
