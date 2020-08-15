@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using EDM.Models.Common;
 using EDM.Models.User;
 
 namespace EDM.DataAccessLayer.User
@@ -13,7 +14,7 @@ namespace EDM.DataAccessLayer.User
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable DT = objDbHelper.ExecuteDataTable("[dbo].[GetFeaturedTrackList]", CommandType.StoredProcedure);
+                DataTable DT = objDbHelper.ExecuteDataTable(Constant.GetFeaturedTrackList, CommandType.StoredProcedure);
 
                 List<ClsFeaturedTrack> objTrack = new List<ClsFeaturedTrack>();
 
@@ -28,7 +29,7 @@ namespace EDM.DataAccessLayer.User
                                 CategoryName = Row.Field<string>("CategoryName"),
                                 TrackName = Row.Field<string>("TrackName"),
                                 Bio = Row.Field<string>("Bio"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                Thumbnail = Row.Field<string>("Thumbnail"),
                                 Duration = Row.Field<int>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 IsTrack = Row.Field<string>("IsTrack"),

@@ -15,7 +15,7 @@ namespace EDM.Models.User
         public int Duration { get; set; }
         public string IsTrack { get; set; }
         public Decimal Price { get; set; }
-        public string ThumbnailImageUrl { get; set; }
+        public string Thumbnail { get; set; }
     }
 
     public class ClsTrackAndBeatDetails

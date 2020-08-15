@@ -1,4 +1,5 @@
-﻿using EDM.Models.User;
+﻿using EDM.Models.Common;
+using EDM.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ namespace EDM.DataAccessLayer.User
 {
     public class ClsService_DAL : IDisposable
     {
-        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string CategoryName)
+        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string AliasName)
         {
             try
             {
@@ -17,11 +18,11 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CategoryName", CategoryName, DbType.String);
+                objDBParameter = new DBParameter("@AliasName", AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetServiceListByCategory]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetServiceListByCategory, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsCustomServiceList> objServiceList = new List<ClsCustomServiceList>();
 
                 if (ds != null)
@@ -36,7 +37,7 @@ namespace EDM.DataAccessLayer.User
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                Thumbnail = Row.Field<string>("Thumbnail"),
                             }).ToList();
                         objServiceList.AddRange(List);
                     }

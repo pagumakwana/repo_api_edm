@@ -13,11 +13,11 @@ namespace EDM.API.Controllers.User
     {
         [Route("ServiceByCategory")]
         [HttpGet]
-        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string CategoryName)
+        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string AliasName)
         {
             using (ClsService_BAL obj = new ClsService_BAL())
             {
-                return obj.GetServiceListByCategory(StartCount, EndCount, CategoryName);
+                return obj.GetServiceListByCategory(StartCount, EndCount, AliasName);
             }
         }
 

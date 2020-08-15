@@ -31,7 +31,16 @@ namespace EDM.Models.Common
         public const string AddModifyServiceFAQ = "[dbo].[AddModifyServiceFAQ]";
         public const string RemoveFile = "[dbo].[RemoveFile]";
 
+        //START :: Service
         public const string GetServiceDetails = "[dbo].[GetServiceDetails]";
+        public const string GetServiceListByCategory = "[dbo].[GetServiceListByCategory]";
+        public const string GlobalSearch = "[dbo].[GlobalSearch]";
+        //END :: Service
+
+        //START :: TRACK
+        public const string GetFeaturedTrackList = "[dbo].[GetFeaturedTrackList]";
+        //END :: TRACK
+
         public const string SignUp = "[DBO].[SignUp]";
         public const string SignIn = "[DBO].[SignIn]";
 
