@@ -7,11 +7,11 @@ namespace EDM.BusinessAccessLayer.User
 {
     public class ClsService_BAL : IDisposable
     {
-        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string CategoryName)
+        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string AliasName)
         {
             using (ClsService_DAL obj = new ClsService_DAL())
             {
-                return obj.GetServiceListByCategory(StartCount, EndCount, CategoryName);
+                return obj.GetServiceListByCategory(StartCount, EndCount, AliasName);
             }
         }
 

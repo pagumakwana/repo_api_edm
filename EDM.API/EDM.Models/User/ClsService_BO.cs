@@ -13,7 +13,7 @@ namespace EDM.Models.User
         public string ServiceTitle { get; set; }
         public string Description { get; set; }
         public Decimal Price { get; set; }
-        public string ThumbnailImageUrl { get; set; }
+        public string Thumbnail { get; set; }
     }
 
     public class ClsCustomServiceDetails

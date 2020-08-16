@@ -13,6 +13,6 @@ namespace EDM.Models.User
         public string Title { get; set; }
         public string Bio { get; set; }
         public Decimal Price { get; set; }
-        public string ThumbnailImageUrl { get; set; }
+        public string Thumbnail { get; set; }
     }
 }
