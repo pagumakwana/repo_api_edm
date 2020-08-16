@@ -4,15 +4,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace EDM.DataAccessLayer.Common
 {
     public class ClsCommon_DAL : IDisposable
     {
-
         public List<ClsFileInfo> FileUploader(string ModuleName)
         {
             List<ClsFileInfo> lstFiles = new List<ClsFileInfo>();
@@ -55,6 +52,7 @@ namespace EDM.DataAccessLayer.Common
                 throw ex;
             }
         }
+
         public string AppendTimeStamp(string fileName)
         {
             return string.Concat(
@@ -83,6 +81,15 @@ namespace EDM.DataAccessLayer.Common
                 throw ex;
             }
         }
+
+        public string RandomString(int length)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         public void Dispose()
         {
             //throw new NotImplementedException();

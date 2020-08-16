@@ -16,7 +16,7 @@ namespace EDM.Models.Admin.TrackManagement
         public string Mood { get; set; }
         public string Key { get; set; }
         public string Tag { get; set; }
-        public int Duration { get; set; }
+        public string Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
         public Boolean IsVocals { get; set; }

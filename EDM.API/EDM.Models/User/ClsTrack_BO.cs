@@ -12,7 +12,7 @@ namespace EDM.Models.User
         public string CategoryName { get; set; }
         public string TrackName { get; set; }
         public string Bio { get; set; }
-        public int Duration { get; set; }
+        public string Duration { get; set; }
         public string IsTrack { get; set; }
         public Decimal Price { get; set; }
         public string ThumbnailImageUrl { get; set; }
@@ -29,7 +29,7 @@ namespace EDM.Models.User
         public string Mood { get; set; }
         public string Key { get; set; }
         public string Tag { get; set; }
-        public int Duration { get; set; }
+        public string Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
         public string IsVocals { get; set; }
@@ -69,7 +69,7 @@ namespace EDM.Models.User
         public string Mood { get; set; }
         public string Key { get; set; }
         public string Tag { get; set; }
-        public int Duration { get; set; }
+        public string Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
         public string IsVocals { get; set; }

@@ -48,7 +48,6 @@ namespace EDM.Models.Admin.MasterManagement
 
     public class ClsCategoryDetails : clsBase
     {
-        public string Flag { get; set; }
         public Int64 Ref_Category_ID { get; set; }
         public Int64 Ref_Parent_ID { get; set; }
         public string CategoryName { get; set; }

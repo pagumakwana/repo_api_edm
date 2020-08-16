@@ -39,7 +39,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Duration", ObjTrackDetails.Duration, DbType.Int16);
+                objDBParameter = new DBParameter("@Duration", ObjTrackDetails.Duration, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Price", ObjTrackDetails.Price, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
@@ -62,6 +62,8 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@IsVocals", ObjTrackDetails.IsVocals, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsTrack", ObjTrackDetails.IsTrack, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@TrackStatus", ObjTrackDetails.TrackStatus, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjTrackDetails.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -104,7 +106,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 Tag = Row.Field<string>("Tag"),
                                 ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 BigImageUrl = Row.Field<string>("BigImageUrl"),
-                                Duration = Row.Field<int>("Duration"),
+                                Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                 BMP = Row.Field<int>("BMP"),
