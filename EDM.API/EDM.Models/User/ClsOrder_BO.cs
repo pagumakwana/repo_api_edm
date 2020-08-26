@@ -23,6 +23,11 @@ namespace EDM.Models.User
 
     public class ClsUserOrder
     {
+        public List<ClsOrderObjectList> ObjectList { get; set; }
+
+    }
+    public class ClsOrderObjectList
+    {
         public Int64 UserID { get; set; }
         public Int64 OrderID { get; set; }
         public Int64 ObjectID { get; set; }

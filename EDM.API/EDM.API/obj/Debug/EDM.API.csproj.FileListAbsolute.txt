@@ -343,6 +343,7 @@ D:\repository\repo_api_edm\EDM.API\EDM.API\obj\Debug\EDM.API.csprojAssemblyRefer
 D:\repository\repo_api_edm\EDM.API\EDM.API\obj\Debug\EDM.API.csproj.CopyComplete
 D:\repository\repo_api_edm\EDM.API\EDM.API\obj\Debug\EDM.API.dll
 D:\repository\repo_api_edm\EDM.API\EDM.API\obj\Debug\EDM.API.pdb
+D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.API\bin\ApplicationInsights.config
 D:\Project\EDM\EDM.API\EDM.API\bin\roslyn\csc.exe
 D:\Project\EDM\EDM.API\EDM.API\bin\roslyn\csc.exe.config
@@ -427,7 +428,6 @@ D:\Project\EDM\EDM.API\EDM.API\bin\Microsoft.AI.Web.xml
 D:\Project\EDM\EDM.API\EDM.API\bin\EDM.DataAccessLayer.pdb
 D:\Project\EDM\EDM.API\EDM.API\bin\EDM.MSDBHelper.pdb
 D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.csprojAssemblyReference.cache
-D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.csproj.CopyComplete
 D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.dll
 D:\Project\EDM\EDM.API\EDM.API\obj\Debug\EDM.API.pdb

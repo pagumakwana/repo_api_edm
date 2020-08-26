@@ -46,6 +46,8 @@ D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.Busines
 D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CopyComplete
 D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.dll
 D:\repository\repo_api_edm\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.pdb
+D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csprojAssemblyReference.cache
+D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.dll
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.BusinessAccessLayer.pdb
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.dll
@@ -54,8 +56,6 @@ D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.dll
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.DataAccessLayer.pdb
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.Models.pdb
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\bin\Debug\EDM.MSDBHelper.pdb
-D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csprojAssemblyReference.cache
-D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.csproj.CopyComplete
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.dll
 D:\Project\EDM\EDM.API\EDM.BusinessAccessLayer\obj\Debug\EDM.BusinessAccessLayer.pdb

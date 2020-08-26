@@ -45,7 +45,7 @@ namespace EDM.API.Controllers.User
 
         [Route("Order")]
         [HttpGet]
-        public List<ClsUserOrderList> GetUserOrderDetails(Int64 UserID, string OrderStatus)
+        public List<ClsUserOrderList> GetUserOrderDetails(Int64 UserID, string OrderStatus = null)
         {
             using (ClsOrder_BAL obj = new ClsOrder_BAL())
             {

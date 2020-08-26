@@ -80,23 +80,31 @@ namespace EDM.DataAccessLayer.User
             try
             {
                 ClsCommon_DAL objCommon = new ClsCommon_DAL();
-
-                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@UserID", ObjUserOrder.UserID, DbType.Int64);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@OrderID", ObjUserOrder.OrderID, DbType.Int64);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@OrderCode", objCommon.RandomString(10), DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ObjectID", ObjUserOrder.ObjectID, DbType.Int64);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ObjectType", ObjUserOrder.ObjectType, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@OrderStatus", ObjUserOrder.OrderStatus, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserOrder]", ObJParameterCOl, CommandType.StoredProcedure));
+                string Action = "", OrderCode = "";
+
+                if (ObjUserOrder.ObjectList[0].OrderID == 0)
+                    OrderCode = objCommon.RandomString(10);
+
+                ObjUserOrder.ObjectList.ForEach(Object =>
+                {
+                    DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                    DBParameter objDBParameter = new DBParameter("@UserID", Object.UserID, DbType.Int64);
+                    ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@OrderID", Object.OrderID, DbType.Int64);
+                    ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@OrderCode", OrderCode, DbType.String);
+                    ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@ObjectID", Object.ObjectID, DbType.Int64);
+                    ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@ObjectType", Object.ObjectType, DbType.String);
+                    ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@OrderStatus", Object.OrderStatus, DbType.String);
+                    ObJParameterCOl.Add(objDBParameter);
+
+                    Action = Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserOrder]", ObJParameterCOl, CommandType.StoredProcedure));
+                });
+                return Action;
             }
             catch (Exception ex)
             {
@@ -104,19 +112,18 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsUserOrderList> GetUserOrderDetails(Int64 UserID, string Action)
+        public List<ClsUserOrderList> GetUserOrderDetails(Int64 UserID, string OrderStatus)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Action", Action, DbType.String);
+                objDBParameter = new DBParameter("@OrderStatus", OrderStatus, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
                 DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserOrderDetails]", ObJParameterCOl, CommandType.StoredProcedure);
-
                 List<ClsUserOrderList> objUserOrder = new List<ClsUserOrderList>();
 
                 if (Ds != null)
