@@ -165,7 +165,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                                      View = Row1.Field<Boolean>("ViewAccess"),
                                      Edit = Row1.Field<Boolean>("EditAccess"),
                                      Delete = Row1.Field<Boolean>("DeleteAccess"),
-                                     Approval = Row1.Field<Boolean>("ApporveAccess")
+                                     Approval = Row1.Field<Boolean>("ApprovalAccess")
                                  }).ToList()
                             }).ToList();
                         objUserMasterData.AddRange(List);

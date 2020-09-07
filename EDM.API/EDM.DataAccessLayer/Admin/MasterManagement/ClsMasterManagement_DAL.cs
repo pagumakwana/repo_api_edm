@@ -158,12 +158,14 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             }
         }
 
-        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
+        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID, Int64 UserMasterDataID)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Ref_UserMasterData_ID", UserMasterID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_UserMasterData_ID", UserMasterDataID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@UserMasterID", UserMasterID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();

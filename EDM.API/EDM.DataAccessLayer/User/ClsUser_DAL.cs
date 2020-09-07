@@ -149,12 +149,14 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsUserDetails> GetProducersList(int StartCount, int EndCount)
+        public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
@@ -177,6 +179,7 @@ namespace EDM.DataAccessLayer.User
                                 MobileNumber = Row.Field<string>("MobileNumber"),
                                 Bio = Row.Field<string>("Bio"),
                                 ProfilePhoto = Row.Field<string>("ProfilePhoto"),
+                                Followed = Row.Field<string>("Followed"),
                             }).ToList();
                     }
                 }
@@ -188,41 +191,55 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsProducersTrackList> GetProducersTrackAndBeatList(Int64 ProducersID)
+        public List<ClsProducerTrackAndBeatList> GetProducerTrackAndBeatList(Int64 ProducersID, Int64 UserID)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@ProducersID", ProducersID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
-                List<ClsProducersTrackList> objTrackList = new List<ClsProducersTrackList>();
+                DataSet User = objDbHelper.ExecuteDataSet("[DBO].[GetProducerTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
+
+                List<ClsProducerTrackAndBeatList> objProducerTrackAndBeat = new List<ClsProducerTrackAndBeatList>();
 
                 if (User != null)
                 {
-                    if (User.Rows.Count > 0)
+                    if (User.Tables[0].Rows.Count > 0)
                     {
-                        objTrackList = User.AsEnumerable().Select(Row =>
-                            new ClsProducersTrackList
+                        objProducerTrackAndBeat = User.Tables[0].AsEnumerable().Select(Row =>
+                            new ClsProducerTrackAndBeatList
                             {
-                                Ref_Track_ID = Row.Field<Int64>("Ref_Track_ID"),
-                                CategoryName = Row.Field<string>("CategoryName"),
-                                TrackName = Row.Field<string>("TrackName"),
-                                TrackType = Row.Field<string>("TrackType"),
-                                Bio = Row.Field<string>("Bio"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
-                                Duration = Row.Field<int>("Duration"),
-                                Price = Row.Field<decimal>("Price"),
-                                BMP = Row.Field<int>("BMP"),
-                                TrackStatus = Row.Field<string>("TrackStatus"),
-                                IsTrack = Row.Field<string>("IsTrack"),
-                                SoldOut = Row.Field<string>("SoldOut"),
+                                ProducerName = Row.Field<string>("ProducerName"),
+                                ProfilePhoto = Row.Field<string>("ProfilePhoto"),
+                                ProducerBio = Row.Field<string>("ProducerBio"),
+                                Followed = Row.Field<string>("Followed"),
+                                Followers = Row.Field<Int64>("Followers"),
+                                Following = Row.Field<Int64>("Following"),
+                                TrackAndBeat = User.Tables[1].AsEnumerable().Select(Row1 =>
+                                    new ClsTrackAndBeatList
+                                    {
+                                        Ref_Track_ID = Row1.Field<Int64>("Ref_Track_ID"),
+                                        CategoryName = Row1.Field<string>("CategoryName"),
+                                        TrackName = Row1.Field<string>("TrackName"),
+                                        TrackType = Row1.Field<string>("TrackType"),
+                                        Bio = Row1.Field<string>("Bio"),
+                                        ThumbnailImageUrl = Row1.Field<string>("ThumbnailImageUrl"),
+                                        Duration = Row1.Field<string>("Duration"),
+                                        Price = Row1.Field<decimal>("Price"),
+                                        BMP = Row1.Field<int>("BMP"),
+                                        TrackStatus = Row1.Field<string>("TrackStatus"),
+                                        IsTrack = Row1.Field<string>("IsTrack"),
+                                        SoldOut = Row1.Field<string>("SoldOut"),
+                                        Favourite = Row1.Field<string>("Favourite"),
+                                    }).ToList(),
                             }).ToList();
                     }
                 }
-                return objTrackList;
+                return objProducerTrackAndBeat;
             }
             catch (Exception ex)
             {

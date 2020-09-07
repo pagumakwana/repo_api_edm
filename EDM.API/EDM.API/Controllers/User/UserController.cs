@@ -36,21 +36,21 @@ namespace EDM.API.Controllers.User
 
         [Route("Producers")]
         [HttpPost]
-        public List<ClsUserDetails> GetProducersList(int StartCount, int EndCount)
+        public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
-                return obj.GetProducersList( StartCount,  EndCount);
+                return obj.GetProducersList(UserID, StartCount, EndCount);
             }
         }
 
         [Route("TrackAndBeat")]
         [HttpPost]
-        public List<ClsProducersTrackList> GetProducersTrackAndBeatList(Int64 ProducersID)
+        public List<ClsProducerTrackAndBeatList> GetProducerTrackAndBeatList(Int64 ProducersID, Int64 UserID)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
-                return obj.GetProducersTrackAndBeatList(ProducersID);
+                return obj.GetProducerTrackAndBeatList(ProducersID, UserID);
             }
         }
 

@@ -9,27 +9,27 @@ namespace EDM.BusinessAccessLayer.User
     public class ClsTrack_BAL : IDisposable
     {
 
-        public List<ClsFeaturedTrack> GetFeaturedTrackList()
+        public List<ClsFeaturedTrack> GetFeaturedTrackList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsTrack_DAL obj = new ClsTrack_DAL())
             {
-                return obj.GetFeaturedTrackList();
+                return obj.GetFeaturedTrackList(UserID, StartCount, EndCount);
             }
         }
 
-        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 TrackID)
+        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 UserID, Int64 TrackID)
         {
             using (ClsTrack_DAL obj = new ClsTrack_DAL())
             {
-                return obj.GetTrackAndBeatDetails(TrackID);
+                return obj.GetTrackAndBeatDetails(UserID, TrackID);
             }
         }
 
-        public List<ClsTrackAndBeatList> GetTrackAndBeatList(int StartCount, int EndCount)
+        public List<ClsTrackAndBeatList> GetTrackAndBeatList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsTrack_DAL obj = new ClsTrack_DAL())
             {
-                return obj.GetTrackAndBeatList( StartCount,  EndCount);
+                return obj.GetTrackAndBeatList(UserID, StartCount, EndCount);
             }
         }
 

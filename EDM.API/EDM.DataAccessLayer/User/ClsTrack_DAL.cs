@@ -9,12 +9,20 @@ namespace EDM.DataAccessLayer.User
 {
     public class ClsTrack_DAL : IDisposable
     {
-        public List<ClsFeaturedTrack> GetFeaturedTrackList()
+        public List<ClsFeaturedTrack> GetFeaturedTrackList(Int64 UserID, int StartCount, int EndCount)
         {
             try
             {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+
                 DBHelper objDbHelper = new DBHelper();
-                DataTable DT = objDbHelper.ExecuteDataTable(Constant.GetFeaturedTrackList, CommandType.StoredProcedure);
+                DataTable DT = objDbHelper.ExecuteDataTable(Constant.GetFeaturedTrackList, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsFeaturedTrack> objTrack = new List<ClsFeaturedTrack>();
 
@@ -33,6 +41,8 @@ namespace EDM.DataAccessLayer.User
                                 Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 IsTrack = Row.Field<string>("IsTrack"),
+                                Favourite = Row.Field<string>("Favourite"),
+                                PlayUrl = Row.Field<string>("PlayUrl"),
                             }).ToList();
                         objTrack.AddRange(List);
                     }
@@ -45,12 +55,14 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 TrackID)
+        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 UserID, Int64 TrackID)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@TrackID", TrackID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@TrackID", TrackID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -90,6 +102,7 @@ namespace EDM.DataAccessLayer.User
                                     MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                     IsVocals = Row.Field<string>("IsVocals"),
                                     IsTrack = Row.Field<string>("IsTrack"),
+                                    Favourite = Row.Field<string>("Favourite"),
                                     RelatedTrack = Ds.Tables[1].AsEnumerable().Select(Row1 =>
                                         new ClsRelatedTrackList
                                         {
@@ -100,6 +113,8 @@ namespace EDM.DataAccessLayer.User
                                             ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                             Price = Row.Field<decimal>("Price"),
                                             IsTrack = Row.Field<string>("IsTrack"),
+                                            PlayUrl = Row.Field<string>("PlayUrl"),
+                                            Favourite = Row.Field<string>("Favourite"),
                                         }).ToList(),
                                 }).ToList();
                             objTrackAndBeatDetails.AddRange(List);
@@ -114,14 +129,16 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
-        public List<ClsTrackAndBeatList> GetTrackAndBeatList(int StartCount, int EndCount)
+        public List<ClsTrackAndBeatList> GetTrackAndBeatList(Int64 UserID, int StartCount, int EndCount)
         {
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int64);
+                objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
@@ -151,6 +168,8 @@ namespace EDM.DataAccessLayer.User
                                 Price = Row.Field<decimal>("Price"),
                                 IsTrack = Row.Field<string>("IsTrack"),
                                 IsVocals = Row.Field<string>("IsVocals"),
+                                Favourite = Row.Field<string>("Favourite"),
+                                PlayUrl = Row.Field<string>("PlayUrl"),
                             }).ToList();
                         objTrackAndBeat.AddRange(List);
                     }

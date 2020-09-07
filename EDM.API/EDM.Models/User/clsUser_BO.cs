@@ -26,6 +26,7 @@ namespace EDM.Models.User
         public string UserMasterDataIDs { get; set; }
         public string CreatedBy { get; set; }
         public string Response { get; set; }
+        public string Followed { get; set; }
         public List<ClsFileInfo> FileUrls { get; set; }
     }
 
@@ -36,21 +37,15 @@ namespace EDM.Models.User
         public Boolean IsSocialLogin { get; set; }
     }
 
-    public class ClsProducersTrackList
+    public class ClsProducerTrackAndBeatList
     {
-        public Int64 Ref_Track_ID { get; set; }
-        public string CategoryName { get; set; }
-        public string TrackType { get; set; }
-        public string TrackName { get; set; }
-        public string Bio { get; set; }
-        public int Duration { get; set; }
-        public string IsTrack { get; set; }
-        public int BMP { get; set; }
-        public Decimal Price { get; set; }
-        public string ThumbnailImageUrl { get; set; }
-        public string TrackStatus { get; set; }
-        public string SoldOut { get; set; }
-
+        public string ProducerName { get; set; }
+        public string ProfilePhoto { get; set; }
+        public string ProducerBio { get; set; }
+        public string Followed { get; set; }
+        public Int64 Followers { get; set; }
+        public Int64 Following { get; set; }
+        public List<ClsTrackAndBeatList> TrackAndBeat { get; set; }
     }
 
     public class ClsProducersServiceList

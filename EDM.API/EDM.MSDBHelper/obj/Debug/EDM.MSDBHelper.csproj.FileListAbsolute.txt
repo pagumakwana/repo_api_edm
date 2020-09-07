@@ -23,3 +23,4 @@ D:\Project\EDM\EDM.API\EDM.MSDBHelper\bin\Debug\EDM.MSDBHelper.pdb
 D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csproj.CoreCompileInputs.cache
 D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.dll
 D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.pdb
+D:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Debug\EDM.MSDBHelper.csprojAssemblyReference.cache

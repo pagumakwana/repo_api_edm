@@ -43,11 +43,11 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
 
         }
 
-        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
+        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID, Int64 UserMasterDataID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetUserMasterDataList(UserMasterID);
+                return obj.GetUserMasterDataList(UserMasterID, UserMasterDataID);
             }
         }
 

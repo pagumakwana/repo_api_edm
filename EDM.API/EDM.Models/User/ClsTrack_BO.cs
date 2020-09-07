@@ -13,9 +13,11 @@ namespace EDM.Models.User
         public string TrackName { get; set; }
         public string Bio { get; set; }
         public string Duration { get; set; }
-        public string IsTrack { get; set; }
         public Decimal Price { get; set; }
         public string Thumbnail { get; set; }
+        public string IsTrack { get; set; }
+        public string Favourite { get; set; }
+        public string PlayUrl { get; set; }
     }
 
     public class ClsTrackAndBeatDetails
@@ -45,7 +47,7 @@ namespace EDM.Models.User
         public string MIDIFileUrl { get; set; }
         public string ProjectFilesUrl { get; set; }
         public string TrackStatus { get; set; }
-
+        public string Favourite { get; set; }
         public List<ClsRelatedTrackList> RelatedTrack { get; set; }
     }
 
@@ -57,6 +59,8 @@ namespace EDM.Models.User
         public string Bio { get; set; }
         public string IsTrack { get; set; }
         public Decimal Price { get; set; }
+        public string Favourite { get; set; }
+        public string PlayUrl { get; set; }
         public string ThumbnailImageUrl { get; set; }
     }
     public class ClsTrackAndBeatList
@@ -77,7 +81,9 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
         public string ThumbnailImageUrl { get; set; }
-        public string ProjectFilesUrl { get; set; }
-
+        public string Favourite { get; set; }
+        public string PlayUrl { get; set; }
+        public string TrackStatus { get; set; }
+        public string SoldOut { get; set; }
     }
 }
