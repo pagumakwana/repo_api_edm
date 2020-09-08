@@ -35,7 +35,7 @@ namespace EDM.API.Controllers.User
         }
 
         [Route("Producers")]
-        [HttpPost]
+        [HttpGet]
         public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
@@ -45,7 +45,7 @@ namespace EDM.API.Controllers.User
         }
 
         [Route("TrackAndBeat")]
-        [HttpPost]
+        [HttpGet]
         public List<ClsProducerTrackAndBeatList> GetProducerTrackAndBeatList(Int64 ProducersID, Int64 UserID)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
@@ -55,7 +55,7 @@ namespace EDM.API.Controllers.User
         }
 
         [Route("CustomServices")]
-        [HttpPost]
+        [HttpGet]
         public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
