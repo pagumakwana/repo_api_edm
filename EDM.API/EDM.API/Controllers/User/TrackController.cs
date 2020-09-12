@@ -13,31 +13,31 @@ namespace EDM.API.Controllers.User
     {
         [Route("FeaturedTrack")]
         [HttpGet]
-        public List<ClsFeaturedTrack> GetFeaturedTrackList()
+        public List<ClsFeaturedTrack> GetFeaturedTrackList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsTrack_BAL obj = new ClsTrack_BAL())
             {
-                return obj.GetFeaturedTrackList();
+                return obj.GetFeaturedTrackList(UserID, StartCount, EndCount);
             }
         }
 
         [Route("TrackAndBeatDetails")]
         [HttpGet]
-        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 TrackID)
+        public List<ClsTrackAndBeatDetails> GetTrackAndBeatDetails(Int64 UserID, Int64 TrackID)
         {
             using (ClsTrack_BAL obj = new ClsTrack_BAL())
             {
-                return obj.GetTrackAndBeatDetails(TrackID);
+                return obj.GetTrackAndBeatDetails(UserID, TrackID);
             }
         }
 
         [Route("FilterTrack")]
         [HttpGet]
-        public List<ClsTrackAndBeatList> GetTrackAndBeatList(int StartCount, int EndCount)
+        public List<ClsTrackAndBeatList> GetTrackAndBeatList(Int64 UserID, int StartCount, int EndCount)
         {
             using (ClsTrack_BAL obj = new ClsTrack_BAL())
             {
-                return obj.GetTrackAndBeatList(StartCount, EndCount);
+                return obj.GetTrackAndBeatList(UserID, StartCount, EndCount);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using EDM.Models.User;
+﻿using EDM.Models.Common;
+using EDM.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,7 +20,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GlobalSearch]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GlobalSearch, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsGlobalSearch> objUserMasterData = new List<ClsGlobalSearch>();
 
                 if (ds != null)
@@ -34,7 +35,7 @@ namespace EDM.DataAccessLayer.User
                                 Title = Row.Field<string>("Title"),
                                 Bio = Row.Field<string>("Bio"),
                                 Price = Row.Field<decimal>("Price"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                Thumbnail = Row.Field<string>("Thumbnail"),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }

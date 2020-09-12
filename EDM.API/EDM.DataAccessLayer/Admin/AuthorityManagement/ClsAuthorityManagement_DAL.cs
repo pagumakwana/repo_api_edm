@@ -10,6 +10,36 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
 {
     public class ClsAuthorityManagement_DAL : IDisposable
     {
+        public List<ClsModuleList> GetModuleList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetModuleList]", CommandType.StoredProcedure);
+                List<ClsModuleList> objModule = new List<ClsModuleList>();
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        IList<ClsModuleList> List = ds.Tables[0].AsEnumerable().Select(Row =>
+                            new ClsModuleList
+                            {
+                                Ref_Module_ID = Row.Field<Int64>("Ref_Module_ID"),
+                                ModuleIdentifier = Row.Field<string>("ModuleIdentifier"),
+                                ModuleName = Row.Field<string>("ModuleName")
+                            }).ToList();
+                        objModule.AddRange(List);
+                    }
+                }
+                return objModule;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string AddModifyAuthority(ClsAuthority ObjAuthority)
         {
             try
@@ -23,6 +53,8 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjAuthority.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@MasterDataIDs", ObjAuthority.MasterDataIDs, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
 
                 Int64 Ref_Authority_ID = 0;
                 DBHelper objDbHelper = new DBHelper();
@@ -33,7 +65,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                     ObjAuthority.ModuleAccess.ForEach(Module =>
                     {
                         DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", Ref_Authority_ID, DbType.Int64);
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_Authority_ID", Ref_Authority_ID, DbType.Int64);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@Ref_Module_ID", Module.Ref_Module_ID, DbType.Int64);
                         ObJParameterCOl1.Add(objDBParameter1);
@@ -42,6 +74,8 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                         objDBParameter1 = new DBParameter("@Edit", Module.Edit, DbType.Boolean);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@Delete", Module.Delete, DbType.Boolean);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Approval", Module.Approval, DbType.Boolean);
                         ObJParameterCOl1.Add(objDBParameter1);
                         objDBParameter1 = new DBParameter("@CreatedBy", ObjAuthority.CreatedBy, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
@@ -74,7 +108,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
             {
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetAuthorityList]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetAuthorityList]", CommandType.StoredProcedure);
                 List<ClsAuthorityList> objUserMaster = new List<ClsAuthorityList>();
 
                 if (ds != null)
@@ -86,7 +120,8 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                             {
                                 Ref_Authority_ID = Row.Field<Int64>("Ref_Authority_ID"),
                                 AuthorityName = Row.Field<string>("AuthorityName"),
-                                AuthorityType = Row.Field<string>("AuthorityType")
+                                AuthorityType = Row.Field<string>("AuthorityType"),
+                                IsActive = Row.Field<Boolean>("IsActive"),
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }
@@ -108,7 +143,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[API].[GetAuthorityDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetAuthorityDetails]", ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsAuthority> objUserMasterData = new List<ClsAuthority>();
 
                 if (ds != null)
@@ -123,14 +158,14 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                                 AuthorityType = Row.Field<string>("AuthorityType"),
                                 Description = Row.Field<string>("Description"),
                                 MasterDataIDs = Row.Field<string>("MasterDataIDs"),
-                                ModuleAccess = ds.Tables[0].AsEnumerable().Where(x => x.Field<Int64>("Ref_Authority_ID") == Row.Field<Int64>("Ref_Authority_ID")).Select(Row1 =>
+                                ModuleAccess = ds.Tables[1].AsEnumerable().Select(Row1 =>
                                  new ClsModuleAccess
                                  {
                                      Ref_Module_ID = Row1.Field<Int64>("Ref_Module_ID"),
-                                     View = Row1.Field<Boolean>("View"),
-                                     Edit = Row1.Field<Boolean>("Edit"),
-                                     Delete = Row1.Field<Boolean>("Delete")
-
+                                     View = Row1.Field<Boolean>("ViewAccess"),
+                                     Edit = Row1.Field<Boolean>("EditAccess"),
+                                     Delete = Row1.Field<Boolean>("DeleteAccess"),
+                                     Approval = Row1.Field<Boolean>("ApprovalAccess")
                                  }).ToList()
                             }).ToList();
                         objUserMasterData.AddRange(List);

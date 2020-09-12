@@ -43,11 +43,11 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
 
         }
 
-        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
+        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID, Int64 UserMasterDataID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.GetUserMasterDataList(UserMasterID);
+                return obj.GetUserMasterDataList(UserMasterID, UserMasterDataID);
             }
         }
 
@@ -119,6 +119,13 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
                 return obj.AddModifyBannerDetails(ObjBannerDetails);
+            }
+        }
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageBanner(BannerIDs, Action);
             }
         }
 

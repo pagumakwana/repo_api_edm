@@ -56,11 +56,11 @@ namespace EDM.API.Controllers.Admin.MasterManagement
 
         [Route("UserMasterData")]
         [HttpGet]
-        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID)
+        public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID, Int64 UserMasterDataID)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.GetUserMasterDataList(UserMasterID);
+                return obj.GetUserMasterDataList( UserMasterID,  UserMasterDataID);
             }
         }
 
@@ -150,6 +150,16 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
                 return obj.AddModifyBannerDetails(ObjBannerDetails);
+            }
+        }
+
+        [Route("ManageCarousel")]
+        [HttpGet]
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.ManageBanner(BannerIDs, Action);
             }
         }
 

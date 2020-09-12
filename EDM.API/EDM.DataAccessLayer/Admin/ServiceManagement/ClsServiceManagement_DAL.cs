@@ -17,9 +17,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Flag", ObjServiceDetails.Flag, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_Service_ID", ObjServiceDetails.Ref_Service_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_Service_ID", ObjServiceDetails.Ref_Service_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Category_ID", ObjServiceDetails.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
@@ -83,7 +81,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 {
                                     DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
                                     DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1); 
+                                    ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
                                     ObJParameterCOl1.Add(objDBParameter1);
                                     objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
@@ -132,9 +130,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Flag", Flag, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@AliasName", AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -149,33 +145,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        fileList = ds.Tables[0].AsEnumerable().Select(Row =>
-                          new ClsFileInfo
-                          {
-                              Ref_ID = Row.Field<Int64>("Ref_ID"),
-                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
-                              FileName = Row.Field<string>("FileName"),
-                              FilePath = Row.Field<string>("FilePath"),
-                              FileExtension = Row.Field<string>("FileExtension"),
-                              FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName"),
-                              FileIdentifier= Row.Field<string>("FileIdentifier"),
-                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
-                          }).ToList();
-                    }
-                    if (ds.Tables[1].Rows.Count > 0)
-                    {
-                        lstFAQ = ds.Tables[1].AsEnumerable().Select(Row1 =>
-                                   new ClsFAQDetails
-                                   {
-                                       Ref_Service_ID = Row1.Field<Int64>("Ref_Service_ID"),
-                                       Questions = Row1.Field<string>("Question"),
-                                       Answer = Row1.Field<string>("Answer")
-                                   }).ToList();
-                    }
-                    if (ds.Tables[2].Rows.Count > 0)
-                    {
-                        objServiceList = ds.Tables[2].AsEnumerable().Select(Row =>
+                        objServiceList = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsServiceDetails
                             {
                                 Ref_Service_ID = Row.Field<Int64>("Ref_Service_ID"),
@@ -183,20 +153,10 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
                                 AliasName = Row.Field<string>("AliasName"),
                                 Description = Row.Field<string>("Description"),
-                                //BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 Price = Row.Field<decimal>("Price"),
                                 PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
-                                //ServiceVideoUrl = Row.Field<string>("ServiceVideoUrl"),
-                                //ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
-                                //ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 Revision = Row.Field<int>("Revision"),
-                                DeliveryDate = Row.Field<string>("DeliveryDate"),                                
-                                FAQDetails = (from obj in lstFAQ
-                                              where obj.Ref_Service_ID == Row.Field<Int64>("Ref_Service_ID")
-                                              select obj).ToList(),
-                                FileUrls = (from obj in fileList
-                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Service_ID")
-                                            select obj).ToList(),
+                                DeliveryDate = Row.Field<string>("DeliveryDate"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 IsDeleted = Row.Field<Boolean>("IsDeleted"),
                                 CreatedBy = Row.Field<Int64>("CreatedBy"),
@@ -208,7 +168,26 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 MetaTitle = Row.Field<string>("MetaTitle"),
                                 MetaKeywords = Row.Field<string>("MetaKeywords"),
                                 MetaDescription = Row.Field<string>("MetaDescription"),
-
+                                FAQDetails = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_Service_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row1 =>
+                                 new ClsFAQDetails
+                                 {
+                                     Ref_Service_ID = Row1.Field<Int64>("Ref_Service_ID"),
+                                     Questions = Row1.Field<string>("Question"),
+                                     Answer = Row1.Field<string>("Answer")
+                                 }).ToList(),
+                                FileUrls = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("Ref_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
+                                new ClsFileInfo
+                                {
+                                    Ref_ID = Row2.Field<Int64>("Ref_ID"),
+                                    Ref_File_ID = Row2.Field<Int64>("Ref_File_ID"),
+                                    FileName = Row2.Field<string>("FileName"),
+                                    FilePath = Row2.Field<string>("FilePath"),
+                                    FileExtension = Row2.Field<string>("FileExtension"),
+                                    FileSize = Row2.Field<long>("FileSize"),
+                                    ModuleName = Row2.Field<string>("ModuleName"),
+                                    FileIdentifier = Row2.Field<string>("FileIdentifier"),
+                                    DisplayOrder = Row2.Field<Int64>("DisplayOrder"),
+                                }).ToList(),
                             }).ToList();
                     }
                 }

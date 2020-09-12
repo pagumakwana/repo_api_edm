@@ -186,6 +186,11 @@ namespace EDM
             return ExecuteScalar(commandText, param, null, commandType);
         }
 
+        public DataSet ExecuteDataSet(object consatant, DBParameterCollection obJParameterCOl, CommandType storedProcedure)
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Executes the Sql Command or Stored Procedure and returns result.
