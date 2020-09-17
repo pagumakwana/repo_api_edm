@@ -118,6 +118,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
                                 MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                 TrackStatus = Row.Field<string>("TrackStatus"),
+                                Reason = Row.Field<string>("Reason"),
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
                                 IsTrack = Row.Field<Boolean>("IsTrack"),
                                 IsActive = Row.Field<Boolean>("IsActive"),

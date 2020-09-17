@@ -106,15 +106,15 @@ namespace EDM.DataAccessLayer.User
                                     RelatedTrack = Ds.Tables[1].AsEnumerable().Select(Row1 =>
                                         new ClsRelatedTrackList
                                         {
-                                            Ref_Track_ID = Row.Field<Int64>("Ref_Track_ID"),
-                                            CategoryName = Row.Field<string>("CategoryName"),
-                                            TrackName = Row.Field<string>("TrackName"),
-                                            Bio = Row.Field<string>("Bio"),
-                                            ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
-                                            Price = Row.Field<decimal>("Price"),
-                                            IsTrack = Row.Field<string>("IsTrack"),
-                                            PlayUrl = Row.Field<string>("PlayUrl"),
-                                            Favourite = Row.Field<string>("Favourite"),
+                                            Ref_Track_ID = Row1.Field<Int64>("Ref_Track_ID"),
+                                            CategoryName = Row1.Field<string>("CategoryName"),
+                                            TrackName = Row1.Field<string>("TrackName"),
+                                            Bio = Row1.Field<string>("Bio"),
+                                            ThumbnailImageUrl = Row1.Field<string>("ThumbnailImageUrl"),
+                                            Price = Row1.Field<decimal>("Price"),
+                                            IsTrack = Row1.Field<string>("IsTrack"),
+                                            PlayUrl = Row1.Field<string>("PlayUrl"),
+                                            Favourite = Row1.Field<string>("Favourite"),
                                         }).ToList(),
                                 }).ToList();
                             objTrackAndBeatDetails.AddRange(List);

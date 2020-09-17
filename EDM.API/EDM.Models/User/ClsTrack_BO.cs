@@ -76,14 +76,15 @@ namespace EDM.Models.User
         public string Duration { get; set; }
         public int BMP { get; set; }
         public string DAW { get; set; }
-        public string IsVocals { get; set; }
-        public string IsTrack { get; set; }
+        public string ThumbnailImageUrl { get; set; }
+        public string PlayUrl { get; set; }
+        public string Favourite { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
-        public string ThumbnailImageUrl { get; set; }
-        public string Favourite { get; set; }
-        public string PlayUrl { get; set; }
-        public string TrackStatus { get; set; }
+        public Int64 Plays { get; set; }
         public string SoldOut { get; set; }
+        public string IsVocals { get; set; }
+        public string IsTrack { get; set; }
+        public string TrackStatus { get; set; }
     }
 }

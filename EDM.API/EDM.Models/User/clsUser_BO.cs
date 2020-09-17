@@ -42,9 +42,11 @@ namespace EDM.Models.User
         public string ProducerName { get; set; }
         public string ProfilePhoto { get; set; }
         public string ProducerBio { get; set; }
+        public string ProducerFrom { get; set; }
         public string Followed { get; set; }
         public Int64 Followers { get; set; }
         public Int64 Following { get; set; }
+        public Int64 Plays { get; set; }
         public List<ClsTrackAndBeatList> TrackAndBeat { get; set; }
     }
 

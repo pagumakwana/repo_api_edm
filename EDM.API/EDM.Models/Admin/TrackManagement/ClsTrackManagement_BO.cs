@@ -32,6 +32,7 @@ namespace EDM.Models.Admin.TrackManagement
         public string MIDIFileUrl { get; set; }
         public string ProjectFilesUrl { get; set; }
         public string TrackStatus { get; set; }
+        public string Reason { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
 

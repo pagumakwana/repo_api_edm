@@ -216,9 +216,11 @@ namespace EDM.DataAccessLayer.User
                                 ProducerName = Row.Field<string>("ProducerName"),
                                 ProfilePhoto = Row.Field<string>("ProfilePhoto"),
                                 ProducerBio = Row.Field<string>("ProducerBio"),
+                                ProducerFrom = Row.Field<string>("ProducerFrom"),
                                 Followed = Row.Field<string>("Followed"),
                                 Followers = Row.Field<Int64>("Followers"),
                                 Following = Row.Field<Int64>("Following"),
+                                Plays = Row.Field<Int64>("Plays"),
                                 TrackAndBeat = User.Tables[1].AsEnumerable().Select(Row1 =>
                                     new ClsTrackAndBeatList
                                     {
@@ -231,10 +233,11 @@ namespace EDM.DataAccessLayer.User
                                         Duration = Row1.Field<string>("Duration"),
                                         Price = Row1.Field<decimal>("Price"),
                                         BMP = Row1.Field<int>("BMP"),
+                                        Plays = Row1.Field<Int64>("Plays"),
+                                        Favourite = Row1.Field<string>("Favourite"),
                                         TrackStatus = Row1.Field<string>("TrackStatus"),
                                         IsTrack = Row1.Field<string>("IsTrack"),
                                         SoldOut = Row1.Field<string>("SoldOut"),
-                                        Favourite = Row1.Field<string>("Favourite"),
                                     }).ToList(),
                             }).ToList();
                     }
