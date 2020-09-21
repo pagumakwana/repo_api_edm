@@ -190,7 +190,6 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-
         public List<ClsProducerTrackAndBeatList> GetProducerTrackAndBeatList(Int64 ProducersID, Int64 UserID)
         {
             try
@@ -249,7 +248,6 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-
         public List<ClsProducersServiceList> GetProducersCustomServicesList(Int64 ProducersID)
         {
             try
@@ -285,7 +283,49 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
+        public List<ClsUserDetails> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ServiceID", ServiceID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int16);
+                ObJParameterCOl.Add(objDBParameter);
 
+                DBHelper objDbHelper = new DBHelper();
+                DataTable User = objDbHelper.ExecuteDataTable("[dbo].[GetAvailableProducersForServices]", CommandType.StoredProcedure);
+                List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
+
+                if (User != null)
+                {
+                    if (User.Rows.Count > 0)
+                    {
+                        objUserDetails = User.AsEnumerable().Select(Row =>
+                            new ClsUserDetails
+                            {
+                                Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
+                                UserCode = Row.Field<string>("UserCode"),
+                                FullName = Row.Field<string>("FullName"),
+                                EmailID = Row.Field<string>("EmailID"),
+                                MobileNumber = Row.Field<string>("MobileNumber"),
+                                Bio = Row.Field<string>("Bio"),
+                                ProfilePhoto = Row.Field<string>("ProfilePhoto"),
+                                Followed = Row.Field<string>("Followed"),
+                            }).ToList();
+                    }
+                }
+                return objUserDetails;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void Dispose()
         {
 

@@ -1,4 +1,5 @@
 ﻿using EDM.Models.Admin.TrackManagement;
+using EDM.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,10 +32,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Tag", ObjTrackDetails.Tag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@BigImageUrl", ObjTrackDetails.BigImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjTrackDetails.ThumbnailImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BMP", ObjTrackDetails.BMP, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.String);
@@ -44,19 +41,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@Price", ObjTrackDetails.Price, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjTrackDetails.PriceWithProjectFiles, DbType.Decimal);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ProjectFilesUrl", ObjTrackDetails.ProjectFilesUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@StemsUrl", ObjTrackDetails.StemsUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MIDIFileUrl", ObjTrackDetails.MIDIFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MasterFileUrl", ObjTrackDetails.MasterFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@UnmasteredFileUrl", ObjTrackDetails.UnmasteredFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MixdowFileUrl", ObjTrackDetails.MixdowFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
+                ObJParameterCOl.Add(objDBParameter);   
                 objDBParameter = new DBParameter("@IsActive", ObjTrackDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsVocals", ObjTrackDetails.IsVocals, DbType.Boolean);
@@ -104,25 +89,28 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 Mood = Row.Field<string>("Mood"),
                                 Key = Row.Field<string>("TrackKey"),
                                 Tag = Row.Field<string>("Tag"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
-                                BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                 BMP = Row.Field<int>("BMP"),
                                 DAW = Row.Field<string>("DAW"),
-                                ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
-                                StemsUrl = Row.Field<string>("StemsUrl"),
-                                MIDIFileUrl = Row.Field<string>("MIDIFileUrl"),
-                                MasterFileUrl = Row.Field<string>("MasterFileUrl"),
-                                UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
-                                MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                 TrackStatus = Row.Field<string>("TrackStatus"),
                                 Reason = Row.Field<string>("Reason"),
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
                                 IsTrack = Row.Field<Boolean>("IsTrack"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 CreatedBy = Row.Field<String>("CreatedBy"),
+                                FileManager = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Track_ID")).Select(Row1 =>
+                                     new ClsFileManager
+                                     {
+                                         FileIdentifier = Row1.Field<string>("FileIdentifier"),
+                                         FileName = Row1.Field<string>("FileName"),
+                                         FilePath = Row1.Field<string>("FilePath"),
+                                         FileExtension = Row1.Field<string>("FileExtension"),
+                                         FileSize = Row1.Field<Int64>("FileSize"),
+                                         FileType = Row1.Field<string>("FileType"),
+                                         Sequence = Row1.Field<int>("Sequence"),
+                                     }).ToList(),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }

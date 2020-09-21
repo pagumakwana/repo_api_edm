@@ -63,5 +63,15 @@ namespace EDM.API.Controllers.User
                 return obj.GetProducersCustomServicesList(ProducersID);
             }
         }
+
+        [Route("AvailableProducers")]
+        [HttpGet]
+        public List<ClsUserDetails> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetAvailableProducersForServices( UserID, ServiceID, StartCount, EndCount);
+            }
+        }
     }
 }

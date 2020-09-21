@@ -19,6 +19,7 @@ namespace EDM.Models.Admin.ServiceManagement
         public int Revision { get; set; }
         public string DeliveryDate { get; set; }
         public List<ClsFAQDetails> FAQDetails { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
     }
     public class ClsFAQDetails
     {

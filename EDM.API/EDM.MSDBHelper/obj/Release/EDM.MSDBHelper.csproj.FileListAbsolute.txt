@@ -20,3 +20,9 @@ D:\Webdroids\EDM_Project\API\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.c
 D:\Webdroids\EDM_Project\API\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.csproj.CoreCompileInputs.cache
 D:\Webdroids\EDM_Project\API\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.dll
 D:\Webdroids\EDM_Project\API\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.pdb
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\bin\Release\EDM.MSDBHelper.dll
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\bin\Release\EDM.MSDBHelper.pdb
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.csprojAssemblyReference.cache
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.csproj.CoreCompileInputs.cache
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.dll
+E:\Project\EDM\EDM.API\EDM.MSDBHelper\obj\Release\EDM.MSDBHelper.pdb

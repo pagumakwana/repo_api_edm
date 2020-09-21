@@ -138,8 +138,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 DBHelper objDbHelper = new DBHelper();
                 DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetServiceDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsServiceDetails> objServiceList = new List<ClsServiceDetails>();
-                List<ClsFileInfo> fileList = new List<ClsFileInfo>();
-                List<ClsFAQDetails> lstFAQ = new List<ClsFAQDetails>();
 
                 if (ds != null)
                 {
@@ -175,18 +173,16 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                      Questions = Row1.Field<string>("Question"),
                                      Answer = Row1.Field<string>("Answer")
                                  }).ToList(),
-                                FileUrls = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("Ref_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
-                                new ClsFileInfo
+                                FileManager = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
+                                new ClsFileManager
                                 {
-                                    Ref_ID = Row2.Field<Int64>("Ref_ID"),
-                                    Ref_File_ID = Row2.Field<Int64>("Ref_File_ID"),
+                                    FileIdentifier = Row2.Field<string>("FileIdentifier"),
                                     FileName = Row2.Field<string>("FileName"),
                                     FilePath = Row2.Field<string>("FilePath"),
                                     FileExtension = Row2.Field<string>("FileExtension"),
-                                    FileSize = Row2.Field<long>("FileSize"),
-                                    ModuleName = Row2.Field<string>("ModuleName"),
-                                    FileIdentifier = Row2.Field<string>("FileIdentifier"),
-                                    DisplayOrder = Row2.Field<Int64>("DisplayOrder"),
+                                    FileSize = Row2.Field<Int64>("FileSize"),
+                                    FileType = Row2.Field<string>("FileType"),
+                                    Sequence = Row2.Field<int>("Sequence"),
                                 }).ToList(),
                             }).ToList();
                     }

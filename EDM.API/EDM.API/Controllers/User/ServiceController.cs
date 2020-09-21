@@ -11,9 +11,20 @@ namespace EDM.API.Controllers.User
     [RoutePrefix("api/User/Service")]
     public class ServiceController : ApiController
     {
+
+        [Route("List")]
+        [HttpGet]
+        public List<ClsServiceList> GetServiceList(int StartCount, int EndCount)
+        {
+            using (ClsService_BAL obj = new ClsService_BAL())
+            {
+                return obj.GetServiceList(StartCount, EndCount);
+            }
+        }
+
         [Route("ServiceByCategory")]
         [HttpGet]
-        public List<ClsCustomServiceList> GetServiceListByCategory(int StartCount, int EndCount, string AliasName)
+        public List<ClsServiceList> GetServiceListByCategory(int StartCount, int EndCount, string AliasName)
         {
             using (ClsService_BAL obj = new ClsService_BAL())
             {

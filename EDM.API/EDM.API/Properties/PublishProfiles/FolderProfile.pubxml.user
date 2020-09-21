@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Published\edmAPI</_PublishTargetUrl>
+    <_PublishTargetUrl>E:\Project\EDM\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -85,34 +85,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2020 23:08:00</publishTime>
     </File>
     <File Include="bin/EDM.API.dll">
-      <publishTime>09/15/2020 12:40:48</publishTime>
+      <publishTime>09/20/2020 10:27:12</publishTime>
     </File>
     <File Include="bin/EDM.API.pdb">
-      <publishTime>09/15/2020 12:40:48</publishTime>
+      <publishTime>09/20/2020 10:27:12</publishTime>
     </File>
     <File Include="bin/EDM.BusinessAccessLayer.dll">
-      <publishTime>09/15/2020 12:40:33</publishTime>
+      <publishTime>09/20/2020 10:27:05</publishTime>
     </File>
     <File Include="bin/EDM.BusinessAccessLayer.pdb">
-      <publishTime>09/15/2020 12:40:33</publishTime>
+      <publishTime>09/20/2020 10:27:05</publishTime>
     </File>
     <File Include="bin/EDM.DataAccessLayer.dll">
-      <publishTime>09/15/2020 12:40:32</publishTime>
+      <publishTime>09/20/2020 10:27:04</publishTime>
     </File>
     <File Include="bin/EDM.DataAccessLayer.pdb">
-      <publishTime>09/15/2020 12:40:32</publishTime>
+      <publishTime>09/20/2020 10:27:04</publishTime>
     </File>
     <File Include="bin/EDM.Models.dll">
-      <publishTime>09/15/2020 12:40:29</publishTime>
+      <publishTime>09/20/2020 10:27:02</publishTime>
     </File>
     <File Include="bin/EDM.Models.pdb">
-      <publishTime>09/15/2020 12:40:29</publishTime>
+      <publishTime>09/20/2020 10:27:02</publishTime>
     </File>
     <File Include="bin/EDM.MSDBHelper.dll">
-      <publishTime>09/15/2020 12:40:29</publishTime>
+      <publishTime>09/20/2020 10:12:20</publishTime>
     </File>
     <File Include="bin/EDM.MSDBHelper.pdb">
-      <publishTime>09/15/2020 12:40:29</publishTime>
+      <publishTime>09/20/2020 10:12:20</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>04/27/2020 23:08:02</publishTime>
@@ -337,7 +337,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2020 23:08:01</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/11/2020 23:41:55</publishTime>
+      <publishTime>09/20/2020 10:12:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

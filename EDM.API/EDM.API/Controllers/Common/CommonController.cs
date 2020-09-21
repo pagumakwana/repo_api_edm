@@ -14,66 +14,6 @@ namespace EDM.API.Controllers.Common
     [RoutePrefix("api/Admin/Common")]
     public class CommonController : ApiController
     {
-        //[Route("Image")]
-        //[HttpPost]
-        //public string UploadImage(string ModuleName)
-        //{
-        //    string FilePath = HttpContext.Current.Server.MapPath("~/Images/" + ModuleName + "/");
-
-        //    if (!Directory.Exists(FilePath))
-        //    {
-        //        Directory.CreateDirectory(FilePath);
-        //    }
-
-        //    if (HttpContext.Current.Request.ContentLength > 0)
-        //    {
-        //        HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
-
-        //        FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
-        //        PostedFile.SaveAs(FilePath);
-
-        //        return "/Images/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
-        //    }
-        //    else
-        //    {
-        //        return "";
-        //    }
-        //}
-
-        //[Route("File")]
-        //[HttpPost]
-        //public string FileUpload(string ModuleName)
-        //{
-        //    string FilePath = HttpContext.Current.Server.MapPath("~/Files/" + ModuleName + "/");
-
-        //    if (!Directory.Exists(FilePath))
-        //    {
-        //        Directory.CreateDirectory(FilePath);
-        //    }
-
-        //    if (HttpContext.Current.Request.ContentLength > 0)
-        //    {
-        //        HttpPostedFile PostedFile = HttpContext.Current.Request.Files[0];
-
-        //        FilePath = Path.Combine(FilePath, HttpContext.Current.Request.Files[0].FileName);
-        //        PostedFile.SaveAs(FilePath);
-
-        //        return "/Files/" + ModuleName + "/" + HttpContext.Current.Request.Files[0].FileName;
-        //    }
-        //    else
-        //    {
-        //        return "";
-        //    }
-        //}
-        [Route("RemoveFile")]
-        [HttpPost]
-        public string RemoveFile(Int64 Ref_File_ID)
-        {
-            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
-            {
-                return objClsCommon_BAL.RemoveFile(Ref_File_ID);
-            }
-        }
 
         [Route("FileUpload")]
         [HttpPost]
@@ -82,6 +22,26 @@ namespace EDM.API.Controllers.Common
             using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
             {
                 return objClsCommon_BAL.FileUploader(ModuleName);
+            }
+        }
+
+        [Route("SaveModuleFile")]
+        [HttpPost]
+        public string SaveModuleFile(Int64 ModuleID, string ModuleType, string FileIdentifier)
+        {
+            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
+            {
+                return objClsCommon_BAL.SaveModuleFile(ModuleID, ModuleType, FileIdentifier);
+            }
+        }
+
+        [Route("RemoveFile")]
+        [HttpPost]
+        public string RemoveFile(Int64 Ref_File_ID)
+        {
+            using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
+            {
+                return objClsCommon_BAL.RemoveFile(Ref_File_ID);
             }
         }
     }
