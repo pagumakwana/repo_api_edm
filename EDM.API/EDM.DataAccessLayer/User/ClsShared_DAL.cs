@@ -48,6 +48,42 @@ namespace EDM.DataAccessLayer.User
             }
         }
 
+        public List<ClsParentCategory> GetParentCategoryList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetParentCategoryList, CommandType.StoredProcedure);
+                List<ClsParentCategory> objParentCategory = new List<ClsParentCategory>();
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        IList<ClsParentCategory> List = ds.Tables[0].AsEnumerable().Select(Row =>
+                            new ClsParentCategory
+                            {
+                                CategoryID = Row.Field<Int64>("Ref_Category_ID"),
+                                CategoryUseBy = Row.Field<string>("CategoryUseBy"),
+                                CategoryName = Row.Field<string>("CategoryName"),
+                                AliasName = Row.Field<string>("AliasName"),
+                                Description = Row.Field<string>("Description"),
+                                MetaTitle = Row.Field<string>("MetaTitle"),
+                                MetaKeywords = Row.Field<string>("MetaKeywords"),
+                                MetaDescription = Row.Field<string>("MetaDescription"),
+                                Thumbnail = Row.Field<string>("Thumbnail"),
+                            }).ToList();
+                        objParentCategory.AddRange(List);
+                    }
+                }
+                return objParentCategory;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Dispose()
         {
 

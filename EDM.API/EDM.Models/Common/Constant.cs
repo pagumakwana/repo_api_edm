@@ -15,6 +15,7 @@ namespace EDM.Models.Common
         public const string SignIn = "[DBO].[SignIn]";
         public const string GlobalSearch = "[dbo].[GlobalSearch]";
         public const string SaveModuleFile = "[dbo].[SaveModuleFile]";
+        public const string GetParentCategoryList = "[dbo].[GetParentCategoryList]";
         public const string AddModifyUserAction = "[dbo].[AddModifyUserAction]";
         public const string GetUserActionDetails = "[dbo].[GetUserActionDetails]";
         public const string AddModifyUserOrder = "[dbo].[AddModifyUserOrder]";

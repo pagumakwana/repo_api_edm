@@ -122,6 +122,7 @@ namespace EDM.DataAccessLayer.User
                                 FileManager = ds.Tables[2].AsEnumerable().Select(Row2 =>
                                      new ClsFileManager
                                      {
+                                         FileManagerID = Row2.Field<Int64>("Ref_FileManager_ID"),
                                          FileIdentifier = Row2.Field<string>("FileIdentifier"),
                                          FileName = Row2.Field<string>("FileName"),
                                          FilePath = Row2.Field<string>("FilePath"),

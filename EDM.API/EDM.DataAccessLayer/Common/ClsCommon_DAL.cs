@@ -53,60 +53,72 @@ namespace EDM.DataAccessLayer.Common
             }
         }
 
-        public string SaveModuleFile(Int64 ModuleID, string ModuleType, string FileIdentifier)
+        public ClsFileManager SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
         {
             try
             {
+                ClsFileManager ObjFileManager = new ClsFileManager();
+
                 if (HttpContext.Current.Request.ContentLength > 0)
                 {
-
                     var httpRequest = HttpContext.Current.Request;
 
                     foreach (string file in httpRequest.Files)
                     {
                         string FilePath = HttpContext.Current.Server.MapPath("~/FileStorage/" + ModuleType + "/");
                         string StoreFilePath = "/FileStorage/" + ModuleType + "/";
-                      
+
                         if (!Directory.Exists(FilePath))
                         {
                             Directory.CreateDirectory(FilePath);
                         }
 
-                        ClsFileInfo objFileInfo = new ClsFileInfo();
                         var postedFile = httpRequest.Files[file];
                         string FileName = AppendTimeStamp(postedFile.FileName);
                         FilePath = Path.Combine(FilePath, FileName);
                         postedFile.SaveAs(FilePath);
 
+
+                        ObjFileManager.FileIdentifier = FileName;
+                        ObjFileManager.FileName = FileName;
+                        ObjFileManager.FilePath = FileName;
+                        ObjFileManager.FileType = postedFile.ContentType;
+                        ObjFileManager.FileSize = postedFile.ContentLength;
+                        ObjFileManager.FileExtension = FileName;
+                        ObjFileManager.Sequence = Sequence;
+
+
                         DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                        DBParameter objDBParameter = new DBParameter("@ModuleID", ModuleID, DbType.Int64);
+                        DBParameter objDBParameter = new DBParameter("@FileManagerID", FileManagerID, DbType.Int64);
+                        ObJParameterCOl.Add(objDBParameter);
+                        objDBParameter = new DBParameter("@ModuleID", ModuleID, DbType.Int64);
                         ObJParameterCOl.Add(objDBParameter);
                         objDBParameter = new DBParameter("@ModuleType", ModuleType, DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
                         objDBParameter = new DBParameter("@FileIdentifier", FileIdentifier, DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
-                        objDBParameter = new DBParameter("@FileName", AppendTimeStamp(postedFile.FileName), DbType.String);
-                        ObJParameterCOl.Add(objDBParameter);
-                        objDBParameter = new DBParameter("@FilePath", Path.Combine(FilePath, FileName), DbType.String);
+                        objDBParameter = new DBParameter("@FileName", FileName, DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
                         objDBParameter = new DBParameter("@FilePath", StoreFilePath + FileName, DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
-                        objDBParameter = new DBParameter("@Extension", Path.GetExtension(FilePath), DbType.String);
+                        objDBParameter = new DBParameter("@FileExtension", Path.GetExtension(FilePath), DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
                         objDBParameter = new DBParameter("@FileType", postedFile.ContentType, DbType.String);
                         ObJParameterCOl.Add(objDBParameter);
-                        objDBParameter = new DBParameter("@FileIdentifier", FileIdentifier, DbType.String);
+                        objDBParameter = new DBParameter("@FileSize", postedFile.ContentLength, DbType.Int64);
+                        ObJParameterCOl.Add(objDBParameter);
+                        objDBParameter = new DBParameter("@FileSequence", Sequence, DbType.Int32);
                         ObJParameterCOl.Add(objDBParameter);
 
                         DBHelper objDbHelper = new DBHelper();
-                        DataTable DT = objDbHelper.ExecuteDataTable(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure);
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure).ToString();
 
                     }
-                    return "FILESSAVEAS";
+                    return ObjFileManager;
                 }
                 else
                 {
-                    return "FILESSAVEASERROR";
+                    return ObjFileManager;
                 }
             }
             catch (Exception ex)

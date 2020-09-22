@@ -41,7 +41,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@Price", ObjTrackDetails.Price, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjTrackDetails.PriceWithProjectFiles, DbType.Decimal);
-                ObJParameterCOl.Add(objDBParameter);   
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjTrackDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsVocals", ObjTrackDetails.IsVocals, DbType.Boolean);
@@ -54,7 +54,50 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyTrackDetails, ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_Track_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyTrackDetails, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Track_ID > 0)
+                {
+                    ObjTrackDetails.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Track_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+                }
+
+                if (Ref_Track_ID > 0 && ObjTrackDetails.Ref_Track_ID == 0)
+                {
+                    return "TRACKADDED";
+                }
+                else if (Ref_Track_ID > 0 && ObjTrackDetails.Ref_Track_ID > 0)
+                {
+                    return "TRACKUPDATED";
+                }
+                else
+                {
+                    return "TRACKEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -103,6 +146,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 FileManager = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Track_ID")).Select(Row1 =>
                                      new ClsFileManager
                                      {
+                                         FileManagerID = Row1.Field<Int64>("Ref_FileManager_ID"),
                                          FileIdentifier = Row1.Field<string>("FileIdentifier"),
                                          FileName = Row1.Field<string>("FileName"),
                                          FilePath = Row1.Field<string>("FilePath"),

@@ -13,7 +13,6 @@ namespace EDM.DataAccessLayer.User
     {
         public string SignUp(ClsUserDetails ObjUser)
         {
-            string Response = "";
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
@@ -51,50 +50,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet(Constant.SignUp, ObJParameterCOl, CommandType.StoredProcedure);
-                if (ds != null)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        Response = ds.Tables[0].Rows[0]["Response"].ToString();
-                        var Res = Response.Split('~');
-                        ObjUser.Ref_User_ID = Convert.ToInt64(Res[1].ToString());
-                        if (ObjUser.Ref_User_ID > 0 && (ObjUser.FileUrls != null && ObjUser.FileUrls.Count > 0))
-                        {
-                            ObjUser.FileUrls.ForEach(image =>
-                            {
-                                DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                                DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@Ref_User_ID", ObjUser.Ref_User_ID, DbType.Int64);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@CreatedName", ObjUser.FullName, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@Ref_ID", ObjUser.Ref_User_ID, DbType.Int64);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
-                                ObJParameterCOl1.Add(objDBParameter1);
-                                DBHelper objDbHelper1 = new DBHelper();
-                                objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
-
-                            });
-                        }
-                        Response = Res[0].ToString();
-                    }
-                }
-                return Response;
+                return objDbHelper.ExecuteDataSet(Constant.SignUp, ObJParameterCOl, CommandType.StoredProcedure).ToString();
             }
             catch (Exception ex)
             {
@@ -175,8 +131,8 @@ namespace EDM.DataAccessLayer.User
                                 FullName = Row.Field<string>("FullName"),
                                 EmailID = Row.Field<string>("EmailID"),
                                 MobileNumber = Row.Field<string>("MobileNumber"),
-                                Bio = Row.Field<string>("Bio"),
                                 ProfilePhoto = Row.Field<string>("ProfilePhoto"),
+                                Bio = Row.Field<string>("Bio"),
                                 Followed = Row.Field<string>("Followed"),
                             }).ToList();
                     }
@@ -226,13 +182,13 @@ namespace EDM.DataAccessLayer.User
                                         TrackName = Row1.Field<string>("TrackName"),
                                         TrackType = Row1.Field<string>("TrackType"),
                                         Bio = Row1.Field<string>("Bio"),
-                                        ThumbnailImageUrl = Row1.Field<string>("ThumbnailImageUrl"),
                                         Duration = Row1.Field<string>("Duration"),
                                         Price = Row1.Field<decimal>("Price"),
                                         BMP = Row1.Field<int>("BMP"),
                                         Plays = Row1.Field<Int64>("Plays"),
-                                        Favourite = Row1.Field<string>("Favourite"),
+                                        ThumbnailImageUrl = Row1.Field<string>("Thumbnail"),
                                         TrackStatus = Row1.Field<string>("TrackStatus"),
+                                        Favourite = Row1.Field<string>("Favourite"),
                                         IsTrack = Row1.Field<string>("IsTrack"),
                                         SoldOut = Row1.Field<string>("SoldOut"),
                                     }).ToList(),
@@ -270,7 +226,7 @@ namespace EDM.DataAccessLayer.User
                                 ServiceTitle = Row.Field<string>("ServiceTitle"),
                                 Description = Row.Field<string>("Description"),
                                 Price = Row.Field<decimal>("Price"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
+                                ThumbnailImageUrl = Row.Field<string>("Thumbnail"),
                             }).ToList();
                     }
                 }

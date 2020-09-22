@@ -22,7 +22,9 @@ namespace EDM.Models.Common
 
     public class ClsFileManager
     {
-        public Int64 Ref_FileManager_ID { get; set; }
+        public Int64 FileManagerID { get; set; }
+        public Int64 ModuleID { get; set; }
+        public string ModuleType { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }
         public string FileType { get; set; }
