@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDM.Models.Admin.AuthorityManagement;
+using EDM.Models.Common;
 
 namespace EDM.DataAccessLayer.Admin.AuthorityManagement
 {
@@ -15,7 +16,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetModuleList]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetModuleList, CommandType.StoredProcedure);
                 List<ClsModuleList> objModule = new List<ClsModuleList>();
 
                 if (ds != null)
@@ -58,7 +59,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
 
                 Int64 Ref_Authority_ID = 0;
                 DBHelper objDbHelper = new DBHelper();
-                Ref_Authority_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyAuthority]", ObJParameterCOl, CommandType.StoredProcedure));
+                Ref_Authority_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyAuthority, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_Authority_ID > 0)
                 {
@@ -80,7 +81,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                         objDBParameter1 = new DBParameter("@CreatedBy", ObjAuthority.CreatedBy, DbType.String);
                         ObJParameterCOl1.Add(objDBParameter1);
 
-                        objDbHelper.ExecuteScalar("[dbo].[AddModifyAuthorityModuleAccess]", ObJParameterCOl1, CommandType.StoredProcedure);
+                        objDbHelper.ExecuteScalar(Constant.AddModifyAuthorityModuleAccess, ObJParameterCOl1, CommandType.StoredProcedure);
                     });
                 }
 
@@ -108,7 +109,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
             {
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetAuthorityList]", CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetAuthorityList, CommandType.StoredProcedure);
                 List<ClsAuthorityList> objUserMaster = new List<ClsAuthorityList>();
 
                 if (ds != null)
@@ -143,7 +144,7 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetAuthorityDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetAuthorityDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsAuthority> objUserMasterData = new List<ClsAuthority>();
 
                 if (ds != null)

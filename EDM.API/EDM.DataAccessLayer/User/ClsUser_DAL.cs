@@ -101,7 +101,6 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-
         public List<ClsUserDetails> SignIn(ClsUserSignIn ObjUser)
         {
             try
@@ -148,7 +147,6 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-
         public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {
             try
@@ -162,7 +160,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersList]", CommandType.StoredProcedure);
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetProducersList, CommandType.StoredProcedure);
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
 
                 if (User != null)
@@ -201,7 +199,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet User = objDbHelper.ExecuteDataSet("[DBO].[GetProducerTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet User = objDbHelper.ExecuteDataSet(Constant.GetProducerTrackAndBeatList, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsProducerTrackAndBeatList> objProducerTrackAndBeat = new List<ClsProducerTrackAndBeatList>();
 
@@ -257,7 +255,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[DBO].[GetProducersCustomServicesList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetProducersCustomServicesList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsProducersServiceList> objServiceList = new List<ClsProducersServiceList>();
 
                 if (User != null)
@@ -298,7 +296,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable("[dbo].[GetAvailableProducersForServices]", CommandType.StoredProcedure);
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetAvailableProducersForServices, CommandType.StoredProcedure);
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
 
                 if (User != null)

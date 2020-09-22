@@ -66,7 +66,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetTrackAndBeatDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetTrackAndBeatDetails, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsTrackAndBeatDetails> objTrackAndBeatDetails = new List<ClsTrackAndBeatDetails>();
 
@@ -145,7 +145,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable DT = objDbHelper.ExecuteDataTable("[dbo].[GetTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable DT = objDbHelper.ExecuteDataTable(Constant.GetTrackAndBeatList, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsTrackAndBeatList> objTrackAndBeat = new List<ClsTrackAndBeatList>();
 

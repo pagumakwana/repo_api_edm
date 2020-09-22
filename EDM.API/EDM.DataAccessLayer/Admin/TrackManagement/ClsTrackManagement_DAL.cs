@@ -54,7 +54,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyTrackDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyTrackDetails, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetTrackDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetTrackDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsTrackDetails> objUserMasterData = new List<ClsTrackDetails>();
 
                 if (ds != null)
@@ -134,7 +134,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageTrack]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageTrack, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {
@@ -157,7 +157,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[TrackApproveAndRejact]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.TrackApproveAndRejact, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {

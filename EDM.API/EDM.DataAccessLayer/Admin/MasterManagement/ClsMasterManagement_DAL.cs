@@ -37,7 +37,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMaster]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserMaster, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserMasterList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMaster> objUserMaster = new List<ClsUserMaster>();
 
                 if (ds != null)
@@ -94,7 +94,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetParentUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetParentUserMasterList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsParentUserMaster> objUserMasterData = new List<ClsParentUserMaster>();
 
                 if (ds != null)
@@ -148,7 +148,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
 
                 string Massage = "";
                 DBHelper objDbHelper = new DBHelper();
-                Massage = Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMasterData]", ObJParameterCOl, CommandType.StoredProcedure));
+                Massage = Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserMasterData, ObJParameterCOl, CommandType.StoredProcedure));
 
                 return Massage;
             }
@@ -169,7 +169,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterDataList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserMasterDataList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMasterData> objUserMasterData = new List<ClsUserMasterData>();
 
                 if (ds != null)
@@ -365,7 +365,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetDAWList]", CommandType.StoredProcedure);
+                DataTable dt = objDbHelper.ExecuteDataTable(Constant.GetDAWList, CommandType.StoredProcedure);
                 List<ClsDAW> objUserMaster = new List<ClsDAW>();
 
                 if (dt != null)
@@ -424,7 +424,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 Int64 Ref_CouponCode_ID = 0;
 
                 DBHelper objDbHelper = new DBHelper();
-                Ref_CouponCode_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+                Ref_CouponCode_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyCouponCode, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_CouponCode_ID > 0)
                 {
@@ -468,7 +468,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetCouponCodeList]", CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetCouponCodeList, CommandType.StoredProcedure);
                 List<ClsCouponDetails> ObjCouponDetails = new List<ClsCouponDetails>();
 
                 if (Ds != null)
@@ -523,7 +523,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageCouponCode, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
@@ -686,7 +686,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyBannerDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyBannerDetails, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {
@@ -702,7 +702,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameter objDBParameter = new DBParameter("@Ref_Banner_ID", BannerID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetBannersList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable dt = objDbHelper.ExecuteDataTable(Constant.GetBannersList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsBannerDetails> objUserMaster = new List<ClsBannerDetails>();
 
                 if (dt != null)
@@ -741,7 +741,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 objDBParameter = new DBParameter("@Action", Action, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageBanner]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageBanner, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)

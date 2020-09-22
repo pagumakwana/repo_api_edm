@@ -1,4 +1,5 @@
 ﻿using EDM.DataAccessLayer.Common;
+using EDM.Models.Common;
 using EDM.Models.User;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserAction]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserAction, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {
@@ -45,7 +46,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserActionDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetUserActionDetails, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsUserActionList> objUserAction = new List<ClsUserActionList>();
 
@@ -102,7 +103,7 @@ namespace EDM.DataAccessLayer.User
                     objDBParameter = new DBParameter("@OrderStatus", Object.OrderStatus, DbType.String);
                     ObJParameterCOl.Add(objDBParameter);
 
-                    Action = Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserOrder]", ObJParameterCOl, CommandType.StoredProcedure));
+                    Action = Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserOrder, ObJParameterCOl, CommandType.StoredProcedure));
                 });
                 return Action;
             }

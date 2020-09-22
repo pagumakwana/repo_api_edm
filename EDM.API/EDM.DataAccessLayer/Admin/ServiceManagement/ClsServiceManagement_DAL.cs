@@ -206,7 +206,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageService]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageService, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
