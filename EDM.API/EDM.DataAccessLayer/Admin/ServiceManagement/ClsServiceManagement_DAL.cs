@@ -195,7 +195,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
 
                 DBHelper objDbHelper = new DBHelper();
                 return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageService, ObJParameterCOl, CommandType.StoredProcedure));
-
             }
             catch (Exception ex)
             {

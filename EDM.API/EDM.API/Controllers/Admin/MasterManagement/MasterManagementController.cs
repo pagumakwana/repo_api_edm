@@ -153,16 +153,6 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
-        [Route("ManageCarousel")]
-        [HttpGet]
-        public string ManageBanner(string BannerIDs, string Action)
-        {
-            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
-            {
-                return obj.ManageBanner(BannerIDs, Action);
-            }
-        }
-
         [Route("CarouselList")]
         [HttpGet]
         public List<ClsBannerDetails> GetBannersList(Int64 CarouselID)
@@ -170,6 +160,16 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
                 return obj.GetBannersList(CarouselID);
+            }
+        }
+
+        [Route("ManageCarousel")]
+        [HttpGet]
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.ManageBanner(BannerIDs, Action);
             }
         }
 

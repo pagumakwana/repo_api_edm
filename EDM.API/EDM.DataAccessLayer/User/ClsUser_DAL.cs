@@ -91,6 +91,7 @@ namespace EDM.DataAccessLayer.User
                                 Gender = Row.Field<string>("Gender"),
                                 GovitID = Row.Field<string>("GovitID"),
                                 PayPalEmailID = Row.Field<string>("PayPalEmailID"),
+                                StudioGears = Row.Field<string>("StudioGears"),
                                 SocialProfileUrl = Row.Field<string>("SocialProfileUrl"),
                                 Response = Row.Field<string>("Response"),
                             }).ToList();
