@@ -26,19 +26,15 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Password", ObjUser.Password, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ProfilePhoto", ObjUser.ProfilePhoto, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MobileNumber", ObjUser.MobileNumber, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Bio", ObjUser.Bio, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Gender", ObjUser.Gender, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@StudioGears", ObjUser.StudioGears, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@GovitID", ObjUser.GovitID, DbType.String);
+                objDBParameter = new DBParameter("@SocialProfileUrl", ObjUser.SocialProfileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PayPalEmailID", ObjUser.PayPalEmailID, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -50,7 +46,50 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return objDbHelper.ExecuteDataSet(Constant.SignUp, ObJParameterCOl, CommandType.StoredProcedure).ToString();
+                Int64 Ref_User_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.SignUp, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_User_ID > 0)
+                {
+                    ObjUser.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_User_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+                }
+
+                if (Ref_User_ID > 0 && ObjUser.Ref_User_ID == 0)
+                {
+                    return "USERADDEDSUCCESS";
+                }
+                else if (Ref_User_ID > 0 && ObjUser.Ref_User_ID > 0)
+                {
+                    return "USERUPDATEDSUCCESS";
+                }
+                else
+                {
+                    return "USERALREADYEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -70,30 +109,40 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable(Constant.SignIn, ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.SignIn, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
 
-                if (dt != null)
+                if (ds != null)
                 {
-                    if (dt.Rows.Count > 0)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        objUserDetails = dt.AsEnumerable().Select(Row =>
+                        objUserDetails = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
                                 UserCode = Row.Field<string>("UserCode"),
                                 FullName = Row.Field<string>("FullName"),
                                 EmailID = Row.Field<string>("EmailID"),
-                                ProfilePhoto = Row.Field<string>("ProfilePhoto"),
                                 MobileNumber = Row.Field<string>("MobileNumber"),
                                 Bio = Row.Field<string>("Bio"),
                                 Gender = Row.Field<string>("Gender"),
-                                GovitID = Row.Field<string>("GovitID"),
-                                PayPalEmailID = Row.Field<string>("PayPalEmailID"),
                                 StudioGears = Row.Field<string>("StudioGears"),
+                                PayPalEmailID = Row.Field<string>("PayPalEmailID"),
                                 SocialProfileUrl = Row.Field<string>("SocialProfileUrl"),
                                 Response = Row.Field<string>("Response"),
+                                FileManager = ds.Tables[1].AsEnumerable().Select(Row2 =>
+                                    new ClsFileManager
+                                    {
+                                        FileManagerID = Row2.Field<Int64>("Ref_FileManager_ID"),
+                                        FileIdentifier = Row2.Field<string>("FileIdentifier"),
+                                        FileName = Row2.Field<string>("FileName"),
+                                        FilePath = Row2.Field<string>("FilePath"),
+                                        FileExtension = Row2.Field<string>("FileExtension"),
+                                        FileSize = Row2.Field<Int64>("FileSize"),
+                                        FileType = Row2.Field<string>("FileType"),
+                                        Sequence = Row2.Field<int>("Sequence"),
+                                    }).ToList(),
                             }).ToList();
                     }
                 }

@@ -13,21 +13,20 @@ namespace EDM.Models.User
         public string UserCode { get; set; }
         public string FullName { get; set; }
         public string EmailID { get; set; }
-        public string ProfilePhoto { get; set; }
         public string MobileNumber { get; set; }
         public string Password { get; set; }
         public string Bio { get; set; }
         public string Gender { get; set; }
-        public string SocialProfileUrl { get; set; }
+        public string ProfilePhoto { get; set; }
         public string StudioGears { get; set; }
-        public string GovitID { get; set; }
+        public string SocialProfileUrl { get; set; }
         public string PayPalEmailID { get; set; }
         public string AuthorityIDs { get; set; }
         public string UserMasterDataIDs { get; set; }
         public string CreatedBy { get; set; }
-        public string Response { get; set; }
         public string Followed { get; set; }
-        public List<ClsFileInfo> FileUrls { get; set; }
+        public string Response { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
     }
 
     public class ClsUserSignIn
