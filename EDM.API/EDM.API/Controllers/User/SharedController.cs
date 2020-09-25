@@ -19,5 +19,15 @@ namespace EDM.API.Controllers.User
                 return obj.GlobalSearch(SearchKeyWord);
             }
         }
+
+        [Route("ParentCategory")]
+        [HttpGet]
+        public List<ClsParentCategory> GetParentCategoryList()
+        {
+            using (ClsShared_BAL obj = new ClsShared_BAL())
+            {
+                return obj.GetParentCategoryList();
+            }
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetTrackAndBeatDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetTrackAndBeatDetails, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsTrackAndBeatDetails> objTrackAndBeatDetails = new List<ClsTrackAndBeatDetails>();
 
@@ -87,34 +87,38 @@ namespace EDM.DataAccessLayer.User
                                     Mood = Row.Field<string>("Mood"),
                                     Key = Row.Field<string>("TrackKey"),
                                     Tag = Row.Field<string>("Tag"),
-                                    ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
-                                    BigImageUrl = Row.Field<string>("BigImageUrl"),
                                     Duration = Row.Field<string>("Duration"),
                                     Price = Row.Field<decimal>("Price"),
                                     PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                     BMP = Row.Field<int>("BMP"),
                                     DAW = Row.Field<string>("DAW"),
-                                    ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
-                                    StemsUrl = Row.Field<string>("StemsUrl"),
-                                    MIDIFileUrl = Row.Field<string>("MIDIFileUrl"),
-                                    MasterFileUrl = Row.Field<string>("MasterFileUrl"),
-                                    UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
-                                    MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                     IsVocals = Row.Field<string>("IsVocals"),
                                     IsTrack = Row.Field<string>("IsTrack"),
                                     Favourite = Row.Field<string>("Favourite"),
-                                    RelatedTrack = Ds.Tables[1].AsEnumerable().Select(Row1 =>
+                                    FileManager = Ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Track_ID")).Select(Row1 =>
+                                         new ClsFileManager
+                                         {
+                                             FileManagerID = Row1.Field<Int64>("Ref_FileManager_ID"),
+                                             FileIdentifier = Row1.Field<string>("FileIdentifier"),
+                                             FileName = Row1.Field<string>("FileName"),
+                                             FilePath = Row1.Field<string>("FilePath"),
+                                             FileExtension = Row1.Field<string>("FileExtension"),
+                                             FileSize = Row1.Field<Int64>("FileSize"),
+                                             FileType = Row1.Field<string>("FileType"),
+                                             Sequence = Row1.Field<int>("Sequence"),
+                                         }).ToList(),
+                                    RelatedTrack = Ds.Tables[2].AsEnumerable().Select(Row2 =>
                                         new ClsRelatedTrackList
                                         {
-                                            Ref_Track_ID = Row1.Field<Int64>("Ref_Track_ID"),
-                                            CategoryName = Row1.Field<string>("CategoryName"),
-                                            TrackName = Row1.Field<string>("TrackName"),
-                                            Bio = Row1.Field<string>("Bio"),
-                                            ThumbnailImageUrl = Row1.Field<string>("ThumbnailImageUrl"),
-                                            Price = Row1.Field<decimal>("Price"),
-                                            IsTrack = Row1.Field<string>("IsTrack"),
-                                            PlayUrl = Row1.Field<string>("PlayUrl"),
-                                            Favourite = Row1.Field<string>("Favourite"),
+                                            Ref_Track_ID = Row2.Field<Int64>("Ref_Track_ID"),
+                                            CategoryName = Row2.Field<string>("CategoryName"),
+                                            TrackName = Row2.Field<string>("TrackName"),
+                                            Bio = Row2.Field<string>("Bio"),
+                                            Price = Row2.Field<decimal>("Price"),
+                                            IsTrack = Row2.Field<string>("IsTrack"),
+                                            PlayUrl = Row2.Field<string>("PlayUrl"),
+                                            Favourite = Row2.Field<string>("Favourite"),
+                                            ThumbnailImageUrl = Row2.Field<string>("Thumbnail"),
                                         }).ToList(),
                                 }).ToList();
                             objTrackAndBeatDetails.AddRange(List);
@@ -142,7 +146,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable DT = objDbHelper.ExecuteDataTable("[dbo].[GetTrackAndBeatList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable DT = objDbHelper.ExecuteDataTable(Constant.GetTrackAndBeatList, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsTrackAndBeatList> objTrackAndBeat = new List<ClsTrackAndBeatList>();
 
@@ -163,13 +167,13 @@ namespace EDM.DataAccessLayer.User
                                 Tag = Row.Field<string>("Tag"),
                                 BMP = Row.Field<int>("BMP"),
                                 DAW = Row.Field<string>("DAW"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
                                 Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 IsTrack = Row.Field<string>("IsTrack"),
                                 IsVocals = Row.Field<string>("IsVocals"),
                                 Favourite = Row.Field<string>("Favourite"),
                                 PlayUrl = Row.Field<string>("PlayUrl"),
+                                ThumbnailImageUrl = Row.Field<string>("Thumbnail"),
                             }).ToList();
                         objTrackAndBeat.AddRange(List);
                     }

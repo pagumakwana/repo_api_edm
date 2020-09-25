@@ -46,7 +46,7 @@ namespace EDM.Models.Admin.MasterManagement
         public string AddedBy { get; set; }
     }
 
-    public class ClsCategoryDetails : clsBase
+    public class ClsCategoryDetails
     {
         public Int64 Ref_Category_ID { get; set; }
         public Int64 Ref_Parent_ID { get; set; }
@@ -54,6 +54,12 @@ namespace EDM.Models.Admin.MasterManagement
         public string AliasName { get; set; }
         public Int64 CategoryUseBy { get; set; }
         public string Description { get; set; }
+        public string MetaTitle { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescription { get; set; }
+        public Boolean IsActive { get; set; }
+        public Int64 Ref_User_ID { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
     }
 
     public class ClsDAW
@@ -102,5 +108,6 @@ namespace EDM.Models.Admin.MasterManagement
         public string ImageUrl { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
     }
 }

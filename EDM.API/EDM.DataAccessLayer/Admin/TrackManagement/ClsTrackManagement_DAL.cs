@@ -1,4 +1,5 @@
 ﻿using EDM.Models.Admin.TrackManagement;
+using EDM.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,10 +32,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Tag", ObjTrackDetails.Tag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@BigImageUrl", ObjTrackDetails.BigImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ThumbnailImageUrl", ObjTrackDetails.ThumbnailImageUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@BMP", ObjTrackDetails.BMP, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@DAW", ObjTrackDetails.DAW, DbType.String);
@@ -44,18 +41,6 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 objDBParameter = new DBParameter("@Price", ObjTrackDetails.Price, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjTrackDetails.PriceWithProjectFiles, DbType.Decimal);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@ProjectFilesUrl", ObjTrackDetails.ProjectFilesUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@StemsUrl", ObjTrackDetails.StemsUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MIDIFileUrl", ObjTrackDetails.MIDIFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MasterFileUrl", ObjTrackDetails.MasterFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@UnmasteredFileUrl", ObjTrackDetails.UnmasteredFileUrl, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@MixdowFileUrl", ObjTrackDetails.MixdowFileUrl, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsActive", ObjTrackDetails.IsActive, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
@@ -69,7 +54,50 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyTrackDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_Track_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyTrackDetails, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Track_ID > 0)
+                {
+                    ObjTrackDetails.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Track_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+                }
+
+                if (Ref_Track_ID > 0 && ObjTrackDetails.Ref_Track_ID == 0)
+                {
+                    return "TRACKADDED";
+                }
+                else if (Ref_Track_ID > 0 && ObjTrackDetails.Ref_Track_ID > 0)
+                {
+                    return "TRACKUPDATED";
+                }
+                else
+                {
+                    return "TRACKEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -86,7 +114,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetTrackDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetTrackDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsTrackDetails> objUserMasterData = new List<ClsTrackDetails>();
 
                 if (ds != null)
@@ -104,25 +132,29 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                                 Mood = Row.Field<string>("Mood"),
                                 Key = Row.Field<string>("TrackKey"),
                                 Tag = Row.Field<string>("Tag"),
-                                ThumbnailImageUrl = Row.Field<string>("ThumbnailImageUrl"),
-                                BigImageUrl = Row.Field<string>("BigImageUrl"),
                                 Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 PriceWithProjectFiles = Row.Field<decimal>("PriceWithProjectFiles"),
                                 BMP = Row.Field<int>("BMP"),
                                 DAW = Row.Field<string>("DAW"),
-                                ProjectFilesUrl = Row.Field<string>("ProjectFilesUrl"),
-                                StemsUrl = Row.Field<string>("StemsUrl"),
-                                MIDIFileUrl = Row.Field<string>("MIDIFileUrl"),
-                                MasterFileUrl = Row.Field<string>("MasterFileUrl"),
-                                UnmasteredFileUrl = Row.Field<string>("UnmasteredFileUrl"),
-                                MixdowFileUrl = Row.Field<string>("MixdowFileUrl"),
                                 TrackStatus = Row.Field<string>("TrackStatus"),
                                 Reason = Row.Field<string>("Reason"),
                                 IsVocals = Row.Field<Boolean>("IsVocals"),
                                 IsTrack = Row.Field<Boolean>("IsTrack"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
                                 CreatedBy = Row.Field<String>("CreatedBy"),
+                                FileManager = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Track_ID")).Select(Row1 =>
+                                     new ClsFileManager
+                                     {
+                                         FileManagerID = Row1.Field<Int64>("Ref_FileManager_ID"),
+                                         FileIdentifier = Row1.Field<string>("FileIdentifier"),
+                                         FileName = Row1.Field<string>("FileName"),
+                                         FilePath = Row1.Field<string>("FilePath"),
+                                         FileExtension = Row1.Field<string>("FileExtension"),
+                                         FileSize = Row1.Field<Int64>("FileSize"),
+                                         FileType = Row1.Field<string>("FileType"),
+                                         Sequence = Row1.Field<int>("Sequence"),
+                                     }).ToList(),
                             }).ToList();
                         objUserMasterData.AddRange(List);
                     }
@@ -146,7 +178,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageTrack]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageTrack, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {
@@ -169,7 +201,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[TrackApproveAndRejact]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.TrackApproveAndRejact, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {

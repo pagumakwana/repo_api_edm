@@ -23,11 +23,11 @@ namespace EDM.API.Controllers.Admin.ServiceManagement
 
         [Route("Service")]
         [HttpGet]
-        public List<ClsServiceDetails> GetServiceDetails(string Flag, Int64 Ref_Service_ID, string AliasName)
+        public List<ClsServiceDetails> GetServiceDetails(Int64 Ref_Service_ID, string AliasName)
         {
             using (ClsServiceManagement_BAL obj = new ClsServiceManagement_BAL())
             {
-                return obj.GetServiceDetails(Flag, Ref_Service_ID, AliasName);
+                return obj.GetServiceDetails(Ref_Service_ID, AliasName);
             }
         }
 

@@ -19,4 +19,18 @@ namespace EDM.Models.Common
         public string FileIdentifier { get; set; }
         public Int64 DisplayOrder { get; set; }
     }
+
+    public class ClsFileManager
+    {
+        public Int64 FileManagerID { get; set; }
+        public Int64 ModuleID { get; set; }
+        public string ModuleType { get; set; }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public string FileType { get; set; }
+        public string FileExtension { get; set; }
+        public long FileSize { get; set; }
+        public string FileIdentifier { get; set; }
+        public int Sequence { get; set; }
+    }
 }

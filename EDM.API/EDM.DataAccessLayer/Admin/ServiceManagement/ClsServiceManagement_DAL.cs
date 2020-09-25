@@ -13,7 +13,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
     {
         public string AddModifyServiceDetails(ClsServiceDetails ObjServiceDetails)
         {
-            string Response = "";
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
@@ -45,79 +44,70 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaDescription", ObjServiceDetails.MetaDescription, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet(Constant.AddModifyServiceDetails, ObJParameterCOl, CommandType.StoredProcedure);
-                if (ds != null)
+                Int64 Ref_Service_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyServiceDetails, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Service_ID > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+                    ObjServiceDetails.FAQDetails.ForEach(FAQ =>
                     {
-                        if (ObjServiceDetails.Flag.Equals("ADDSERVICE") || ObjServiceDetails.Flag.Equals("MODIFYSERVICE"))
-                        {
-                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
-                            var Res = Response.Split('~');
-                            ObjServiceDetails.Ref_Service_ID = Convert.ToInt64(Res[1].ToString());
-                            if (ObjServiceDetails.Ref_Service_ID > 0)
-                            {
-                                ObjServiceDetails.FAQDetails.ForEach(FAQ =>
-                                {
-                                    DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                                    DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", ObjServiceDetails.Ref_Service_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
 
-                                    objDbHelper.ExecuteScalar(Constant.AddModifyServiceFAQ, ObJParameterCOl1, CommandType.StoredProcedure);
-                                });
-                            }
-                            if (ObjServiceDetails.Ref_Service_ID > 0 && (ObjServiceDetails.FileUrls != null && ObjServiceDetails.FileUrls.Count > 0))
-                            {
-                                ObjServiceDetails.FileUrls.ForEach(image =>
-                                {
-                                    DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                                    DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Ref_ID", ObjServiceDetails.Ref_Service_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileType", image.FileType, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    DBHelper objDbHelper1 = new DBHelper();
-                                    objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+                        objDbHelper.ExecuteScalar(Constant.AddModifyServiceFAQ, ObJParameterCOl1, CommandType.StoredProcedure);
+                    });
 
-                                });
-                            }
-                            Response = Res[0].ToString();
-                        }
-                        else
-                        {
-                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
-                        }
-                    }
+                    ObjServiceDetails.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Service_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+
                 }
-                return Response;
+
+                if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID == 0)
+                {
+                    return "SERVICEADDED";
+                }
+                else if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID > 0)
+                {
+                    return "SERVICEUPDATED";
+                }
+                else
+                {
+                    return "SERVICEEXISTS";
+                }
             }
             catch (Exception ex)
             {
@@ -125,7 +115,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
             }
         }
 
-        public List<ClsServiceDetails> GetServiceDetails(string Flag, Int64 Ref_Service_ID, string AliasName)
+        public List<ClsServiceDetails> GetServiceDetails(Int64 Ref_Service_ID, string AliasName)
         {
             try
             {
@@ -138,8 +128,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 DBHelper objDbHelper = new DBHelper();
                 DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetServiceDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsServiceDetails> objServiceList = new List<ClsServiceDetails>();
-                List<ClsFileInfo> fileList = new List<ClsFileInfo>();
-                List<ClsFAQDetails> lstFAQ = new List<ClsFAQDetails>();
 
                 if (ds != null)
                 {
@@ -162,9 +150,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                 CreatedBy = Row.Field<Int64>("CreatedBy"),
                                 CreatedName = Row.Field<string>("CreatedName"),
                                 CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
-                                UpdatedBy = Row.Field<Int64>("UpdatedBy"),
-                                UpdatedName = Row.Field<string>("UpdatedName"),
-                                UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
                                 MetaTitle = Row.Field<string>("MetaTitle"),
                                 MetaKeywords = Row.Field<string>("MetaKeywords"),
                                 MetaDescription = Row.Field<string>("MetaDescription"),
@@ -175,18 +160,17 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                                      Questions = Row1.Field<string>("Question"),
                                      Answer = Row1.Field<string>("Answer")
                                  }).ToList(),
-                                FileUrls = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("Ref_ID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
-                                new ClsFileInfo
+                                FileManager = ds.Tables[2].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Service_ID")).Select(Row2 =>
+                                new ClsFileManager
                                 {
-                                    Ref_ID = Row2.Field<Int64>("Ref_ID"),
-                                    Ref_File_ID = Row2.Field<Int64>("Ref_File_ID"),
+                                    FileManagerID = Row2.Field<Int64>("Ref_FileManager_ID"),
+                                    FileIdentifier = Row2.Field<string>("FileIdentifier"),
                                     FileName = Row2.Field<string>("FileName"),
                                     FilePath = Row2.Field<string>("FilePath"),
                                     FileExtension = Row2.Field<string>("FileExtension"),
-                                    FileSize = Row2.Field<long>("FileSize"),
-                                    ModuleName = Row2.Field<string>("ModuleName"),
-                                    FileIdentifier = Row2.Field<string>("FileIdentifier"),
-                                    DisplayOrder = Row2.Field<Int64>("DisplayOrder"),
+                                    FileSize = Row2.Field<Int64>("FileSize"),
+                                    FileType = Row2.Field<string>("FileType"),
+                                    Sequence = Row2.Field<int>("Sequence"),
                                 }).ToList(),
                             }).ToList();
                     }
@@ -210,8 +194,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageService]", ObJParameterCOl, CommandType.StoredProcedure));
-
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageService, ObJParameterCOl, CommandType.StoredProcedure));
             }
             catch (Exception ex)
             {

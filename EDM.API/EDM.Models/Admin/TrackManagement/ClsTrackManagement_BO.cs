@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EDM.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,18 +24,11 @@ namespace EDM.Models.Admin.TrackManagement
         public Boolean IsTrack { get; set; }
         public Decimal Price { get; set; }
         public Decimal PriceWithProjectFiles { get; set; }
-        public string BigImageUrl { get; set; }
-        public string ThumbnailImageUrl { get; set; }
-        public string MasterFileUrl { get; set; }
-        public string UnmasteredFileUrl { get; set; }
-        public string MixdowFileUrl { get; set; }
-        public string StemsUrl { get; set; }
-        public string MIDIFileUrl { get; set; }
-        public string ProjectFilesUrl { get; set; }
         public string TrackStatus { get; set; }
         public string Reason { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
 
     }
 

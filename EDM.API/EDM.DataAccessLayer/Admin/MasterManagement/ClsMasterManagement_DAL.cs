@@ -11,7 +11,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
 {
     public class ClsMasterManagement_DAL : IDisposable
     {
-
         public string AddModifyUserMaster(ClsUserMaster ObjUserMaster)
         {
             try
@@ -37,7 +36,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMaster]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserMaster, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
@@ -45,7 +44,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsUserMaster> GetUserMasterList(Int64 UserMasterID)
         {
             try
@@ -55,7 +53,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserMasterList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMaster> objUserMaster = new List<ClsUserMaster>();
 
                 if (ds != null)
@@ -84,7 +82,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsParentUserMaster> GetParentUserMasterList(Int64 UserMasterID)
         {
             try
@@ -94,7 +91,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetParentUserMasterList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetParentUserMasterList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsParentUserMaster> objUserMasterData = new List<ClsParentUserMaster>();
 
                 if (ds != null)
@@ -125,7 +122,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string AddModifyUserMasterData(ClsUserMasterData ObjUserMasterData)
         {
             try
@@ -148,7 +144,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
 
                 string Massage = "";
                 DBHelper objDbHelper = new DBHelper();
-                Massage = Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyUserMasterData]", ObJParameterCOl, CommandType.StoredProcedure));
+                Massage = Convert.ToString(objDbHelper.ExecuteScalar(Constant.AddModifyUserMasterData, ObJParameterCOl, CommandType.StoredProcedure));
 
                 return Massage;
             }
@@ -157,7 +153,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsUserMasterData> GetUserMasterDataList(Int64 UserMasterID, Int64 UserMasterDataID)
         {
             try
@@ -169,7 +164,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserMasterDataList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserMasterDataList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserMasterData> objUserMasterData = new List<ClsUserMasterData>();
 
                 if (ds != null)
@@ -198,16 +193,12 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string AddModifyCategory(ClsCategoryDetails ObjCategory)
         {
-            string Response = "";
             try
             {
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
-                DBParameter objDBParameter = new DBParameter("@Flag", ObjCategory.Flag, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
+                DBParameter objDBParameter = new DBParameter("@Ref_Category_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_Parent_ID", ObjCategory.Ref_Parent_ID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
@@ -219,83 +210,70 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Description", ObjCategory.Description, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int32);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaTitle", ObjCategory.MetaTitle, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaKeywords", ObjCategory.MetaKeywords, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaDescription", ObjCategory.MetaDescription, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure);
+                Int64 Ref_Category_ID = Convert.ToInt64(objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure));
 
-                if (ds != null)
+                if (Ref_Category_ID > 0)
                 {
-                    if (ds.Tables[0].Rows.Count > 0)
+                    ObjCategory.FileManager.ForEach(File =>
                     {
-                        if (ObjCategory.Flag.Equals("ADDCATEGORY") || ObjCategory.Flag.Equals("MODIFYCATEGORY"))
-                        {
-                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
-                            var Res = Response.Split('~');
-                            ObjCategory.Ref_Category_ID = Convert.ToInt64(Res[1].ToString());
-                            if (ObjCategory.Ref_Category_ID > 0 && (ObjCategory.FileUrls != null && ObjCategory.FileUrls.Count > 0))
-                            {
-                                ObjCategory.FileUrls.ForEach(image =>
-                                {
-                                    DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                                    DBParameter objDBParameter1 = new DBParameter("@Ref_File_ID", image.Ref_File_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileName", image.FileName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FilePath", image.FilePath, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileExtension", image.FileExtension, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileSize", image.FileSize, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Ref_User_ID", ObjCategory.Ref_User_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@CreatedName", ObjCategory.CreatedName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@Ref_ID", ObjCategory.Ref_Category_ID, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@ModuleName", image.ModuleName, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@FileIdentifier", image.FileIdentifier, DbType.String);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    objDBParameter1 = new DBParameter("@DisplayOrder", image.DisplayOrder, DbType.Int64);
-                                    ObJParameterCOl1.Add(objDBParameter1);
-                                    DBHelper objDbHelper1 = new DBHelper();
-                                    objDbHelper1.ExecuteScalar(Constant.AddMasterFile, ObJParameterCOl1, CommandType.StoredProcedure);
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Category_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
 
-                                });
-                            }
-                            Response = Res[0].ToString();
-                        }
-                        else
-                        {
-                            Response = ds.Tables[0].Rows[0]["Response"].ToString();
-                        }
-                    }
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
                 }
-                return Response;
 
+                if (Ref_Category_ID > 0 && ObjCategory.Ref_Category_ID == 0)
+                {
+                    return "CATEGORYADDED";
+                }
+                else if (Ref_Category_ID > 0 && ObjCategory.Ref_Category_ID > 0)
+                {
+                    return "CATEGORYUPDATED";
+                }
+                else
+                {
+                    return "CATEGORYEXISTS";
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
         public List<ClsCategoryDetails> GetCategoryList(string Flag, Int64 Ref_Category_ID, string AliasName)
         {
             try
             {
-                DBHelper objDbHelper = new DBHelper();
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@Flag", Flag, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
@@ -303,53 +281,42 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@AliasName", AliasName, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
                 DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetCategoryList, ObJParameterCOl, CommandType.StoredProcedure);
+
                 List<ClsCategoryDetails> objCategoryList = new List<ClsCategoryDetails>();
-                List<ClsFileInfo> lstImg = new List<ClsFileInfo>();
+
                 if (ds != null)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        lstImg = ds.Tables[0].AsEnumerable().Select(Row =>
-                          new ClsFileInfo
-                          {
-                              Ref_ID = Row.Field<Int64>("Ref_ID"),
-                              Ref_File_ID = Row.Field<Int64>("Ref_File_ID"),
-                              FileName = Row.Field<string>("FileName"),
-                              FilePath = Row.Field<string>("FilePath"),
-                              FileExtension = Row.Field<string>("FileExtension"),
-                              FileSize = Row.Field<long>("FileSize"),
-                              ModuleName = Row.Field<string>("ModuleName"),
-                              FileIdentifier = Row.Field<string>("FileIdentifier"),
-                              DisplayOrder = Row.Field<Int64>("DisplayOrder"),
-                          }).ToList();
-                    }
-                    if (ds.Tables[1].Rows.Count > 0)
-                    {
                         objCategoryList = ds.Tables[1].AsEnumerable().Select(Row =>
-                            new ClsCategoryDetails
-                            {
-                                Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
-                                Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
-                                CategoryName = Row.Field<string>("CategoryName"),
-                                AliasName = Row.Field<string>("AliasName"),
-                                CategoryUseBy = Row.Field<Int64>("CategoryUseBy"),
-                                Description = Row.Field<string>("Description"),
-                                FileUrls = (from obj in lstImg
-                                            where obj.Ref_ID == Row.Field<Int64>("Ref_Category_ID")
-                                            select obj).ToList(),
-                                IsActive = Row.Field<Boolean>("IsActive"),
-                                IsDeleted = Row.Field<Boolean>("IsDeleted"),
-                                CreatedBy = Row.Field<Int64>("CreatedBy"),
-                                CreatedName = Row.Field<string>("CreatedName"),
-                                CreatedDateTime = Row.Field<DateTime?>("CreatedDateTime"),
-                                UpdatedBy = Row.Field<Int64>("UpdatedBy"),
-                                UpdatedName = Row.Field<string>("UpdatedName"),
-                                UpdatedDateTime = Row.Field<DateTime?>("UpdatedDateTime"),
-                                MetaTitle = Row.Field<string>("MetaTitle"),
-                                MetaKeywords = Row.Field<string>("MetaKeywords"),
-                                MetaDescription = Row.Field<string>("MetaDescription"),
-                            }).ToList();
+                        new ClsCategoryDetails
+                        {
+                            Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),
+                            Ref_Parent_ID = Row.Field<Int64>("Ref_Parent_ID"),
+                            CategoryName = Row.Field<string>("CategoryName"),
+                            AliasName = Row.Field<string>("AliasName"),
+                            CategoryUseBy = Row.Field<Int64>("CategoryUseBy"),
+                            Description = Row.Field<string>("Description"),
+                            IsActive = Row.Field<Boolean>("IsActive"),
+                            MetaTitle = Row.Field<string>("MetaTitle"),
+                            MetaKeywords = Row.Field<string>("MetaKeywords"),
+                            MetaDescription = Row.Field<string>("MetaDescription"),
+                            FileManager = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Category_ID")).Select(Row1 =>
+                             new ClsFileManager
+                             {
+                                 FileManagerID = Row1.Field<Int64>("Ref_FileManager_ID"),
+                                 FileIdentifier = Row1.Field<string>("FileIdentifier"),
+                                 FileName = Row1.Field<string>("FileName"),
+                                 FilePath = Row1.Field<string>("FilePath"),
+                                 FileExtension = Row1.Field<string>("FileExtension"),
+                                 FileSize = Row1.Field<Int64>("FileSize"),
+                                 FileType = Row1.Field<string>("FileType"),
+                                 Sequence = Row1.Field<int>("Sequence"),
+                             }).ToList(),
+                        }).ToList();
                     }
                 }
                 return objCategoryList;
@@ -359,13 +326,12 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsDAW> GetDAWList()
         {
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetDAWList]", CommandType.StoredProcedure);
+                DataTable dt = objDbHelper.ExecuteDataTable(Constant.GetDAWList, CommandType.StoredProcedure);
                 List<ClsDAW> objUserMaster = new List<ClsDAW>();
 
                 if (dt != null)
@@ -388,7 +354,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string AddModifyCouponCode(ClsCouponDetails ObjCouponDetails)
         {
             try
@@ -424,7 +389,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 Int64 Ref_CouponCode_ID = 0;
 
                 DBHelper objDbHelper = new DBHelper();
-                Ref_CouponCode_ID = Convert.ToInt64(objDbHelper.ExecuteScalar("[dbo].[AddModifyCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+                Ref_CouponCode_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyCouponCode, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_CouponCode_ID > 0)
                 {
@@ -462,13 +427,12 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsCouponDetails> GetCouponCodeList()
         {
             try
             {
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetCouponCodeList]", CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetCouponCodeList, CommandType.StoredProcedure);
                 List<ClsCouponDetails> ObjCouponDetails = new List<ClsCouponDetails>();
 
                 if (Ds != null)
@@ -511,7 +475,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string ManageCouponCode(string CouponIDs, string Action)
         {
             try
@@ -523,7 +486,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageCouponCode]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageCouponCode, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
@@ -531,7 +494,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string AddModifyBlog(ClsBlogDetails ObjBlog)
         {
             string Response = "";
@@ -605,7 +567,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public List<ClsBlogDetails> GetBlogList(Int64 Ref_Blog_ID)
         {
             try
@@ -664,7 +625,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)
         {
             try
@@ -686,14 +646,56 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[AddModifyBannerDetails]", ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_Banner_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyBannerDetails, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Banner_ID > 0)
+                {
+                    ObjBannerDetails.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Banner_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+                }
+
+                if (Ref_Banner_ID > 0 && ObjBannerDetails.Ref_Banner_ID == 0)
+                {
+                    return "BANNERADDED";
+                }
+                else if (Ref_Banner_ID > 0 && ObjBannerDetails.Ref_Banner_ID > 0)
+                {
+                    return "BANNERUPDATED";
+                }
+                else
+                {
+                    return "BANNEREXISTS";
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
         public List<ClsBannerDetails> GetBannersList(Int64 BannerID)
         {
             try
@@ -702,23 +704,34 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 DBParameter objDBParameter = new DBParameter("@Ref_Banner_ID", BannerID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
                 DBHelper objDbHelper = new DBHelper();
-                DataTable dt = objDbHelper.ExecuteDataTable("[dbo].[GetBannersList]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetBannersList, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsBannerDetails> objUserMaster = new List<ClsBannerDetails>();
 
-                if (dt != null)
+                if (ds != null)
                 {
-                    if (dt.Rows.Count > 0)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        IList<ClsBannerDetails> List = dt.AsEnumerable().Select(Row =>
+                        IList<ClsBannerDetails> List = ds.Tables[0].AsEnumerable().Select(Row =>
                             new ClsBannerDetails
                             {
                                 Ref_Banner_ID = Row.Field<Int64>("Ref_Banner_ID"),
                                 BannerTitle = Row.Field<string>("BannerTitle"),
                                 BannerPageName = Row.Field<string>("BannerPageName"),
                                 Descripation = Row.Field<string>("Descripation"),
-                                ImageUrl = Row.Field<string>("ImageUrl"),
                                 IsActive = Row.Field<Boolean>("IsActive"),
-                                CreatedBy = Row.Field<string>("CreatedBy")
+                                CreatedBy = Row.Field<string>("CreatedBy"),
+                                FileManager = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Banner_ID")).Select(Row1 =>
+                                 new ClsFileManager
+                                 {
+                                     FileManagerID = Row1.Field<Int64>("Ref_FileManager_ID"),
+                                     FileIdentifier = Row1.Field<string>("FileIdentifier"),
+                                     FileName = Row1.Field<string>("FileName"),
+                                     FilePath = Row1.Field<string>("FilePath"),
+                                     FileExtension = Row1.Field<string>("FileExtension"),
+                                     FileSize = Row1.Field<Int64>("FileSize"),
+                                     FileType = Row1.Field<string>("FileType"),
+                                     Sequence = Row1.Field<int>("Sequence"),
+                                 }).ToList(),
                             }).ToList();
                         objUserMaster.AddRange(List);
                     }
@@ -730,7 +743,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public string ManageBanner(string BannerIDs, string Action)
         {
             try
@@ -741,7 +753,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 objDBParameter = new DBParameter("@Action", Action, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 DBHelper objDbHelper = new DBHelper();
-                return Convert.ToString(objDbHelper.ExecuteScalar("[dbo].[ManageBanner]", ObJParameterCOl, CommandType.StoredProcedure));
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.ManageBanner, ObJParameterCOl, CommandType.StoredProcedure));
 
             }
             catch (Exception ex)
@@ -749,7 +761,6 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 throw ex;
             }
         }
-
         public void Dispose()
         {
 

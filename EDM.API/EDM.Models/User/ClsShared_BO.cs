@@ -15,4 +15,17 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public string Thumbnail { get; set; }
     }
+
+    public class ClsParentCategory
+    {
+        public Int64 CategoryID { get; set; }
+        public string CategoryUseBy { get; set; }
+        public string CategoryName { get; set; }
+        public string AliasName { get; set; }
+        public string Description { get; set; }
+        public string MetaTitle { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescription { get; set; }
+        public string Thumbnail { get; set; }
+    }
 }

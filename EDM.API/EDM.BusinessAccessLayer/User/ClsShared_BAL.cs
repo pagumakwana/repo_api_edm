@@ -18,6 +18,14 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
+        public List<ClsParentCategory> GetParentCategoryList()
+        {
+            using (ClsShared_DAL obj = new ClsShared_DAL())
+            {
+                return obj.GetParentCategoryList();
+            }
+        }
+
         public void Dispose()
         {
 
