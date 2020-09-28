@@ -36,7 +36,7 @@ namespace EDM.API.Controllers.User
 
         [Route("Producers")]
         [HttpGet]
-        public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
+        public List<ClsUserDetails> GetProducersList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
