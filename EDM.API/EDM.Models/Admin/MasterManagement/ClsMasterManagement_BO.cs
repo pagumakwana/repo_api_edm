@@ -91,13 +91,14 @@ namespace EDM.Models.Admin.MasterManagement
         public string ObjectType { get; set; }
     }
 
-    public class ClsBlogDetails : clsBase
+    public class ClsBlogDetails 
     {
         public Int64 Ref_Blog_ID { get; set; }
         public string BlogTitle { get; set; }
-        public string AliasName { get; set; }
-        public string CategoryUseBy { get; set; }
-        public string Description { get; set; }
+        public string Blog { get; set; }
+        public Boolean IsActive { get; set; }
+        public string CreatedBy { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
     }
     public class ClsBannerDetails
     {
@@ -105,7 +106,6 @@ namespace EDM.Models.Admin.MasterManagement
         public string BannerTitle { get; set; }
         public string BannerPageName { get; set; }
         public string Descripation { get; set; }
-        public string ImageUrl { get; set; }
         public Boolean IsActive { get; set; }
         public string CreatedBy { get; set; }
         public List<ClsFileManager> FileManager { get; set; }

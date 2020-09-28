@@ -9,6 +9,41 @@ namespace EDM.Models.Common
     public class Constant
     {
 
+        //START :: MASTERS
+
+        public const string GetDAWList = "[dbo].[GetDAWList]";
+        public const string AddModifyUserMaster = "[dbo].[AddModifyUserMaster]";
+        public const string GetUserMasterList = "[dbo].[GetUserMasterList]";
+        public const string GetParentUserMasterList = "[dbo].[GetParentUserMasterList]";
+        public const string AddModifyUserMasterData = "[dbo].[AddModifyUserMasterData]";
+        public const string GetUserMasterDataList = "[dbo].[GetUserMasterDataList]";
+
+        public const string AddModifyCouponCode = "[dbo].[AddModifyCouponCode]";
+        public const string GetCouponCodeList = "[dbo].[GetCouponCodeList]";
+        public const string ManageCouponCode = "[dbo].[ManageCouponCode]";
+
+        public const string AddModifyBannerDetails = "[dbo].[AddModifyBannerDetails]";
+        public const string GetBannersList = "[dbo].[GetBannersList]";
+        public const string ManageBanner = "[dbo].[ManageBanner]";
+
+        public const string GetModuleList = "[dbo].[GetModuleList]";
+        public const string AddModifyAuthority = "[dbo].[AddModifyAuthority]";
+        public const string AddModifyAuthorityModuleAccess = "[dbo].[AddModifyAuthorityModuleAccess]";
+        public const string GetAuthorityList = "[dbo].[GetAuthorityList]";
+        public const string GetAuthorityDetails = "[dbo].[GetAuthorityDetails]";
+
+        public const string GetCategoryList = "[dbo].[GetCategoryList]";
+        public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
+
+        public const string RemoveFile = "[dbo].[RemoveFile]";
+
+        public const string GetBlogList = "[dbo].[GetBlogList]";
+        public const string ManageBlog = "[dbo].[ManageBlog]";
+        public const string AddModifyBlogDetails = "[dbo].[AddModifyBlogDetails]";
+
+
+        //END :: MASTERS
+
         //START :: SHARED
 
         public const string SignUp = "[DBO].[SignUp]";
@@ -21,29 +56,6 @@ namespace EDM.Models.Common
         public const string AddModifyUserOrder = "[dbo].[AddModifyUserOrder]";
 
         //END :: SHARED
-
-        //START :: MASTERS
-
-        public const string GetDAWList = "[dbo].[GetDAWList]";
-        public const string AddModifyUserMaster = "[dbo].[AddModifyUserMaster]";
-        public const string GetUserMasterList = "[dbo].[GetUserMasterList]";
-        public const string GetParentUserMasterList = "[dbo].[GetParentUserMasterList]";
-        public const string AddModifyUserMasterData = "[dbo].[AddModifyUserMasterData]";
-        public const string GetUserMasterDataList = "[dbo].[GetUserMasterDataList]";
-        public const string AddModifyCouponCode = "[dbo].[AddModifyCouponCode]";
-        public const string GetCouponCodeList = "[dbo].[GetCouponCodeList]";
-        public const string ManageCouponCode = "[dbo].[ManageCouponCode]";
-        public const string AddModifyBannerDetails = "[dbo].[AddModifyBannerDetails]";
-        public const string GetBannersList = "[dbo].[GetBannersList]";
-        public const string ManageBanner = "[dbo].[ManageBanner]";
-        public const string GetModuleList = "[dbo].[GetModuleList]";
-        public const string AddModifyAuthority = "[dbo].[AddModifyAuthority]";
-        public const string AddModifyAuthorityModuleAccess = "[dbo].[AddModifyAuthorityModuleAccess]";
-        public const string GetAuthorityList = "[dbo].[GetAuthorityList]";
-        public const string GetAuthorityDetails = "[dbo].[GetAuthorityDetails]";
-
-        //END :: MASTERS
-
 
         //START :: USERS AND PRODUCERS
 
@@ -90,16 +102,7 @@ namespace EDM.Models.Common
         public const string RequestOTP = "[dbo].[RequestOTP]";
         public const string SearchKeyword = "[dbo].[SearchKeyword]";
         public const string UpdateCustomerProfile = "[dbo].[UpdateCustomerProfile]";
-
-
-        public const string GenerList = "[dbo].[GenerList]";
-        public const string GenerAddModify = "[dbo].[GenerAddModify]";
-        public const string GetCategoryList = "[dbo].[GetCategoryList]";
-        public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
-        public const string AddMasterFile = "[dbo].[AddMasterFile]";
-        public const string AddModifyBlog = "[dbo].[AddModifyBlog]";
-        public const string GetBlogList = "[dbo].[GetBlogList]";
-        public const string RemoveFile = "[dbo].[RemoveFile]";
+           
 
     }
 

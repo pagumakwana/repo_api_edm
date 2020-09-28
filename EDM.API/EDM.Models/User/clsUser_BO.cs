@@ -27,8 +27,13 @@ namespace EDM.Models.User
         public string Followed { get; set; }
         public string Response { get; set; }
         public List<ClsFileManager> FileManager { get; set; }
+        public List<ClsUserMasterMapping> UserMaster { get; set; }
     }
-
+    public class ClsUserMasterMapping
+    {
+        public string MasterName { get; set; }
+        public string MasterDataName { get; set; }
+    }
     public class ClsUserSignIn
     {
         public string User_Code { get; set; }

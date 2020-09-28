@@ -126,11 +126,11 @@ namespace EDM.API.Controllers.Admin.MasterManagement
 
         [Route("Blog")]
         [HttpPost]
-        public string AddModifyBlog(ClsBlogDetails ObjBlog)
+        public string AddModifyBlogDetails(ClsBlogDetails ObjBlog)
         {
             using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
             {
-                return obj.AddModifyBlog(ObjBlog);
+                return obj.AddModifyBlogDetails(ObjBlog);
             }
         }
 
@@ -143,6 +143,17 @@ namespace EDM.API.Controllers.Admin.MasterManagement
                 return obj.GetBlogList(Ref_Blog_ID);
             }
         }
+
+        [Route("ManageBlog")]
+        [HttpGet]
+        public string ManageBlog(string BlogIDs, string Action)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.ManageBlog(BlogIDs, Action);
+            }
+        }
+
         [Route("Carousel")]
         [HttpPost]
         public string AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)

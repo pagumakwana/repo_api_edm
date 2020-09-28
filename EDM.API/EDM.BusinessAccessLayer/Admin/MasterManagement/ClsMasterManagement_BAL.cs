@@ -98,20 +98,26 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
             }
         }
 
-        public String AddModifyBlog(ClsBlogDetails ObjBlog)
+        public String AddModifyBlogDetails(ClsBlogDetails ObjBlog)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
-                return obj.AddModifyBlog(ObjBlog);
+                return obj.AddModifyBlogDetails(ObjBlog);
             }
 
         }
-
         public List<ClsBlogDetails> GetBlogList(Int64 Ref_Blog_ID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
                 return obj.GetBlogList(Ref_Blog_ID);
+            }
+        }
+        public string ManageBlog(string BlogIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageBlog(BlogIDs, Action);
             }
         }
         public String AddModifyBannerDetails(ClsBannerDetails ObjBannerDetails)
@@ -121,19 +127,18 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.AddModifyBannerDetails(ObjBannerDetails);
             }
         }
-        public string ManageBanner(string BannerIDs, string Action)
-        {
-            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
-            {
-                return obj.ManageBanner(BannerIDs, Action);
-            }
-        }
-
         public List<ClsBannerDetails> GetBannersList(Int64 BannerID)
         {
             using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
             {
                 return obj.GetBannersList(BannerID);
+            }
+        }
+        public string ManageBanner(string BannerIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageBanner(BannerIDs, Action);
             }
         }
 

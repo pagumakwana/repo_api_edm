@@ -143,6 +143,12 @@ namespace EDM.DataAccessLayer.User
                                         FileType = Row2.Field<string>("FileType"),
                                         Sequence = Row2.Field<int>("Sequence"),
                                     }).ToList(),
+                                UserMaster = ds.Tables[2].AsEnumerable().Select(Row2 =>
+                                    new ClsUserMasterMapping
+                                    {
+                                        MasterName = Row2.Field<string>("MasterName"),
+                                        MasterDataName = Row2.Field<string>("MasterDataName"),
+                                    }).ToList(),
                             }).ToList();
                     }
                 }
