@@ -291,7 +291,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        objCategoryList = ds.Tables[1].AsEnumerable().Select(Row =>
+                        objCategoryList = ds.Tables[0].AsEnumerable().Select(Row =>
                         new ClsCategoryDetails
                         {
                             Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),

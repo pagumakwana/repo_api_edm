@@ -63,4 +63,21 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public string ThumbnailImageUrl { get; set; }
     }
+
+    public class ClsAvailableProducers
+    {
+        public Int64 Ref_User_ID { get; set; }
+        public string UserCode { get; set; }
+        public string FullName { get; set; }
+        public string EmailID { get; set; }
+        public string MobileNumber { get; set; }
+        public string Bio { get; set; }
+        public string Gender { get; set; }
+        public string ProfilePhoto { get; set; }
+        public string StudioGears { get; set; }
+        public string SocialProfileUrl { get; set; }
+        public string Followed { get; set; }
+        public string ProducerFrom { get; set; }
+
+    }
 }

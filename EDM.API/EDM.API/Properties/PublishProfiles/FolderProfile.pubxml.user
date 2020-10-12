@@ -85,28 +85,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2020 23:08:00</publishTime>
     </File>
     <File Include="bin/EDM.API.dll">
-      <publishTime>09/28/2020 10:56:27</publishTime>
+      <publishTime>10/12/2020 19:15:07</publishTime>
     </File>
     <File Include="bin/EDM.API.pdb">
-      <publishTime>09/28/2020 10:56:27</publishTime>
+      <publishTime>10/12/2020 19:15:07</publishTime>
     </File>
     <File Include="bin/EDM.BusinessAccessLayer.dll">
-      <publishTime>09/28/2020 10:56:17</publishTime>
+      <publishTime>10/12/2020 19:14:50</publishTime>
     </File>
     <File Include="bin/EDM.BusinessAccessLayer.pdb">
-      <publishTime>09/28/2020 10:56:17</publishTime>
+      <publishTime>10/12/2020 19:14:50</publishTime>
     </File>
     <File Include="bin/EDM.DataAccessLayer.dll">
-      <publishTime>09/28/2020 10:56:17</publishTime>
+      <publishTime>10/12/2020 19:14:49</publishTime>
     </File>
     <File Include="bin/EDM.DataAccessLayer.pdb">
-      <publishTime>09/28/2020 10:56:17</publishTime>
+      <publishTime>10/12/2020 19:14:49</publishTime>
     </File>
     <File Include="bin/EDM.Models.dll">
-      <publishTime>09/28/2020 10:56:16</publishTime>
+      <publishTime>10/09/2020 23:36:05</publishTime>
     </File>
     <File Include="bin/EDM.Models.pdb">
-      <publishTime>09/28/2020 10:56:16</publishTime>
+      <publishTime>10/09/2020 23:36:05</publishTime>
     </File>
     <File Include="bin/EDM.MSDBHelper.dll">
       <publishTime>09/20/2020 10:12:20</publishTime>

@@ -50,7 +50,7 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
-        public List<ClsUserDetails> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
+        public List<ClsAvailableProducers> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {

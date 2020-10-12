@@ -78,16 +78,6 @@ namespace EDM.DataAccessLayer.Common
                         FilePath = Path.Combine(FilePath, FileName);
                         postedFile.SaveAs(FilePath);
 
-
-                        ObjFileManager.FileIdentifier = FileName;
-                        ObjFileManager.FileName = FileName;
-                        ObjFileManager.FilePath = FileName;
-                        ObjFileManager.FileType = postedFile.ContentType;
-                        ObjFileManager.FileSize = postedFile.ContentLength;
-                        ObjFileManager.FileExtension = FileName;
-                        ObjFileManager.Sequence = Sequence;
-
-
                         DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                         DBParameter objDBParameter = new DBParameter("@FileManagerID", FileManagerID, DbType.Int64);
                         ObJParameterCOl.Add(objDBParameter);
@@ -111,9 +101,18 @@ namespace EDM.DataAccessLayer.Common
                         ObJParameterCOl.Add(objDBParameter);
 
                         DBHelper objDbHelper = new DBHelper();
-                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure).ToString();
+                        FileManagerID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure));
 
+                        ObjFileManager.FileManagerID = FileManagerID;
+                        ObjFileManager.FileIdentifier = FileName;
+                        ObjFileManager.FileName = FileName;
+                        ObjFileManager.FilePath = FileName;
+                        ObjFileManager.FileType = postedFile.ContentType;
+                        ObjFileManager.FileSize = postedFile.ContentLength;
+                        ObjFileManager.FileExtension = FileName;
+                        ObjFileManager.Sequence = Sequence;
                     }
+
                     return ObjFileManager;
                 }
                 else
