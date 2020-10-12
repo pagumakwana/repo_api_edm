@@ -35,9 +35,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int32);
-                ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
-                ObJParameterCOl.Add(objDBParameter);
+                ObJParameterCOl.Add(objDBParameter);  
                 objDBParameter = new DBParameter("@MetaTitle", ObjServiceDetails.MetaTitle, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaKeywords", ObjServiceDetails.MetaKeywords, DbType.String);

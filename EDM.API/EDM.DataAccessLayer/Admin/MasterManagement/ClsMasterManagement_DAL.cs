@@ -220,7 +220,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                Int64 Ref_Category_ID = Convert.ToInt64(objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_Category_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_Category_ID > 0)
                 {

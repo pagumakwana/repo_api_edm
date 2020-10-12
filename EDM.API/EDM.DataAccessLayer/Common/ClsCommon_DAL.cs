@@ -53,11 +53,11 @@ namespace EDM.DataAccessLayer.Common
             }
         }
 
-        public ClsFileManager SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
+        public List<ClsFileManager> SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
         {
             try
             {
-                ClsFileManager ObjFileManager = new ClsFileManager();
+                List<ClsFileManager> ObjFileManager = new List<ClsFileManager>();
 
                 if (HttpContext.Current.Request.ContentLength > 0)
                 {
@@ -103,14 +103,18 @@ namespace EDM.DataAccessLayer.Common
                         DBHelper objDbHelper = new DBHelper();
                         FileManagerID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure));
 
-                        ObjFileManager.FileManagerID = FileManagerID;
-                        ObjFileManager.FileIdentifier = FileName;
-                        ObjFileManager.FileName = FileName;
-                        ObjFileManager.FilePath = FileName;
-                        ObjFileManager.FileType = postedFile.ContentType;
-                        ObjFileManager.FileSize = postedFile.ContentLength;
-                        ObjFileManager.FileExtension = FileName;
-                        ObjFileManager.Sequence = Sequence;
+                        ClsFileManager FileManager = new ClsFileManager();
+
+                        FileManager.FileManagerID = FileManagerID;
+                        FileManager.FileIdentifier = FileName;
+                        FileManager.FileName = FileName;
+                        FileManager.FilePath = FileName;
+                        FileManager.FileType = postedFile.ContentType;
+                        FileManager.FileSize = postedFile.ContentLength;
+                        FileManager.FileExtension = FileName;
+                        FileManager.Sequence = Sequence;
+
+                        ObjFileManager.Add(FileManager);
                     }
 
                     return ObjFileManager;
