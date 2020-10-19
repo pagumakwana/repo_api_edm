@@ -53,11 +53,11 @@ namespace EDM.DataAccessLayer.Common
             }
         }
 
-        public ClsFileManager SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
+        public List<ClsFileManager> SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
         {
             try
             {
-                ClsFileManager ObjFileManager = new ClsFileManager();
+                List<ClsFileManager> ObjFileManager = new List<ClsFileManager>();
 
                 if (HttpContext.Current.Request.ContentLength > 0)
                 {
@@ -77,16 +77,6 @@ namespace EDM.DataAccessLayer.Common
                         string FileName = AppendTimeStamp(postedFile.FileName);
                         FilePath = Path.Combine(FilePath, FileName);
                         postedFile.SaveAs(FilePath);
-
-
-                        ObjFileManager.FileIdentifier = FileName;
-                        ObjFileManager.FileName = FileName;
-                        ObjFileManager.FilePath = FileName;
-                        ObjFileManager.FileType = postedFile.ContentType;
-                        ObjFileManager.FileSize = postedFile.ContentLength;
-                        ObjFileManager.FileExtension = FileName;
-                        ObjFileManager.Sequence = Sequence;
-
 
                         DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                         DBParameter objDBParameter = new DBParameter("@FileManagerID", FileManagerID, DbType.Int64);
@@ -111,9 +101,22 @@ namespace EDM.DataAccessLayer.Common
                         ObJParameterCOl.Add(objDBParameter);
 
                         DBHelper objDbHelper = new DBHelper();
-                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure).ToString();
+                        FileManagerID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl, CommandType.StoredProcedure));
 
+                        ClsFileManager FileManager = new ClsFileManager();
+
+                        FileManager.FileManagerID = FileManagerID;
+                        FileManager.FileIdentifier = FileIdentifier;
+                        FileManager.FileName = FileName;
+                        FileManager.FilePath = StoreFilePath + FileName;
+                        FileManager.FileType = postedFile.ContentType;
+                        FileManager.FileSize = postedFile.ContentLength;
+                        FileManager.FileExtension = Path.GetExtension(FilePath);
+                        FileManager.Sequence = Sequence;
+
+                        ObjFileManager.Add(FileManager);
                     }
+
                     return ObjFileManager;
                 }
                 else
