@@ -96,7 +96,7 @@ namespace EDM.API.Controllers.User
 
         [Route("AvailableProducers")]
         [HttpGet]
-        public List<ClsAvailableProducers> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
+        public List<ClsUserDetails> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {

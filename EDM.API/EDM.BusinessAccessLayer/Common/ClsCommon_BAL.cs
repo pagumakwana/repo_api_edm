@@ -25,7 +25,7 @@ namespace EDM.BusinessAccessLayer.Common
             }
         }
 
-        public List<ClsFileManager> SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
+        public ClsFileManager SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
         {
             using (ClsCommon_DAL objClsCommon_DAL = new ClsCommon_DAL())
             {

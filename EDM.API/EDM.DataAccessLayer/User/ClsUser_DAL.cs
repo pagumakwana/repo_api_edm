@@ -317,7 +317,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetProducersList, ObJParameterCOl, CommandType.StoredProcedure);
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetProducersList, CommandType.StoredProcedure);
                 List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
 
                 if (User != null)
@@ -438,7 +438,7 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-        public List<ClsAvailableProducers> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
+        public List<ClsUserDetails> GetAvailableProducersForServices(Int64 UserID, Int64 ServiceID, int StartCount, int EndCount)
         {
             try
             {
@@ -453,15 +453,15 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetAvailableProducersForServices, ObJParameterCOl, CommandType.StoredProcedure);
-                List<ClsAvailableProducers> objUserDetails = new List<ClsAvailableProducers>();
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetAvailableProducersForServices, CommandType.StoredProcedure);
+                List<ClsUserDetails> objUserDetails = new List<ClsUserDetails>();
 
                 if (User != null)
                 {
                     if (User.Rows.Count > 0)
                     {
                         objUserDetails = User.AsEnumerable().Select(Row =>
-                            new ClsAvailableProducers
+                            new ClsUserDetails
                             {
                                 Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
                                 UserCode = Row.Field<string>("UserCode"),
@@ -469,7 +469,6 @@ namespace EDM.DataAccessLayer.User
                                 EmailID = Row.Field<string>("EmailID"),
                                 MobileNumber = Row.Field<string>("MobileNumber"),
                                 Bio = Row.Field<string>("Bio"),
-                                ProducerFrom = Row.Field<string>("ProducerFrom"),
                                 ProfilePhoto = Row.Field<string>("ProfilePhoto"),
                                 Followed = Row.Field<string>("Followed"),
                             }).ToList();
