@@ -220,7 +220,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                Int64 Ref_Category_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure));
+                Int64 Ref_Category_ID = Convert.ToInt64(objDbHelper.ExecuteDataSet(Constant.AddModifyCategory, ObJParameterCOl, CommandType.StoredProcedure));
 
                 if (Ref_Category_ID > 0)
                 {
@@ -291,7 +291,7 @@ namespace EDM.DataAccessLayer.Admin.MasterManagement
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        objCategoryList = ds.Tables[0].AsEnumerable().Select(Row =>
+                        objCategoryList = ds.Tables[1].AsEnumerable().Select(Row =>
                         new ClsCategoryDetails
                         {
                             Ref_Category_ID = Row.Field<Int64>("Ref_Category_ID"),

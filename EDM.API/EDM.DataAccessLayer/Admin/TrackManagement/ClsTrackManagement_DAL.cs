@@ -48,7 +48,7 @@ namespace EDM.DataAccessLayer.Admin.TrackManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@IsTrack", ObjTrackDetails.IsTrack, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@TrackStatus", ObjTrackDetails.TrackStatus, DbType.String);
+                objDBParameter = new DBParameter("@TrackStatus", ObjTrackDetails.TrackStatus, DbType.Boolean);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@CreatedBy", ObjTrackDetails.CreatedBy, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);

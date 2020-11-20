@@ -27,7 +27,7 @@ namespace EDM.API.Controllers.Common
 
         [Route("SaveModuleFile")]
         [HttpPost]
-        public List<ClsFileManager> SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
+        public ClsFileManager SaveModuleFile(Int64 FileManagerID, Int64 ModuleID, string ModuleType, string FileIdentifier, int Sequence)
         {
             using (ClsCommon_BAL objClsCommon_BAL = new ClsCommon_BAL())
             {
