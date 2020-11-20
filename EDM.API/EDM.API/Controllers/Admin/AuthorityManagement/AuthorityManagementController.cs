@@ -52,5 +52,15 @@ namespace EDM.API.Controllers.Admin.AuthorityManagement
                 return obj.GetAuthorityDetails(AuthorityID);
             }
         }
+
+        [Route("AuthorityManagement/ModuleAccess")]
+        [HttpGet]
+        public List<ClsModuleList> GetUserModuleAccess(Int64 UserID,Int64 ModuleID)
+        {
+            using (ClsAuthorityManagement_BAL obj = new ClsAuthorityManagement_BAL())
+            {
+                return obj.GetUserModuleAccess(UserID, ModuleID);
+            }
+        }
     }
 }

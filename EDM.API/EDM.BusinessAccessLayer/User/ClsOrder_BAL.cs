@@ -39,6 +39,30 @@ namespace EDM.BusinessAccessLayer.User
             }
         }
 
+        public string RemoveUserOrderObject(Int64 UserID, Int64 OrderID, Int64 ObjectID, string ObjectType)
+        {
+            using (ClsOrder_DAL obj = new ClsOrder_DAL())
+            {
+                return obj.RemoveUserOrderObject(UserID, OrderID, ObjectID, ObjectType);
+            }
+        }
+
+        public string SetUserOrderStatus(Int64 UserID, Int64 OrderID, string OrderStatus)
+        {
+            using (ClsOrder_DAL obj = new ClsOrder_DAL())
+            {
+                return obj.SetUserOrderStatus(UserID, OrderID, OrderStatus);
+            }
+        }
+
+        public List<ClsApplyCouponCode> ApplyCouponCode(Int64 UserID, Int64 OrderID, string CouponCode)
+        {
+            using (ClsOrder_DAL obj = new ClsOrder_DAL())
+            {
+                return obj.ApplyCouponCode(UserID, OrderID, CouponCode);
+            }
+        }
+
         public void Dispose()
         {
 

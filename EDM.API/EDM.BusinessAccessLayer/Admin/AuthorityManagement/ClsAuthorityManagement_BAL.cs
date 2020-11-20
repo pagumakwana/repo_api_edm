@@ -42,6 +42,14 @@ namespace EDM.BusinessLayer.Admin.AuthorityManagement
             }
         }
 
+        public List<ClsModuleList> GetUserModuleAccess(Int64 UserID, Int64 ModuleID)
+        {
+            using (ClsAuthorityManagement_DAL obj = new ClsAuthorityManagement_DAL())
+            {
+                return obj.GetUserModuleAccess( UserID,  ModuleID);
+            }
+        }
+
         public void Dispose()
         {
 

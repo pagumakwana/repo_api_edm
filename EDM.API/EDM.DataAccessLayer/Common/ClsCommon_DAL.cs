@@ -106,12 +106,14 @@ namespace EDM.DataAccessLayer.Common
                         ClsFileManager FileManager = new ClsFileManager();
 
                         FileManager.FileManagerID = FileManagerID;
+                        FileManager.ModuleID = ModuleID;
                         FileManager.FileIdentifier = FileIdentifier;
                         FileManager.FileName = FileName;
                         FileManager.FilePath = StoreFilePath + FileName;
                         FileManager.FileType = postedFile.ContentType;
                         FileManager.FileSize = postedFile.ContentLength;
                         FileManager.FileExtension = Path.GetExtension(FilePath);
+                        FileManager.ModuleType = ModuleType;
                         FileManager.Sequence = Sequence;
 
                         ObjFileManager.Add(FileManager);

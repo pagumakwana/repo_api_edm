@@ -53,5 +53,35 @@ namespace EDM.API.Controllers.User
             }
         }
 
+        [Route("Remove")]
+        [HttpGet]
+        public string RemoveUserOrderObject(Int64 UserID, Int64 OrderID, Int64 ObjectID, string ObjectType)
+        {
+            using (ClsOrder_BAL obj = new ClsOrder_BAL())
+            {
+                return obj.RemoveUserOrderObject(UserID, OrderID, ObjectID, ObjectType);
+            }
+        }
+
+        [Route("Status")]
+        [HttpGet]
+        public string SetUserOrderStatus(Int64 UserID, Int64 OrderID, string OrderStatus = null)
+        {
+            using (ClsOrder_BAL obj = new ClsOrder_BAL())
+            {
+                return obj.SetUserOrderStatus(UserID, OrderID, OrderStatus);
+            }
+        }
+
+        [Route("ApplyCoupon")]
+        [HttpGet]
+        public List<ClsApplyCouponCode> ApplyCouponCode(Int64 UserID, Int64 OrderID, string CouponCode)
+        {
+            using (ClsOrder_BAL obj = new ClsOrder_BAL())
+            {
+                return obj.ApplyCouponCode(UserID, OrderID, CouponCode);
+            }
+        }
+
     }
 }

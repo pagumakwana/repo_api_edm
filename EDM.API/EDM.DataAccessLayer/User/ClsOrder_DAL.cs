@@ -61,8 +61,13 @@ namespace EDM.DataAccessLayer.User
                                 {
                                     ObjectID = Row.Field<Int64>("Ref_Object_ID"),
                                     ObjectName = Row.Field<string>("ObjectName"),
+                                    ObjectType = Row.Field<string>("ObjectType"),
+                                    ObjectCategory = Row.Field<string>("ObjectCategory"),
+                                    Thumbnail = Row.Field<string>("Thumbnail"),
+                                    Price = Row.Field<decimal>("Price"),
+                                    Favourite = Row.Field<string>("Favourite"),
+                                    PlayUrl = Row.Field<string>("PlayUrl"),
                                     Action = Row.Field<string>("Action"),
-                                    Thumbnail = Row.Field<string>("Thumbnail")
                                 }).ToList();
                             objUserAction.AddRange(List);
                         }
@@ -100,6 +105,8 @@ namespace EDM.DataAccessLayer.User
                     ObJParameterCOl.Add(objDBParameter);
                     objDBParameter = new DBParameter("@ObjectType", Object.ObjectType, DbType.String);
                     ObJParameterCOl.Add(objDBParameter);
+                    objDBParameter = new DBParameter("@IncludeProjectFile", Object.IncludeProjectFile, DbType.Boolean);
+                    ObJParameterCOl.Add(objDBParameter);
                     objDBParameter = new DBParameter("@OrderStatus", Object.OrderStatus, DbType.String);
                     ObJParameterCOl.Add(objDBParameter);
 
@@ -120,11 +127,11 @@ namespace EDM.DataAccessLayer.User
                 DBParameterCollection ObJParameterCOl = new DBParameterCollection();
                 DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@OrderStatus", OrderStatus, DbType.Int64);
+                objDBParameter = new DBParameter("@OrderStatus", OrderStatus, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet Ds = objDbHelper.ExecuteDataSet("[dbo].[GetUserOrderDetails]", ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet Ds = objDbHelper.ExecuteDataSet(Constant.GetUserOrderDetails, ObJParameterCOl, CommandType.StoredProcedure);
                 List<ClsUserOrderList> objUserOrder = new List<ClsUserOrderList>();
 
                 if (Ds != null)
@@ -139,16 +146,101 @@ namespace EDM.DataAccessLayer.User
                                     OrderID = Row.Field<Int64>("Ref_Order_ID"),
                                     OrderCode = Row.Field<string>("OrderCode"),
                                     ObjectID = Row.Field<Int64>("Ref_Object_ID"),
+                                    ObjectType = Row.Field<string>("ObjectType"),
                                     ObjectName = Row.Field<string>("ObjectName"),
+                                    ObjectCategory = Row.Field<string>("ObjectCategory"),
+                                    Thumbnail = Row.Field<string>("Thumbnail"),
+                                    Price = Row.Field<string>("Price"),
+                                    IncludeProjectFile = Row.Field<Boolean>("IncludeProjectFile"),
                                     OrderDate = Row.Field<string>("OrderDate"),
                                     OrderStatus = Row.Field<string>("OrderStatus"),
-                                    Thumbnail = Row.Field<string>("Thumbnail"),
                                 }).ToList();
                             objUserOrder.AddRange(List);
                         }
                     }
                 }
                 return objUserOrder;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public string RemoveUserOrderObject(Int64 UserID, Int64 OrderID, Int64 ObjectID,string ObjectType)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@OrderID", OrderID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ObjectID", ObjectID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ObjectType", ObjectType, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.RemoveUserOrderObject, ObJParameterCOl, CommandType.StoredProcedure));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public string SetUserOrderStatus(Int64 UserID, Int64 OrderID, string OrderStatus)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@OrderID", OrderID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@OrderStatus", OrderStatus, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                return Convert.ToString(objDbHelper.ExecuteScalar(Constant.SetUserOrderStatus, ObJParameterCOl, CommandType.StoredProcedure));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<ClsApplyCouponCode> ApplyCouponCode(Int64 UserID, Int64 OrderID, string CouponCode)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@OrderID", OrderID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@CouponCode", CouponCode, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataTable dt = objDbHelper.ExecuteDataTable(Constant.ApplyCouponCode, ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsApplyCouponCode> objCoupon = new List<ClsApplyCouponCode>();
+
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        IList<ClsApplyCouponCode> List = dt.AsEnumerable().Select(Row =>
+                            new ClsApplyCouponCode
+                            {
+                                ObjectIDs = Row.Field<string>("ObjectIDs"),
+                                DiscountInMax = Row.Field<decimal>("DiscountInMax"),
+                                DiscountInPercentage = Row.Field<decimal>("DiscountInPercentage"),
+                                CouponStatus = Row.Field<string>("CouponStatus")
+                            }).ToList();
+                        objCoupon.AddRange(List);
+                    }
+                }
+                return objCoupon;
             }
             catch (Exception ex)
             {

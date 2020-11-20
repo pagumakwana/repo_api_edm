@@ -39,5 +39,11 @@ namespace EDM.Models.Admin.AuthorityManagement
         public Int64 Ref_Module_ID { get; set; }
         public string ModuleName { get; set; }
         public string ModuleIdentifier { get; set; }
+        public string ModuleType { get; set; }
+        public string ModuleFor { get; set; }
+        public string ImageUrl { get; set; }
+        public string ModuleUrl { get; set; }
+        public int DisplayOrder { get; set; }
+        public List<ClsModuleAccess> ModuleAccess { get; set; }
     }
 }

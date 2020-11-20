@@ -31,11 +31,10 @@ namespace EDM.Models.Common
         public const string AddModifyAuthorityModuleAccess = "[dbo].[AddModifyAuthorityModuleAccess]";
         public const string GetAuthorityList = "[dbo].[GetAuthorityList]";
         public const string GetAuthorityDetails = "[dbo].[GetAuthorityDetails]";
+        public const string GetUserModuleAccess = "[dbo].[GetUserModuleAccess]";
 
         public const string GetCategoryList = "[dbo].[GetCategoryList]";
         public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
-
-        public const string RemoveFile = "[dbo].[RemoveFile]";
 
         public const string GetBlogList = "[dbo].[GetBlogList]";
         public const string ManageBlog = "[dbo].[ManageBlog]";
@@ -49,15 +48,25 @@ namespace EDM.Models.Common
         public const string SignUp = "[DBO].[SignUp]";
         public const string SignIn = "[DBO].[SignIn]";
         public const string GlobalSearch = "[dbo].[GlobalSearch]";
+        public const string RemoveFile = "[dbo].[RemoveFile]";
         public const string SaveModuleFile = "[dbo].[SaveModuleFile]";
         public const string GetParentCategoryList = "[dbo].[GetParentCategoryList]";
         public const string AddModifyUserAction = "[dbo].[AddModifyUserAction]";
         public const string GetUserActionDetails = "[dbo].[GetUserActionDetails]";
         public const string AddModifyUserOrder = "[dbo].[AddModifyUserOrder]";
+        public const string GetUserOrderDetails = "[dbo].[GetUserOrderDetails]";
+        public const string RemoveUserOrderObject = "[dbo].[RemoveUserOrderObject]";
+        public const string SetUserOrderStatus = "[dbo].[SetUserOrderStatus]";
+        public const string ApplyCouponCode = "[dbo].[ApplyCouponCode]";
 
         //END :: SHARED
 
         //START :: USERS AND PRODUCERS
+
+
+        public const string GetTicketTypeList = "[dbo].[GetTicketTypeList]";
+        public const string AddModifyUserTicket = "[dbo].[AddModifyUserTicket]";
+        public const string GetUsereTicketList = "[dbo].[GetUsereTicketList]";
 
         public const string GetProducersList = "[dbo].[GetProducersList]";
         public const string GetProducerTrackAndBeatList = "[dbo].[GetProducerTrackAndBeatList]";
@@ -102,7 +111,7 @@ namespace EDM.Models.Common
         public const string RequestOTP = "[dbo].[RequestOTP]";
         public const string SearchKeyword = "[dbo].[SearchKeyword]";
         public const string UpdateCustomerProfile = "[dbo].[UpdateCustomerProfile]";
-           
+
 
     }
 

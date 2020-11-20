@@ -28,7 +28,12 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
                             {
                                 Ref_Module_ID = Row.Field<Int64>("Ref_Module_ID"),
                                 ModuleIdentifier = Row.Field<string>("ModuleIdentifier"),
-                                ModuleName = Row.Field<string>("ModuleName")
+                                ModuleName = Row.Field<string>("ModuleName"),
+                                ModuleType = Row.Field<string>("ModuleType"),
+                                ModuleFor = Row.Field<string>("ModuleFor"),
+                                ImageUrl = Row.Field<string>("ImageUrl"),
+                                ModuleUrl = Row.Field<string>("ModuleUrl"),
+                                DisplayOrder = Row.Field<int>("DisplayOrder")
                             }).ToList();
                         objModule.AddRange(List);
                     }
@@ -180,7 +185,54 @@ namespace EDM.DataAccessLayer.Admin.AuthorityManagement
             }
         }
 
+        public List<ClsModuleList> GetUserModuleAccess(Int64 UserID, Int64 ModuleID)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@ModuleID", ModuleID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
 
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserModuleAccess, ObJParameterCOl, CommandType.StoredProcedure);
+                List<ClsModuleList> objModuleList = new List<ClsModuleList>();
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        IList<ClsModuleList> List = ds.Tables[0].AsEnumerable().Select(Row =>
+                            new ClsModuleList
+                            {
+                                Ref_Module_ID = Row.Field<Int64>("Ref_Module_ID"),
+                                ModuleIdentifier = Row.Field<string>("ModuleIdentifier"),
+                                ModuleName = Row.Field<string>("ModuleName"),
+                                ModuleType = Row.Field<string>("ModuleType"),
+                                ModuleFor = Row.Field<string>("ModuleFor"),
+                                ImageUrl = Row.Field<string>("ImageUrl"),
+                                ModuleUrl = Row.Field<string>("ModuleUrl"),
+                                DisplayOrder = Row.Field<int>("DisplayOrder"),
+                                ModuleAccess = ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("Ref_Module_ID") == Row.Field<Int64>("Ref_Module_ID")).Select(Row1 =>
+                                 new ClsModuleAccess
+                                 {
+                                     View = Row1.Field<Boolean>("ViewAccess"),
+                                     Edit = Row1.Field<Boolean>("EditAccess"),
+                                     Delete = Row1.Field<Boolean>("DeleteAccess"),
+                                     Approval = Row1.Field<Boolean>("ApprovalAccess")
+                                 }).ToList()
+                            }).ToList();
+                        objModuleList.AddRange(List);
+                    }
+                }
+                return objModuleList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void Dispose()
         {
 

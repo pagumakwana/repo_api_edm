@@ -25,6 +25,28 @@ namespace EDM.BusinessAccessLayer.User
                 return obj.SignIn(ObjUser);
             }
         }
+        public List<ClsTicketType> GetTicketTypeList()
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.GetTicketTypeList();
+            }
+        }
+        public string AddModifyUserTicket(ClsTicketDetails ObjTicket)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return AddModifyUserTicket(ObjTicket);
+            }
+        }
+
+        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.GetUsereTicketList(UserID, StartCount, EndCount);
+            }
+        }
 
         public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {

@@ -159,6 +159,151 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
+        public List<ClsTicketType> GetTicketTypeList()
+        {
+            try
+            {
+                DBHelper objDbHelper = new DBHelper();
+                DataTable User = objDbHelper.ExecuteDataTable(Constant.GetTicketTypeList, CommandType.StoredProcedure);
+                List<ClsTicketType> objUserDetails = new List<ClsTicketType>();
+
+                if (User != null)
+                {
+                    if (User.Rows.Count > 0)
+                    {
+                        objUserDetails = User.AsEnumerable().Select(Row =>
+                            new ClsTicketType
+                            {
+                                Ref_TicketType_ID = Row.Field<Int64>("Ref_TicketType_ID"),
+                                TicketType = Row.Field<string>("TicketType"),
+                            }).ToList();
+                    }
+                }
+                return objUserDetails;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public string AddModifyUserTicket(ClsTicketDetails ObjTicket)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_User_ID", ObjTicket.Ref_User_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_Ticket_ID", ObjTicket.Ref_Ticket_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Ref_TicketType_ID", ObjTicket.Ref_TicketType_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Subject", ObjTicket.Subject, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Description", ObjTicket.Description, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                Int64 Ref_Ticket_ID = Convert.ToInt64(objDbHelper.ExecuteScalar(Constant.AddModifyUserTicket, ObJParameterCOl, CommandType.StoredProcedure));
+
+                if (Ref_Ticket_ID > 0)
+                {
+                    ObjTicket.FileManager.ForEach(File =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@FileManagerID", File.FileManagerID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleID", Ref_Ticket_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@ModuleType", File.ModuleType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileIdentifier", File.FileIdentifier, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileName", File.FileName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FilePath", File.FilePath, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileExtension", File.FileExtension, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileType", File.FileType, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSize", File.FileSize, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
+                        ObJParameterCOl1.Add(objDBParameter1);
+
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                    });
+                }
+
+                if (Ref_Ticket_ID > 0 && ObjTicket.Ref_Ticket_ID == 0)
+                {
+                    return "USERTICKETSUCCESS";
+                }
+                else if (Ref_Ticket_ID > 0 && ObjTicket.Ref_Ticket_ID > 0)
+                {
+                    return "USERTICKETSUCCESS";
+                }
+                else
+                {
+                    return "TICKETALREADYEXISTS";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        {
+            try
+            {
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserID", UserID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@StartCount", StartCount, DbType.Int32);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@EndCount", EndCount, DbType.Int32);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUsereTicketList, ObJParameterCOl, CommandType.StoredProcedure);
+
+                List<ClsTicketDetails> objUserDetails = new List<ClsTicketDetails>();
+
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        objUserDetails = ds.Tables[0].AsEnumerable().Select(Row =>
+                            new ClsTicketDetails
+                            {
+                                Ref_Ticket_ID = Row.Field<Int64>("Ref_User_ID"),
+                                Ref_TicketType_ID = Row.Field<Int64>("Ref_TicketType_ID"),
+                                Ref_User_ID = Row.Field<Int64>("Ref_User_ID"),
+                                Subject = Row.Field<string>("Subject"),
+                                Description = Row.Field<string>("Description"),
+                                FileManager = ds.Tables[1].AsEnumerable().Select(Row2 =>
+                                    new ClsFileManager
+                                    {
+                                        FileManagerID = Row2.Field<Int64>("Ref_FileManager_ID"),
+                                        FileIdentifier = Row2.Field<string>("FileIdentifier"),
+                                        FileName = Row2.Field<string>("FileName"),
+                                        FilePath = Row2.Field<string>("FilePath"),
+                                        FileExtension = Row2.Field<string>("FileExtension"),
+                                        FileSize = Row2.Field<Int64>("FileSize"),
+                                        FileType = Row2.Field<string>("FileType"),
+                                        Sequence = Row2.Field<int>("Sequence"),
+                                    }).ToList(),
+                            }).ToList();
+                    }
+                }
+                return objUserDetails;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<ClsUserDetails> GetProducersList(Int64 UserID, int StartCount, int EndCount)
         {
             try

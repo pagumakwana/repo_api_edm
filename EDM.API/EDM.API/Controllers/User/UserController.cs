@@ -34,6 +34,36 @@ namespace EDM.API.Controllers.User
             }
         }
 
+        [Route("TicketType")]
+        [HttpGet]
+        public List<ClsTicketType> GetTicketTypeList()
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetTicketTypeList();
+            }
+        }
+
+        [Route("Ticket")]
+        [HttpPost]
+        public string AddModifyUserTicket(ClsTicketDetails ObjTicket)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.AddModifyUserTicket(ObjTicket);
+            }
+        }
+
+        [Route("Ticket")]
+        [HttpGet]
+        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.GetUsereTicketList(UserID, StartCount, EndCount);
+            }
+        }
+
         [Route("Producers")]
         [HttpGet]
         public List<ClsUserDetails> GetProducersList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)

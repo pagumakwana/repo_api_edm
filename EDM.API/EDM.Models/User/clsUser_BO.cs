@@ -40,6 +40,20 @@ namespace EDM.Models.User
         public string Password { get; set; }
         public Boolean IsSocialLogin { get; set; }
     }
+    public class ClsTicketType
+    {
+        public Int64 Ref_TicketType_ID { get; set; }
+        public string TicketType { get; set; }
+    }
+    public class ClsTicketDetails
+    {
+        public Int64 Ref_Ticket_ID { get; set; }
+        public Int64 Ref_TicketType_ID { get; set; }
+        public Int64 Ref_User_ID { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
+        public List<ClsFileManager> FileManager { get; set; }
+    }
 
     public class ClsProducerTrackAndBeatList
     {

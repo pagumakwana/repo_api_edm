@@ -35,7 +35,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int16);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int32);
-                ObJParameterCOl.Add(objDBParameter);  
+                ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaTitle", ObjServiceDetails.MetaTitle, DbType.String);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@MetaKeywords", ObjServiceDetails.MetaKeywords, DbType.String);
@@ -48,23 +48,6 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
 
                 if (Ref_Service_ID > 0)
                 {
-                    ObjServiceDetails.FAQDetails.ForEach(FAQ =>
-                    {
-                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
-                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
-                        ObJParameterCOl1.Add(objDBParameter1);
-                        objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
-                        ObJParameterCOl1.Add(objDBParameter1);
-                        objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
-                        ObJParameterCOl1.Add(objDBParameter1);
-                        objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
-                        ObJParameterCOl1.Add(objDBParameter1);
-                        objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
-                        ObJParameterCOl1.Add(objDBParameter1);
-
-                        objDbHelper.ExecuteScalar(Constant.AddModifyServiceFAQ, ObJParameterCOl1, CommandType.StoredProcedure);
-                    });
-
                     ObjServiceDetails.FileManager.ForEach(File =>
                     {
                         DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
@@ -89,9 +72,24 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                         objDBParameter1 = new DBParameter("@FileSequence", File.Sequence, DbType.Int32);
                         ObJParameterCOl1.Add(objDBParameter1);
 
-                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure).ToString();
+                        objDbHelper.ExecuteScalar(Constant.SaveModuleFile, ObJParameterCOl1, CommandType.StoredProcedure);
                     });
+                    ObjServiceDetails.FAQDetails.ForEach(FAQ =>
+                    {
+                        DBParameterCollection ObJParameterCOl1 = new DBParameterCollection();
+                        DBParameter objDBParameter1 = new DBParameter("@Ref_Service_ID", Ref_Service_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Question", FAQ.Questions, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Answer", FAQ.Answer, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int64);
+                        ObJParameterCOl1.Add(objDBParameter1);
+                        objDBParameter1 = new DBParameter("@CreatedName", ObjServiceDetails.CreatedName, DbType.String);
+                        ObJParameterCOl1.Add(objDBParameter1);
 
+                        objDbHelper.ExecuteScalar(Constant.AddModifyServiceFAQ, ObJParameterCOl1, CommandType.StoredProcedure);
+                    });
                 }
 
                 if (Ref_Service_ID > 0 && ObjServiceDetails.Ref_Service_ID == 0)
