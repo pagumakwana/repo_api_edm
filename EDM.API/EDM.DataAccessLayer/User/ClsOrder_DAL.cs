@@ -68,6 +68,7 @@ namespace EDM.DataAccessLayer.User
                                     Favourite = Row.Field<string>("Favourite"),
                                     PlayUrl = Row.Field<string>("PlayUrl"),
                                     Action = Row.Field<string>("Action"),
+                                    SoldOut = Row.Field<string>("SoldOut"),
                                 }).ToList();
                             objUserAction.AddRange(List);
                         }
@@ -119,7 +120,6 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-
         public List<ClsUserOrderList> GetUserOrderDetails(Int64 UserID, string OrderStatus)
         {
             try

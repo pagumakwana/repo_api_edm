@@ -32,7 +32,7 @@ namespace EDM.DataAccessLayer.Admin.ServiceManagement
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@PriceWithProjectFiles", ObjServiceDetails.PriceWithProjectFiles, DbType.Decimal);
                 ObJParameterCOl.Add(objDBParameter);
-                objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int16);
+                objDBParameter = new DBParameter("@Revision", ObjServiceDetails.Revision, DbType.Int32);
                 ObJParameterCOl.Add(objDBParameter);
                 objDBParameter = new DBParameter("@Ref_User_ID", ObjServiceDetails.Ref_User_ID, DbType.Int32);
                 ObJParameterCOl.Add(objDBParameter);

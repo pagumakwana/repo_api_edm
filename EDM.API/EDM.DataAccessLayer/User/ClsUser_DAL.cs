@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EDM.DataAccessLayer.User
 {
@@ -241,7 +240,7 @@ namespace EDM.DataAccessLayer.User
                 }
                 else if (Ref_Ticket_ID > 0 && ObjTicket.Ref_Ticket_ID > 0)
                 {
-                    return "USERTICKETSUCCESS";
+                    return "USERTICKETUPDATED";
                 }
                 else
                 {
@@ -253,7 +252,7 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
-        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        public List<ClsTicketDetails> GetUserTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
         {
             try
             {
@@ -266,7 +265,7 @@ namespace EDM.DataAccessLayer.User
                 ObJParameterCOl.Add(objDBParameter);
 
                 DBHelper objDbHelper = new DBHelper();
-                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUsereTicketList, ObJParameterCOl, CommandType.StoredProcedure);
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.GetUserTicketList, ObJParameterCOl, CommandType.StoredProcedure);
 
                 List<ClsTicketDetails> objUserDetails = new List<ClsTicketDetails>();
 

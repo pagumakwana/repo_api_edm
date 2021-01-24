@@ -36,15 +36,15 @@ namespace EDM.BusinessAccessLayer.User
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {
-                return AddModifyUserTicket(ObjTicket);
+                return obj.AddModifyUserTicket(ObjTicket);
             }
         }
 
-        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        public List<ClsTicketDetails> GetUserTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
         {
             using (ClsUser_DAL obj = new ClsUser_DAL())
             {
-                return obj.GetUsereTicketList(UserID, StartCount, EndCount);
+                return obj.GetUserTicketList(UserID, StartCount, EndCount);
             }
         }
 

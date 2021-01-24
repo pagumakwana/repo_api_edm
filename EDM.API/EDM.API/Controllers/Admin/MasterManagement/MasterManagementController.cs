@@ -84,6 +84,16 @@ namespace EDM.API.Controllers.Admin.MasterManagement
             }
         }
 
+        [Route("ManageCategory")]
+        [HttpGet]
+        public string ManageCategory(string CategoryIDs, string Action)
+        {
+            using (ClsMasterManagement_BAL obj = new ClsMasterManagement_BAL())
+            {
+                return obj.ManageCategory(CategoryIDs, Action);
+            }
+        }
+
         [Route("DAW")]
         [HttpGet]
         public List<ClsDAW> GetDAWList()

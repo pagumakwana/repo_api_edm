@@ -24,6 +24,7 @@ namespace EDM.Models.User
         public string Favourite { get; set; }
         public string PlayUrl { get; set; }
         public string Action { get; set; }
+        public string SoldOut { get; set; }
     }
 
     public class ClsUserOrder

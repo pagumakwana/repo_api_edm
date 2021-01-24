@@ -17,6 +17,7 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public string Thumbnail { get; set; }
         public string IsTrack { get; set; }
+        public string SoldOut { get; set; }
         public string Favourite { get; set; }
         public string PlayUrl { get; set; }
     }
@@ -41,6 +42,7 @@ namespace EDM.Models.User
         public Decimal PriceWithProjectFiles { get; set; }
         public string TrackStatus { get; set; }
         public string Favourite { get; set; }
+        public string SoldOut { get; set; }
         public List<ClsFileManager> FileManager { get; set; }
         public List<ClsRelatedTrackList> RelatedTrack { get; set; }
 
@@ -56,6 +58,7 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public string Favourite { get; set; }
         public string PlayUrl { get; set; }
+        public string SoldOut { get; set; }
         public string ThumbnailImageUrl { get; set; }
     }
     public class ClsTrackAndBeatList

@@ -41,6 +41,7 @@ namespace EDM.DataAccessLayer.User
                                 Duration = Row.Field<string>("Duration"),
                                 Price = Row.Field<decimal>("Price"),
                                 IsTrack = Row.Field<string>("IsTrack"),
+                                SoldOut = Row.Field<string>("SoldOut"),
                                 Favourite = Row.Field<string>("Favourite"),
                                 PlayUrl = Row.Field<string>("PlayUrl"),
                             }).ToList();
@@ -95,6 +96,7 @@ namespace EDM.DataAccessLayer.User
                                     IsVocals = Row.Field<string>("IsVocals"),
                                     IsTrack = Row.Field<string>("IsTrack"),
                                     Favourite = Row.Field<string>("Favourite"),
+                                    SoldOut = Row.Field<string>("SoldOut"),
                                     FileManager = Ds.Tables[1].AsEnumerable().Where(x => x.Field<Int64>("ModuleID") == Row.Field<Int64>("Ref_Track_ID")).Select(Row1 =>
                                          new ClsFileManager
                                          {
@@ -118,6 +120,7 @@ namespace EDM.DataAccessLayer.User
                                             IsTrack = Row2.Field<string>("IsTrack"),
                                             PlayUrl = Row2.Field<string>("PlayUrl"),
                                             Favourite = Row2.Field<string>("Favourite"),
+                                            SoldOut = Row2.Field<string>("SoldOut"),
                                             ThumbnailImageUrl = Row2.Field<string>("Thumbnail"),
                                         }).ToList(),
                                 }).ToList();
@@ -172,6 +175,7 @@ namespace EDM.DataAccessLayer.User
                                 IsTrack = Row.Field<string>("IsTrack"),
                                 IsVocals = Row.Field<string>("IsVocals"),
                                 Favourite = Row.Field<string>("Favourite"),
+                                SoldOut = Row.Field<string>("SoldOut"),
                                 PlayUrl = Row.Field<string>("PlayUrl"),
                                 ThumbnailImageUrl = Row.Field<string>("Thumbnail"),
                             }).ToList();

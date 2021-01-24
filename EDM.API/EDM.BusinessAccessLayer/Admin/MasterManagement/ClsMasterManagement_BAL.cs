@@ -66,6 +66,13 @@ namespace EDM.BusinessLayer.Admin.MasterManagement
                 return obj.GetCategoryList(Flag, Ref_Category_ID, AliasName);
             }
         }
+        public String ManageCategory(string CategoryIDs, string Action)
+        {
+            using (ClsMasterManagement_DAL obj = new ClsMasterManagement_DAL())
+            {
+                return obj.ManageCategory(CategoryIDs, Action);
+            }
+        }
 
         public List<ClsDAW> GetDAWList()
         {

@@ -56,11 +56,11 @@ namespace EDM.API.Controllers.User
 
         [Route("Ticket")]
         [HttpGet]
-        public List<ClsTicketDetails> GetUsereTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
+        public List<ClsTicketDetails> GetUserTicketList(Int64 UserID = 0, int StartCount = 0, int EndCount = 0)
         {
             using (ClsUser_BAL obj = new ClsUser_BAL())
             {
-                return obj.GetUsereTicketList(UserID, StartCount, EndCount);
+                return obj.GetUserTicketList(UserID, StartCount, EndCount);
             }
         }
 

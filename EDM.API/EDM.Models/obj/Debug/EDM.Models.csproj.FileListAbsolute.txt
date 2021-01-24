@@ -26,7 +26,7 @@ D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb
 D:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
 E:\Project\EDM\EDM.API\EDM.Models\bin\Debug\EDM.Models.dll
 E:\Project\EDM\EDM.API\EDM.Models\bin\Debug\EDM.Models.pdb
-E:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache
 E:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csproj.CoreCompileInputs.cache
 E:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.dll
 E:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.pdb
+E:\Project\EDM\EDM.API\EDM.Models\obj\Debug\EDM.Models.csprojAssemblyReference.cache

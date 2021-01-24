@@ -33,6 +33,7 @@ namespace EDM.Models.Common
         public const string GetAuthorityDetails = "[dbo].[GetAuthorityDetails]";
         public const string GetUserModuleAccess = "[dbo].[GetUserModuleAccess]";
 
+        public const string ManageCategory = "[dbo].[ManageCategory]";
         public const string GetCategoryList = "[dbo].[GetCategoryList]";
         public const string AddModifyCategory = "[dbo].[AddModifyCategory]";
 
@@ -66,8 +67,11 @@ namespace EDM.Models.Common
 
         public const string GetTicketTypeList = "[dbo].[GetTicketTypeList]";
         public const string AddModifyUserTicket = "[dbo].[AddModifyUserTicket]";
-        public const string GetUsereTicketList = "[dbo].[GetUsereTicketList]";
+        public const string GetUserTicketList = "[dbo].[GetUserTicketList]";
 
+        public const string GetAllProducersList = "[dbo].[GetAllProducersList]";
+        public const string ProducerApproveAndRejact = "[dbo].[ProducerApproveAndRejact]";
+     
         public const string GetProducersList = "[dbo].[GetProducersList]";
         public const string GetProducerTrackAndBeatList = "[dbo].[GetProducerTrackAndBeatList]";
         public const string GetProducersCustomServicesList = "[dbo].[GetProducersCustomServicesList]";
