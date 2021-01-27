@@ -480,6 +480,92 @@ namespace EDM.DataAccessLayer.User
                 throw ex;
             }
         }
+
+        public string ForgotPassword(string UserCode)
+        {
+            try
+            {
+                string Response = "";
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@UserCode", UserCode, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.ForgotPassword, ObJParameterCOl, CommandType.StoredProcedure);
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response = ds.Tables[0].Rows[0]["RESPONSE"].ToString();
+                    }
+                }
+                return Response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string ValidateUser(string usercode)
+        {
+            try
+            {
+                string Response = "";
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@usercode", usercode, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.ValidateUser, ObJParameterCOl, CommandType.StoredProcedure);
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response = ds.Tables[0].Rows[0]["RESPONSE"].ToString();
+                    }
+                }
+                return Response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string RequestOTP(clsRequestOTP objclsRequestOTP)
+        {
+            try
+            {
+                string Response = "";
+                DBParameterCollection ObJParameterCOl = new DBParameterCollection();
+                DBParameter objDBParameter = new DBParameter("@Ref_User_ID", objclsRequestOTP.Ref_User_ID, DbType.Int64);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@OTP", objclsRequestOTP.OTP, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Flag", objclsRequestOTP.Flag, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@Type", objclsRequestOTP.Type, DbType.String);
+                ObJParameterCOl.Add(objDBParameter);
+                objDBParameter = new DBParameter("@IsValidate", objclsRequestOTP.IsValidate, DbType.Boolean);
+                ObJParameterCOl.Add(objDBParameter);
+
+                DBHelper objDbHelper = new DBHelper();
+                DataSet ds = objDbHelper.ExecuteDataSet(Constant.RequestOTP, ObJParameterCOl, CommandType.StoredProcedure);
+                if (ds != null)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response = ds.Tables[0].Rows[0]["RESPONSE"].ToString();
+                    }
+                }
+                return Response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void Dispose()
         {
 

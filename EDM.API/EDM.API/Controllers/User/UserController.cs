@@ -103,5 +103,35 @@ namespace EDM.API.Controllers.User
                 return obj.GetAvailableProducersForServices( UserID, ServiceID, StartCount, EndCount);
             }
         }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public string ForgotPassword(string usercode)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.ForgotPassword(usercode);
+            }
+        }
+
+        [Route("ValidateUser")]
+        [HttpGet]
+        public string ValidateUser(string usercode)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.ValidateUser(usercode);
+            }
+        }
+
+        [Route("RequestOTP")]
+        [HttpPost]
+        public string RequestOTP(clsRequestOTP objclsRequestOTP)
+        {
+            using (ClsUser_BAL obj = new ClsUser_BAL())
+            {
+                return obj.RequestOTP(objclsRequestOTP);
+            }
+        }
     }
 }

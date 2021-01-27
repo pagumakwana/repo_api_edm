@@ -79,7 +79,29 @@ namespace EDM.BusinessAccessLayer.User
                 return obj.GetAvailableProducersForServices(UserID, ServiceID, StartCount, EndCount);
             }
         }
+        public string ForgotPassword(string usercode)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.ForgotPassword(usercode);
+            }
+        }
 
+        public string ValidateUser(string usercode)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.ValidateUser(usercode);
+            }
+        }
+
+        public string RequestOTP(clsRequestOTP objclsRequestOTP)
+        {
+            using (ClsUser_DAL obj = new ClsUser_DAL())
+            {
+                return obj.RequestOTP(objclsRequestOTP);
+            }
+        }
         public void Dispose()
         {
 

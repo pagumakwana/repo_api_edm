@@ -77,4 +77,11 @@ namespace EDM.Models.User
         public Decimal Price { get; set; }
         public string ThumbnailImageUrl { get; set; }
     }
+    public class clsRequestOTP : clsBase
+    {
+        public Int64 Ref_OTP_ID { get; set; }
+        public string OTP { get; set; }
+        public string Type { get; set; }
+        public bool IsValidate { get; set; }
+    }
 }
